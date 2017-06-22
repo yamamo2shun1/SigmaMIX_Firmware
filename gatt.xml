@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+  
+  <!--Custom BLE GATT-->
+  <gatt generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+    
+    <!--Generic Access-->
+    <service advertise="false" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+      <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+      
+      <!--Device Name-->
+      <characteristic id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+        <informativeText/>
+        <value length="8" type="utf-8" variable_length="false">SigmaMIX</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Appearance-->
+      <characteristic name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+        <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+        <value length="2" type="hex" variable_length="false">0000</value>
+        <properties const="true" const_requirement="optional" read="true" read_requirement="optional"/>
+      </characteristic>
+    </service>
+    
+    <!--Device Information-->
+    <service advertise="false" name="Device Information" requirement="mandatory" sourceId="org.bluetooth.service.device_information" type="primary" uuid="180A">
+      <informativeText>Abstract: The Device Information Service exposes manufacturer and/or vendor information about a device. Summary: This service exposes manufacturer information about a device. The Device Information Service is instantiated as a Primary Service. Only one instance of the Device Information Service is exposed on a device. </informativeText>
+      
+      <!--Manufacturer Name String-->
+      <characteristic name="Manufacturer Name String" sourceId="org.bluetooth.characteristic.manufacturer_name_string" uuid="2A29">
+        <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device. </informativeText>
+        <value length="19" type="utf-8" variable_length="false">Yamamoto Works Ltd.</value>
+        <properties const="true" const_requirement="optional" read="true" read_requirement="optional"/>
+      </characteristic>
+      
+      <!--Model Number String-->
+      <characteristic name="Model Number String" sourceId="org.bluetooth.characteristic.model_number_string" uuid="2A24">
+        <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor. </informativeText>
+        <value length="10" type="utf-8" variable_length="false">Blue Gecko</value>
+        <properties const="true" const_requirement="optional" read="true" read_requirement="optional"/>
+      </characteristic>
+      
+      <!--System ID-->
+      <characteristic name="System ID" sourceId="org.bluetooth.characteristic.system_id" uuid="2A23">
+        <informativeText>Abstract: The SYSTEM ID characteristic consists of a structure with two fields. The first field are the LSOs and the second field contains the MSOs.       This is a 64-bit structure which consists of a 40-bit manufacturer-defined identifier concatenated with a 24 bit unique Organizationally Unique Identifier (OUI). The OUI is issued by the IEEE Registration Authority (http://standards.ieee.org/regauth/index.html) and is required to be used in accordance with IEEE Standard 802-2001.6 while the least significant 40 bits are manufacturer defined.       If System ID generated based on a Bluetooth Device Address, it is required to be done as follows. System ID and the Bluetooth Device Address have a very similar structure: a Bluetooth Device Address is 48 bits in length and consists of a 24 bit Company Assigned Identifier (manufacturer defined identifier) concatenated with a 24 bit Company Identifier (OUI). In order to encapsulate a Bluetooth Device Address as System ID, the Company Identifier is concatenated with 0xFFFE followed by the Company Assigned Identifier of the Bluetooth Address. For more guidelines related to EUI-64, refer to http://standards.ieee.org/develop/regauth/tut/eui64.pdf. Examples: If the system ID is based of a Bluetooth Device Address with a Company Identifier (OUI) is 0x123456 and the Company Assigned Identifier is 0x9ABCDE, then the System Identifier is required to be 0x123456FFFE9ABCDE. </informativeText>
+        <value length="6" type="hex" variable_length="false">000102030405</value>
+        <properties const="true" const_requirement="optional" read="true" read_requirement="optional"/>
+      </characteristic>
+    </service>
+    
+    <!--Silicon Labs OTA-->
+    <service advertise="false" name="Silicon Labs OTA" requirement="mandatory" sourceId="com.silabs.service.ota" type="primary" uuid="1D14D6EE-FD63-4FA1-BFA4-8F47B42119F0">
+      <informativeText>Abstract: The Silicon Labs OTA Service enables over-the-air firmware update of the device. </informativeText>
+      
+      <!--Silicon Labs OTA Control-->
+      <characteristic id="ota_control" name="Silicon Labs OTA Control" sourceId="com.silabs.characteristic.ota_control" uuid="F7BF3564-FB6D-4E53-88A4-5E37E0326063">
+        <informativeText>Abstract: Silicon Labs OTA Control. </informativeText>
+        <value length="1" type="user" variable_length="false"/>
+        <properties write="true" write_requirement="optional"/>
+      </characteristic>
+    </service>
+    
+    <!--Mixer Settings-->
+    <service advertise="false" name="Mixer Settings" requirement="mandatory" sourceId="net.tkrworks.service.mixer" type="primary" uuid="d6cd96b8-a739-41e5-bacc-909cdbbc45d8">
+      <informativeText>Custom service</informativeText>
+      
+      <!--XFader Setting-->
+      <characteristic id="xfader_setting" name="XFader Setting" sourceId="net.tkrworks.characteristic.xf_setting" uuid="65775261-2d80-49d1-9620-fa22bda727c5">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--IFader Setting-->
+      <characteristic id="ifader_setting" name="IFader Setting" sourceId="net.tkrworks.characteristic.if_setting" uuid="a257e2e9-5d24-40b3-a536-dc413fcebf79">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Line/Phono Switch-->
+      <characteristic id="line_phono_switch" name="Line/Phono Switch" sourceId="net.tkrworks.characteristic.line_phono_switch" uuid="72fab72f-34e9-46ae-b2af-8f12420c9315">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Input Gain-->
+      <characteristic id="input_gain" name="Input Gain" sourceId="net.tkrworks.characteristic.input_gain" uuid="21fab7c9-7208-4b64-8f18-e99689dd479d">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--EQ Hi-->
+      <characteristic id="eq_hi" name="EQ Hi" sourceId="net.tkrworks.characteristic.eq_hi" uuid="cde93457-0e92-461b-bca2-bcd2b41753c3">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--EQ Mid-->
+      <characteristic id="eq_mid" name="EQ Mid" sourceId="net.tkrworks.characteristic.eq_mid" uuid="b759ac9e-f274-4ea6-82d4-eded7fd1ba6b">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--EQ Low-->
+      <characteristic id="eq_low" name="EQ Low" sourceId="net.tkrworks.characteristic.eq_low" uuid="ef34940a-c6dd-4832-9643-7798061029d9">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Input Fader-->
+      <characteristic id="input_fader" name="Input Fader" sourceId="net.tkrworks.characteristic.input_fader" uuid="815f1b0a-78f5-4162-b60e-517705106362">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Master/Booth Gain-->
+      <characteristic id="master_booth_gain" name="Master/Booth Gain" sourceId="net.tkrworks.characteristic.master_booth_gain" uuid="9f5c0ec8-006e-4c1a-bc03-092a38ea0134">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Monitor Level/Select-->
+      <characteristic id="monitor_level_select" name="Monitor Level/Select" sourceId="net.tkrworks.characteristic.monitor_level_select" uuid="cc3d79bf-4dc0-498d-92d8-210af7ddb13f">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="6" type="hex" variable_length="false">0x000000000000</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+    </service>
+  </gatt>
+</project>

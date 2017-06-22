@@ -1,0 +1,22 @@
+// Copyright 2017 Silicon Laboratories, Inc.
+//
+//
+
+Executing: bgbuild.exe (C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\protocol\bluetooth_2.3\bin\bgbuild.exe)
+Standard output
+ALL OK
+
+Error/Warning output
+Unknown option 'n'.
+WARNING: 657752612d8049d19620fa22bda727c5 length attribute is 1 but actual value length is 2. 1 will be used.
+WARNING: a257e2e95d2440b3a536dc413fcebf79 length attribute is 1 but actual value length is 2. 1 will be used.
+WARNING: 72fab72f34e946aeb2af8f12420c9315 length attribute is 1 but actual value length is 2. 1 will be used.
+WARNING: 21fab7c972084b648f18e99689dd479d length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: cde934570e92461bbca2bcd2b41753c3 length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: b759ac9ef2744ea682d4eded7fd1ba6b length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: ef34940ac6dd483296437798061029d9 length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: 815f1b0a78f54162b60e517705106362 length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: 9f5c0ec8006e4c1abc03092a38ea0134 length attribute is 6 but actual value length is 7. 6 will be used.
+WARNING: cc3d79bf4dc0498d92d8210af7ddb13f length attribute is 6 but actual value length is 7. 6 will be used.
+
+
