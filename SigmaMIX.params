@@ -154,45 +154,45 @@ Parameter Data :
 Cell Name         = eq1
 Parameter Name    = EQ1940Dual20B2
 Parameter Address = 59
-Parameter Value   = 1
+Parameter Value   = 0.999395132064819
 Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
+0x00 ,	0x7F ,	0xEC ,	0x2E ,	
 
 
 
 Cell Name         = eq1
 Parameter Name    = EQ1940Dual21B2
 Parameter Address = 60
-Parameter Value   = 0
+Parameter Value   = -1.87098777294159
 Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+0x0F ,	0x10 ,	0x83 ,	0x79 ,	
 
 
 
 Cell Name         = eq1
 Parameter Name    = EQ1940Dual22B2
 Parameter Address = 61
-Parameter Value   = 0
+Parameter Value   = 0.894914746284485
 Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+0x00 ,	0x72 ,	0x8C ,	0x91 ,	
 
 
 
 Cell Name         = eq1
 Parameter Name    = EQ1940Dual21A2
 Parameter Address = 62
-Parameter Value   = 0
+Parameter Value   = 1.87098777294159
 Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+0x00 ,	0xEF ,	0x7C ,	0x87 ,	
 
 
 
 Cell Name         = eq1
 Parameter Name    = EQ1940Dual22A2
 Parameter Address = 63
-Parameter Value   = 0
+Parameter Value   = -0.894309878349304
 Parameter Data :
-0x00 ,	0x00 ,	0x00 ,	0x00 ,	
+0x0F ,	0x8D ,	0x87 ,	0x41 ,	
 
 
 
@@ -415,18 +415,18 @@ Parameter Data :
 Cell Name         = ph ln sw2
 Parameter Name    = stereoDemux1940ns20
 Parameter Address = 4
-Parameter Value   = 0
+Parameter Value   = 1
 Parameter Data :
-0x00, 0x00, 0x00, 0x00, 
+0x00, 0x80, 0x00, 0x00, 
 
 
 
 Cell Name         = ph ln sw2
 Parameter Name    = stereoDemux1940ns21
 Parameter Address = 5
-Parameter Value   = 1
+Parameter Value   = 0
 Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
+0x00, 0x00, 0x00, 0x00, 
 
 
 
@@ -1153,36 +1153,36 @@ Parameter Data :
 Cell Name         = xf1
 Parameter Name    = SWGain1940DBAlg11target
 Parameter Address = 6
-Parameter Value   = 1
+Parameter Value   = 0.25409722328186
 Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
+0x00 ,	0x20 ,	0x86 ,	0x42 ,	
 
 
 
 Cell Name         = xf1
 Parameter Name    = SWGain1940DBAlg11step
 Parameter Address = 7
-Parameter Value   = 0.00390625
+Parameter Value   = 0.0078125
 Parameter Data :
-0x00 ,	0x00 ,	0x80 ,	0x00 ,	
+0x00 ,	0x01 ,	0x00 ,	0x00 ,	
 
 
 
 Cell Name         = xf1
 Parameter Name    = SWGain1940DBAlg12target
 Parameter Address = 8
-Parameter Value   = 1
+Parameter Value   = 0.25409722328186
 Parameter Data :
-0x00 ,	0x80 ,	0x00 ,	0x00 ,	
+0x00 ,	0x20 ,	0x86 ,	0x42 ,	
 
 
 
 Cell Name         = xf1
 Parameter Name    = SWGain1940DBAlg12step
 Parameter Address = 9
-Parameter Value   = 0.00390625
+Parameter Value   = 0.0078125
 Parameter Data :
-0x00 ,	0x00 ,	0x80 ,	0x00 ,	
+0x00 ,	0x01 ,	0x00 ,	0x00 ,	
 
 
 
@@ -1198,9 +1198,9 @@ Parameter Data :
 Cell Name         = xf2
 Parameter Name    = SWGain1940DBAlg13step
 Parameter Address = 11
-Parameter Value   = 0.00390625
+Parameter Value   = 0.0078125
 Parameter Data :
-0x00 ,	0x00 ,	0x80 ,	0x00 ,	
+0x00 ,	0x01 ,	0x00 ,	0x00 ,	
 
 
 
@@ -1216,9 +1216,9 @@ Parameter Data :
 Cell Name         = xf2
 Parameter Name    = SWGain1940DBAlg14step
 Parameter Address = 13
-Parameter Value   = 0.00390625
+Parameter Value   = 0.0078125
 Parameter Data :
-0x00 ,	0x00 ,	0x80 ,	0x00 ,	
+0x00 ,	0x01 ,	0x00 ,	0x00 ,	
 
 
 
@@ -1246,8 +1246,8 @@ See also SigmaMIX.hex file
 0x00 , 	0x02 , 	0x58 , 	0xBF , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x12 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
@@ -1301,11 +1301,11 @@ See also SigmaMIX.hex file
 0x00 , 	0x27 , 	0x24 , 	0x60 , 	
 0x00 , 	0x6E , 	0x34 , 	0x56 , 	
 0x0F , 	0xD8 , 	0xDB , 	0xA0 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x7F , 	0xEC , 	0x2E , 	
+0x0F , 	0x10 , 	0x83 , 	0x79 , 	
+0x00 , 	0x72 , 	0x8C , 	0x91 , 	
+0x00 , 	0xEF , 	0x7C , 	0x87 , 	
+0x0F , 	0x8D , 	0x87 , 	0x41 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x0F , 	0x04 , 	0xBD , 	0x12 , 	
 0x00 , 	0x7B , 	0x58 , 	0xFB , 	
@@ -2272,8 +2272,8 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00000010	01011000	10111111	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
+00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00010010	
 00000000	10000000	00000000	00000000	
@@ -2327,11 +2327,11 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	00100111	00100100	01100000	
 00000000	01101110	00110100	01010110	
 00001111	11011000	11011011	10100000	
-00000000	10000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
+00000000	01111111	11101100	00101110	
+00001111	00010000	10000011	01111001	
+00000000	01110010	10001100	10010001	
+00000000	11101111	01111100	10000111	
+00001111	10001101	10000111	01000001	
 00000000	10000000	00000000	00000000	
 00001111	00000100	10111101	00010010	
 00000000	01111011	01011000	11111011	
@@ -3301,14 +3301,14 @@ See also SigmaMIX.hex file
 0x00 , 	0x00 , 	0x80 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x20 , 	0x86 , 	0x42 , 	
+0x00 , 	0x01 , 	0x00 , 	0x00 , 	
+0x00 , 	0x20 , 	0x86 , 	0x42 , 	
+0x00 , 	0x01 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x80 , 	0x00 , 	
+0x00 , 	0x01 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x80 , 	0x00 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x80 , 	0x00 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x80 , 	0x00 , 	
+0x00 , 	0x01 , 	0x00 , 	0x00 , 	
 0x00 , 	0x7A , 	0xA8 , 	0x21 , 	
 0x00 , 	0x00 , 	0x08 , 	0x00 , 	
 0x00 , 	0x7A , 	0xA8 , 	0x21 , 	
@@ -4327,14 +4327,14 @@ Parameter data for: IC 2 (Binary format starting at parameter address 0)
 00000000	00000000	10000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
+00000000	00100000	10000110	01000010	
+00000000	00000001	00000000	00000000	
+00000000	00100000	10000110	01000010	
+00000000	00000001	00000000	00000000	
 00000000	10000000	00000000	00000000	
-00000000	00000000	10000000	00000000	
+00000000	00000001	00000000	00000000	
 00000000	10000000	00000000	00000000	
-00000000	00000000	10000000	00000000	
-00000000	10000000	00000000	00000000	
-00000000	00000000	10000000	00000000	
-00000000	10000000	00000000	00000000	
-00000000	00000000	10000000	00000000	
+00000000	00000001	00000000	00000000	
 00000000	01111010	10101000	00100001	
 00000000	00000000	00001000	00000000	
 00000000	01111010	10101000	00100001	

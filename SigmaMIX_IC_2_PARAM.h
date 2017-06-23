@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_PARAM.h
  *
- * Created:        Saturday, June 17, 2017 11:47:20 PM
+ * Created:        Friday, June 23, 2017 11:28:18 AM
  * Description:    SigmaMIX:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -60,20 +60,20 @@
 #define MOD_XF1_COUNT                                  4
 #define MOD_XF1_DEVICE                                 "IC2"
 #define MOD_XF1_ALG0_TARGET_ADDR                       6
-#define MOD_XF1_ALG0_TARGET_FIXPT                      0x00800000
-#define MOD_XF1_ALG0_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
+#define MOD_XF1_ALG0_TARGET_FIXPT                      0x00208642
+#define MOD_XF1_ALG0_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.254097270554931)
 #define MOD_XF1_ALG0_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF1_ALG0_STEP_ADDR                         7
-#define MOD_XF1_ALG0_STEP_FIXPT                        0x00008000
-#define MOD_XF1_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
+#define MOD_XF1_ALG0_STEP_FIXPT                        0x00010000
+#define MOD_XF1_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
 #define MOD_XF1_ALG0_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF1_ALG1_TARGET_ADDR                       8
-#define MOD_XF1_ALG1_TARGET_FIXPT                      0x00800000
-#define MOD_XF1_ALG1_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
+#define MOD_XF1_ALG1_TARGET_FIXPT                      0x00208642
+#define MOD_XF1_ALG1_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.254097270554931)
 #define MOD_XF1_ALG1_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF1_ALG1_STEP_ADDR                         9
-#define MOD_XF1_ALG1_STEP_FIXPT                        0x00008000
-#define MOD_XF1_ALG1_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
+#define MOD_XF1_ALG1_STEP_FIXPT                        0x00010000
+#define MOD_XF1_ALG1_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
 #define MOD_XF1_ALG1_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module xf2 - Single SW slew vol (adjustable)*/
@@ -84,16 +84,16 @@
 #define MOD_XF2_ALG0_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_XF2_ALG0_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF2_ALG0_STEP_ADDR                         11
-#define MOD_XF2_ALG0_STEP_FIXPT                        0x00008000
-#define MOD_XF2_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
+#define MOD_XF2_ALG0_STEP_FIXPT                        0x00010000
+#define MOD_XF2_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
 #define MOD_XF2_ALG0_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF2_ALG1_TARGET_ADDR                       12
 #define MOD_XF2_ALG1_TARGET_FIXPT                      0x00800000
 #define MOD_XF2_ALG1_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_XF2_ALG1_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_XF2_ALG1_STEP_ADDR                         13
-#define MOD_XF2_ALG1_STEP_FIXPT                        0x00008000
-#define MOD_XF2_ALG1_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
+#define MOD_XF2_ALG1_STEP_FIXPT                        0x00010000
+#define MOD_XF2_ALG1_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
 #define MOD_XF2_ALG1_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module monitor gain - Single SW slew vol (adjustable)*/
