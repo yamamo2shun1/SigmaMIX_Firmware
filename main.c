@@ -198,12 +198,42 @@ void main(void)
         }
         else if (gattdb_eq_hi == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t ch1_gain = 0;
+          uint32_t ch2_gain = 0;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_hi_shelf_ch1(ch1_gain);
+          send_hi_shelf_ch2(ch2_gain);
         }
         else if (gattdb_eq_mid == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t ch1_gain = 0;
+          uint32_t ch2_gain = 0;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_mid_peaking_ch1(ch1_gain);
+          send_mid_peaking_ch2(ch2_gain);
         }
         else if (gattdb_eq_low == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t ch1_gain = 0;
+          uint32_t ch2_gain = 0;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_low_shelf_ch1(ch1_gain);
+          //send_low_shelf_ch2(ch2_gain);
         }
         else if (gattdb_input_fader == evt->data.evt_gatt_server_attribute_value.attribute)
         {
@@ -419,7 +449,7 @@ void main(void)
     xf_adc[1] = sum2 / 16.0;
 #endif
     //send_high_shelf_ch1(test_adc);
-    send_mid_peaking_ch1(test_adc);
+    //send_mid_peaking_ch1(test_adc);
     //send_low_shelf_ch1(test_adc);
 
     send_xfader(xf_adc);
