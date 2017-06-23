@@ -178,7 +178,41 @@ void main(void)
       /* Value of attribute changed from the local database by remote GATT client */
       case gecko_evt_gatt_server_attribute_value_id:
 	/* Check if changed characteristic is the Immediate Alert level */
-        if ( gattdb_xfader_setting == evt->data.evt_gatt_server_attribute_value.attribute) {
+        if (gattdb_line_phono_switch == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          uint8_t lps_val = evt->data.evt_gatt_server_attribute_value.value.data[0];
+
+          send_line_phono_switch(lps_val);
+        }
+        else if (gattdb_input_gain == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          uint32_t ch1_gain = 0;
+          uint32_t ch2_gain = 0;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_input_gain(ch1_gain, ch2_gain);
+        }
+        else if (gattdb_eq_hi == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_eq_mid == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_eq_low == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_input_fader == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_ifader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_xfader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
           /* Write the Immediate Alert level value */
           //iaImmediateAlertWrite(&evt->data.evt_gatt_server_attribute_value.value);
           //test uint8_t test_len = evt->data.evt_gatt_server_attribute_value.value.len;
@@ -214,6 +248,12 @@ void main(void)
             GPIO_PinOutClear(gpioPortA, 0);
           }
 #endif
+        }
+        else if (gattdb_master_booth_gain == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+        }
+        else if (gattdb_monitor_level_select == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
         }
         break;
 #if 0

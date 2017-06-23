@@ -24,6 +24,76 @@ void mixer_init(void)
   default_download_IC_2();
 }
 
+void send_line_phono_switch(uint8_t value)
+{
+  ADI_REG_U8 ch1_line_sw[4] = {0x00, 0x00, 0x00, 0x00};
+  ADI_REG_U8 ch1_phono_sw[4] = {0x00, 0x00, 0x00, 0x00};
+  ADI_REG_U8 ch2_line_sw[4] = {0x00, 0x00, 0x00, 0x00};
+  ADI_REG_U8 ch2_phono_sw[4] = {0x00, 0x00, 0x00, 0x00};
+
+  if ((value >> 4) & 0x01)
+  {
+    ch1_line_sw[1] = 0x00;
+    ch1_phono_sw[1] = 0x80;
+  }
+  else {
+    ch1_line_sw[1] = 0x80;
+    ch1_phono_sw[1] = 0x00;
+  }
+
+  if (value & 0x01)
+  {
+    ch2_line_sw[1] = 0x00;
+    ch2_phono_sw[1] = 0x80;
+  }
+  else {
+    ch2_line_sw[1] = 0x80;
+    ch2_phono_sw[1] = 0x00;
+  }
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_0, 4, ch1_line_sw);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_0, MOD_PHLNSW1_ALG0_STEREODEMUX1940NS10_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_1, 4, ch1_phono_sw);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_1, MOD_PHLNSW1_ALG0_STEREODEMUX1940NS11_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_0, 4, ch2_line_sw);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_0, MOD_PHLNSW2_ALG0_STEREODEMUX1940NS20_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_1, 4, ch2_phono_sw);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_1, MOD_PHLNSW2_ALG0_STEREODEMUX1940NS21_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
+}
+
+void send_input_gain(uint32_t ch1_val, uint32_t ch2_val)
+{
+  double ch1_ig = ch1_val / 4095.0;
+  double ch2_ig = ch2_val / 4095.0;
+
+  uint8_t ch1_gain[4] = {0x00};
+  ch1_gain[0] = ((uint32_t)(ch1_ig * pow(2, 23)) >> 24) & 0x000000FF;
+  ch1_gain[1] = ((uint32_t)(ch1_ig * pow(2, 23)) >> 16) & 0x000000FF;
+  ch1_gain[2] = ((uint32_t)(ch1_ig * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch1_gain[3] =  (uint32_t)(ch1_ig * pow(2, 23))        & 0x000000FF;
+
+  uint8_t ch2_gain[4] = {0x00};
+  ch2_gain[0] = ((uint32_t)(ch2_ig * pow(2, 23)) >> 24) & 0x000000FF;
+  ch2_gain[1] = ((uint32_t)(ch2_ig * pow(2, 23)) >> 16) & 0x000000FF;
+  ch2_gain[2] = ((uint32_t)(ch2_ig * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch2_gain[3] =  (uint32_t)(ch2_ig * pow(2, 23))        & 0x000000FF;
+
+  ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_0, 4, ch1_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_0, MOD_GAIN1_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_1, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_1, MOD_GAIN1_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_2, 4, ch2_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_2, MOD_GAIN2_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_3, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_3, MOD_GAIN2_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
+}
+
 void send_xfader(uint32_t *xf_adc)
 {
   if (xf_adc[0] != xf0_adc[0] && xf_adc[1] != xf0_adc[1])

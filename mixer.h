@@ -14,6 +14,8 @@ extern "C" {
 #include "constants.h"
 
 void mixer_init(void);
+void send_line_phono_switch(uint8_t value);
+void send_input_gain(uint32_t ch1_val, uint32_t ch2_val);
 void send_xfader(uint32_t *xf_adc);
 void send_high_shelf_ch1(uint32_t value);
 void send_mid_peaking_ch1(uint32_t value);
