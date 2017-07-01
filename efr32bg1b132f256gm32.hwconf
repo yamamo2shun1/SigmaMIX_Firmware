@@ -6,7 +6,6 @@
     <property object="ADC0" propertyId="singlesamplemode.singlesamplemodesettings.positiveinputconfiguration" value="(PB11) from ADC0_P"/>
     <property object="ADC0" propertyId="singlesamplemode.singlesamplemodesettings.reference" value="Buffered VDD"/>
     <property object="ADC0" propertyId="singlesamplemode.singlesamplemodesettings.singlesamplemode" value="Enabled"/>
-    <property object="APORT" propertyId="ABPeripheral.included" value="true"/>
     <property object="CMU" propertyId="ABPeripheral.included" value="true"/>
     <property object="CMU" propertyId="clocksettings.hfclocksettings.hfclocksource" value="HFXO"/>
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfaclocksource" value="LFXO"/>
@@ -27,10 +26,14 @@
     <property object="LDMA" propertyId="ldma.settings.hiddenbysdk" value="On"/>
     <property object="LFXO" propertyId="ABPeripheral.included" value="true"/>
     <property object="LFXO" propertyId="lfxo.settings.hiddenbysdk" value="On"/>
-    <property object="PA0" propertyId="ports.settings.custompinname" value="LED"/>
-    <property object="PA0" propertyId="ports.settings.pinmode" value="Push-pull"/>
-    <property object="PA1" propertyId="ports.settings.custompinname" value="Acade Button"/>
-    <property object="PA1" propertyId="ports.settings.pinmode" value="Input"/>
+    <property object="PA0" propertyId="ports.settings.custompinname" value="Fader Button"/>
+    <property object="PA0" propertyId="ports.settings.dout" value="1"/>
+    <property object="PA0" propertyId="ports.settings.filter" value="Enabled"/>
+    <property object="PA0" propertyId="ports.settings.pinmode" value="Input pull"/>
+    <property object="PA0" propertyId="ports.settings.pulldirection" value="Pullup"/>
+    <property object="PA0" propertyId="ports.settings.pullup" value="Enabled"/>
+    <property object="PA1" propertyId="ports.settings.custompinname" value="LED"/>
+    <property object="PA1" propertyId="ports.settings.pinmode" value="Push-pull"/>
     <property object="PC10" propertyId="ports.settings.custompinname" value="POT"/>
     <property object="PC10" propertyId="ports.settings.pinmode" value="Input"/>
     <property object="PF2" propertyId="ports.settings.dout" value="1"/>

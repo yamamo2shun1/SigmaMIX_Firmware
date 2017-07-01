@@ -20,7 +20,6 @@
 #include "em_chip.h"
 #include "em_assert.h"
 #include "em_adc.h"
-//#include "em_aport.h"
 #include "em_crypto.h"
 #include "em_gpcrc.h"
 #include "em_gpio.h"
@@ -70,6 +69,22 @@ extern void EMU_enter_DefaultMode_from_RESET(void) {
 	dcdcInit.reverseCurrentControl = 160;
 
 	EMU_DCDCInit(&dcdcInit);
+	/* Initialize EM2/EM3 mode */
+	EMU_EM23Init_TypeDef em23Init = EMU_EM23INIT_DEFAULT;
+
+	em23Init.em23VregFullEn = 0;
+
+	EMU_EM23Init(&em23Init);
+	/* Initialize EM4H/S mode */
+	EMU_EM4Init_TypeDef em4Init = EMU_EM4INIT_DEFAULT;
+
+	em4Init.retainLfrco = 0;
+	em4Init.retainLfxo = 0;
+	em4Init.retainUlfrco = 0;
+	em4Init.em4State = emuEM4Shutoff;
+	em4Init.pinRetentionMode = emuPinRetentionDisable;
+
+	EMU_EM4Init(&em4Init);
 	// [EMU Initialization]$
 
 }
@@ -90,20 +105,23 @@ extern void CMU_enter_DefaultMode_from_RESET(void) {
 	/* Initializing HFXO */
 	CMU_HFXOInit_TypeDef hfxoInit = CMU_HFXOINIT_DEFAULT;
 
-	hfxoInit.autoStartEm01 = 1;
-
 	CMU_HFXOInit(&hfxoInit);
-
-	/* Skipping HFXO oscillator enable, as it is auto-enabled on EM0/EM1 entry */
 
 	/* Setting system HFXO frequency */
 	SystemHFXOClockSet(38400000);
+
+	/* Enable HFXO oscillator, and wait for it to be stable */
+	CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
 
 	/* Using HFXO as high frequency clock, HFCLK */
 	CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
 
 	/* HFRCO not needed when using HFXO */
 	CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
+
+	/* Set autostart behaviour */
+	CMU_HFXOAutostartEnable(0, true, false);
+
 	// [High Frequency Clock Setup]$
 
 	// $[LE clocks enable]
@@ -227,7 +245,7 @@ extern void ADC0_enter_DefaultMode_from_RESET(void) {
 
 	ADC_InitSingle(ADC0, &ADC0_init_single);
 #else
-        ADC_InitScan_TypeDef ADC0_init_scan = ADC_INITSCAN_DEFAULT;
+         ADC_InitScan_TypeDef ADC0_init_scan = ADC_INITSCAN_DEFAULT;
 
 	/* PRS settings */
 	ADC0_init_scan.prsEnable = 0;
@@ -411,8 +429,6 @@ extern void I2C0_enter_DefaultMode_from_RESET(void) {
 	init.master = 1;
 	init.freq = I2C_FREQ_STANDARD_MAX;
 	init.clhr = i2cClockHLRStandard;
-        //init.clhr = i2cClockHLRAsymetric;
-        //init.clhr = i2cClockHLRFast;
 	I2C_Init(I2C0, &init);
 	// [I2C0 initialization]$
 
@@ -547,11 +563,11 @@ extern void PORTIO_enter_DefaultMode_from_RESET(void) {
 
 	// $[Port A Configuration]
 
-	/* Pin PA0 is configured to Push-pull */
-	GPIO_PinModeSet(gpioPortA, 0, gpioModePushPull, 0);
+	/* Pin PA0 is configured to Input enabled with pull-up */
+	GPIO_PinModeSet(gpioPortA, 0, gpioModeInputPull, 1);
 
-	/* Pin PA1 is configured to Input enabled */
-	GPIO_PinModeSet(gpioPortA, 1, gpioModeInput, 0);
+	/* Pin PA1 is configured to Push-pull */
+	GPIO_PinModeSet(gpioPortA, 1, gpioModePushPull, 0);
 	// [Port A Configuration]$
 
 	// $[Port B Configuration]
