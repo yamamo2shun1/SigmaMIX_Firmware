@@ -583,12 +583,45 @@ void send_low_shelf_ch2(uint32_t value)
   SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
 }
 
-void send_xfader(uint32_t *xf_adc)
+void send_ifader(uint32_t ch1_val, uint32_t ch2_val)
+{
+  double ch1_db = ((ch1_val / 255.0) - 1.0) * 80.0;
+  double ch2_db = ((ch2_val / 255.0) - 1.0) * 80.0;
+
+  double ch1_rate = pow(10.0, ch1_db / 20);
+  double ch2_rate = pow(10.0, ch2_db / 20);
+
+  uint8_t ch1_gain[4] = {0x00};
+  ch1_gain[0] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  ch1_gain[1] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  ch1_gain[2] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch1_gain[3] =  (uint32_t)(ch1_rate * pow(2, 23))        & 0x000000FF;
+
+  uint8_t ch2_gain[4] = {0x00};
+  ch2_gain[0] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  ch2_gain[1] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  ch2_gain[2] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch2_gain[3] =  (uint32_t)(ch2_rate * pow(2, 23))        & 0x000000FF;
+
+  ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, ch1_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_IF1_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_IF1_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, ch2_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_IF2_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_IF2_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
+}
+
+void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
 {
   if (xf_adc[0] != xf0_adc[0] && xf_adc[1] != xf0_adc[1])
     {
       //double xf1 = xf_adc[0] / 4095.0;
-      double xf1 = pow(10.0, (((xf_adc[0] / 2047.0) - 1.0) * 2.0)) - 0.01;
+      double xf1 = pow(10.0, ((((xf_rev ? xf_adc[0] : xf_adc[1]) / 2047.0) - 1.0) * 2.0)) - 0.01;
       if (xf1 < 0.0008)
         xf1 = 0.0;
       else if (xf1 > 1.0)
@@ -596,14 +629,14 @@ void send_xfader(uint32_t *xf_adc)
 
       //double xf2 = xf_adc[1] / 4095.0;
       //double xf2 = 20 * log10(xf_adc[1] / 4095.0) / 40.0 + 1.0;
-      double xf2 = pow(10.0, (((xf_adc[1] / 2047.0) - 1.0) * 2.0)) - 0.01;
+      double xf2 = pow(10.0, ((((xf_rev ? xf_adc[1] : xf_adc[0]) / 2047.0) - 1.0) * 2.0)) - 0.01;
       if (xf2 < 0.0008)
         xf2 = 0.0;
       else if (xf2 > 1.0)
         xf2 = 1.0;
 
-      double xf11 = pow(xf1, pow(2.0, -8));
-      double xf12 = pow(xf2, pow(2.0, -8));
+      double xf11 = pow(xf1, pow(2.0, xf_curve));
+      double xf12 = pow(xf2, pow(2.0, xf_curve));
 
       xf1_val[0] = ((uint32_t)(xf11 * pow(2, 23)) >> 24) & 0x000000FF;
       xf1_val[1] = ((uint32_t)(xf11 * pow(2, 23)) >> 16) & 0x000000FF;
@@ -619,21 +652,19 @@ void send_xfader(uint32_t *xf_adc)
       SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_XF1_ALG0_TARGET_ADDR);
       SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, xf_step);
       SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_XF1_ALG0_STEP_ADDR);
-      SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, xf2_val);
-      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_XF1_ALG1_TARGET_ADDR);
+      SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, xf1_val);
+      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_XF2_ALG0_TARGET_ADDR);
       SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, xf_step);
-      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_XF1_ALG1_STEP_ADDR);
+      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_XF2_ALG0_STEP_ADDR);
       SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
 
+#if 0
       SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, xf1_val);
       SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_XF2_ALG0_TARGET_ADDR);
       SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, xf_step);
       SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_XF2_ALG0_STEP_ADDR);
-      SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, xf1_val);
-      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_XF2_ALG1_TARGET_ADDR);
-      SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, xf_step);
-      SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_XF2_ALG1_STEP_ADDR);
       SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
+#endif
 
       //SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, xf2_val);
       //SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_XF_ALG0_STAGE0_VOLUME_ADDR);
@@ -645,4 +676,59 @@ void send_xfader(uint32_t *xf_adc)
 
     xf0_adc[0] = xf_adc[0];
     xf0_adc[1] = xf_adc[1];
+}
+
+void send_master_booth_gain(uint32_t master_val, uint32_t booth_val)
+{
+  double master_db = (master_val / 127.0) - 1.0;
+  double booth_db = (booth_val / 127.0) - 1.0;
+
+  if (master_db > 0.0)
+  {
+    master_db *= 15.0;
+  }
+  else if(master_db < 0.0)
+  {
+    master_db *= 120.0;
+  }
+
+  if (booth_db > 0.0)
+  {
+    booth_db *= 15.0;
+  }
+  else if(booth_db < 0.0)
+  {
+    booth_db *= 120.0;
+  }
+
+  double master_rate = pow(10.0, master_db / 20);
+  double booth_rate = pow(10.0, booth_db / 20);
+
+  uint8_t master_gain[4] = {0x00};
+  master_gain[0] = ((uint32_t)(master_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  master_gain[1] = ((uint32_t)(master_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  master_gain[2] = ((uint32_t)(master_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  master_gain[3] =  (uint32_t)(master_rate * pow(2, 23))        & 0x000000FF;
+
+#if 0
+  uint8_t booth_gain[4] = {0x00};
+  booth_gain[0] = ((uint32_t)(booth_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  booth_gain[1] = ((uint32_t)(booth_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  booth_gain[2] = ((uint32_t)(booth_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  booth_gain[3] =  (uint32_t)(booth_rate * pow(2, 23))        & 0x000000FF;
+#endif
+
+  ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
+
+#if 0
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, booth_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_BOOTHGAIN_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_BOOTHGAIN_ALG0_STEP_ADDR);
+#endif
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, master_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_MASTERGAIN_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_MASTERGAIN_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
 }
