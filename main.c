@@ -128,6 +128,11 @@ void main(void)
   double xf2_avg[16] = {0.0};
 #endif
 
+  bool if_rev = false;
+  double if_curve = 0.0;
+  bool xf_rev = true;
+  double xf_curve = -4.0;
+
   while (1)
   {
 #if 1
@@ -233,54 +238,48 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
           send_low_shelf_ch1(ch1_gain);
-          //send_low_shelf_ch2(ch2_gain);
+          send_low_shelf_ch2(ch2_gain);
         }
         else if (gattdb_input_fader == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t ch1_gain = 0;
+          uint32_t ch2_gain = 0;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          ch1_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_ifader(ch1_gain, ch2_gain);
         }
         else if (gattdb_ifader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
         {
         }
         else if (gattdb_xfader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
         {
-          /* Write the Immediate Alert level value */
-          //iaImmediateAlertWrite(&evt->data.evt_gatt_server_attribute_value.value);
-          //test uint8_t test_len = evt->data.evt_gatt_server_attribute_value.value.len;
-          uint8_t test_val = evt->data.evt_gatt_server_attribute_value.value.data[0];
-          //uint8 test_val = test_array.data[0];
-          //GPIO_PinOutSet(gpioPortA, 0);
-#if 1
-          switch (test_val)
+          uint8_t xf_setting_val = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          if ((xf_setting_val >> 4) & 0x01)
           {
-            case 0:
-#ifdef CONTROL_SIGMADSP
-              //val2[1] = 0x00;
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_STATIC_TONE1_ALG0_MASK_ADDR, 4, val0);
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_INCREMENT_ADDR,   4, val1);
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_ON_ADDR,          4, val2);
-#endif
-              break;
-            case 1:
-#ifdef CONTROL_SIGMADSP
-              //val2[1] = 0x80;
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_STATIC_TONE1_ALG0_MASK_ADDR, 4, val0);
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_INCREMENT_ADDR,   4, val1);
-              //SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_ON_ADDR,          4, val2);
-#endif
-              break;
-          }
-          if (test_val == 1)
-          {
-            GPIO_PinOutSet(gpioPortA, 0);
+            xf_rev = true;
           }
           else
           {
-            GPIO_PinOutClear(gpioPortA, 0);
+            xf_rev = false;
           }
-#endif
+
+          xf_curve = ((xf_setting_val & 0x0F) - 8.0) / 2.0;
         }
         else if (gattdb_master_booth_gain == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t master_gain = 0;
+          uint32_t booth_gain = 0;
+          master_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          master_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          master_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+          booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+          send_master_booth_gain(master_gain, booth_gain);
         }
         else if (gattdb_monitor_level_select == evt->data.evt_gatt_server_attribute_value.attribute)
         {
@@ -340,23 +339,25 @@ void main(void)
 #endif
 
 #ifdef CONTROL_SIGMADSP
-#if 0
-    if (GPIO_PinInGet(gpioPortA, 1))
+#if 1
+    if (GPIO_PinInGet(gpioPortA, 0))
     {
       if (debounce_flag)
       {
         debounce_count++;
         if (debounce_count == 16)
         {
-          GPIO_PinOutClear(gpioPortA, 0);
+          // off
+          //GPIO_PinOutClear(gpioPortA, 1);
           debounce_flag = false;
           debounce_count = 0;
-
+#if 0
           // Sine Tone
           val2[1] = 0x00;
           SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_STATIC_TONE1_ALG0_MASK_ADDR, 4, val0);
           SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_INCREMENT_ADDR,   4, val1);
           SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_ON_ADDR,          4, val2);
+#endif
         }
       }
       else
@@ -371,11 +372,12 @@ void main(void)
         debounce_count++;
         if (debounce_count == 16)
         {
-          GPIO_PinOutSet(gpioPortA, 0);
+          // on
+          //GPIO_PinOutSet(gpioPortA, 0);
           debounce_flag = true;
           debounce_count = 0;
 
-#if 1
+#if 0
           // Sine Tone
           val2[1] = 0x80;
 
@@ -452,7 +454,10 @@ void main(void)
     //send_mid_peaking_ch1(test_adc);
     //send_low_shelf_ch1(test_adc);
 
-    send_xfader(xf_adc);
+    send_xfader(xf_adc, xf_curve, xf_rev);
+
+    const uint8 val[2] = {(uint32_t)xf_adc[0] >> 4, (uint32_t)xf_adc[1] >> 4};
+    gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_cross_fader, 2, val);
 #endif
   }
 }
