@@ -1,7 +1,7 @@
 /*
  * File:           defines.h
  *
- * Created:        Friday, June 23, 2017 11:28:18 AM
+ * Created:        Wednesday, June 28, 2017 5:35:17 PM
  * Description:    SigmaMIX IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
