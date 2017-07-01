@@ -42,10 +42,10 @@ extern void PORTIO_enter_DefaultMode_from_RESET(void);
 
 // $[User-defined pin name abstraction]
 
-#define ACADE_BUTTON_PIN        (1)
-#define ACADE_BUTTON_PORT       (gpioPortA)
+#define FADER_BUTTON_PIN        (0)
+#define FADER_BUTTON_PORT       (gpioPortA)
 
-#define LED_PIN                 (0)
+#define LED_PIN                 (1)
 #define LED_PORT                (gpioPortA)
 
 #define POT_PIN                 (10)
