@@ -132,6 +132,11 @@ PATH(PROJECT_RELATIVE):main.c
         <value length="6" type="hex" variable_length="false">0x000000000000</value>
         <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
       </characteristic>
+      <characteristic id="cross_fader" name="Cross Fader" sourceId="net.tkrworks.characteristic.cross_fader" uuid="16b4021c-5f01-4eb0-8d00-aeaa01cee85f">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="2" type="hex" variable_length="false">0x0000</value>
+        <properties notify="true" notify_requirement="optional" read="true" read_requirement="optional"/>
+      </characteristic>
       <characteristic id="master_booth_gain" name="Master/Booth Gain" sourceId="net.tkrworks.characteristic.master_booth_gain" uuid="9f5c0ec8-006e-4c1a-bc03-092a38ea0134">
         <informativeText>Custom characteristic</informativeText>
         <value length="6" type="hex" variable_length="false">0x000000000000</value>
