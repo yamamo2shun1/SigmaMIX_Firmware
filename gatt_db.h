@@ -24,7 +24,8 @@ extern const struct bg_gattdb_def bg_gattdb_data;
 #define gattdb_eq_mid                          32
 #define gattdb_eq_low                          34
 #define gattdb_input_fader                     36
-#define gattdb_master_booth_gain               38
-#define gattdb_monitor_level_select            40
+#define gattdb_cross_fader                     38
+#define gattdb_master_booth_gain               41
+#define gattdb_monitor_level_select            43
 
 #endif
