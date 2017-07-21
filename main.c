@@ -358,6 +358,9 @@ void main(void)
 
           settings[17] = fx_type;
           send_select_fx(fx_type);
+
+          send_pitch_shifter(2047);
+          send_lpf(4095);
         }
         else if (gattdb_settings_write == evt->data.evt_gatt_server_attribute_value.attribute)
         {
