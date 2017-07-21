@@ -44,6 +44,7 @@
 #include "mx25flash_spi.h"
 #endif /* FEATURE_SPI_FLASH */
 
+#include "em_msc.h"
 #include "em_adc.h"
 
 #include "mixer.h"
@@ -89,6 +90,37 @@ static const gecko_configuration_t config = {
 /* Flag for indicating DFU Reset must be performed */
 uint8_t boot_to_dfu = 0;
 
+#if 1
+uint32_t settings[18] = {0x00000000};
+uint32_t r_settings[18] = {0};
+
+void write_settings()
+{
+  MSC_Init();
+
+#if 1
+  for (int i = 0; i < 18; i++)
+  {
+    settings[i] = 100 + i;
+  }
+#endif
+
+  uint32_t *w_addr = (uint32_t *)(0x3f000 + 0 * 4);
+  MSC_ErasePage(w_addr);
+  MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
+
+  MSC_Deinit();
+}
+
+void read_settings()
+{
+  for (int i = 0; i < 18; i++)
+  {
+    uint32_t *r_addr = (uint32_t *)(0x3f000 + i * 4);
+    r_settings[i] = *r_addr;
+  }
+}
+#endif
 
 /**
  * @brief  Main function
@@ -111,27 +143,32 @@ void main(void)
   gecko_init(&config);
 
 #ifdef CONTROL_SIGMADSP
-  mixer_init();
-#if 0
-  ADI_REG_U8 val0[4] = {0x00, 0x00, 0x00, 0xFF};
-  ADI_REG_U8 val1[4] = {0x00, 0x02, 0x58, 0xBF};
-  ADI_REG_U8 val2[4] = {0x00, 0x00, 0x00, 0x00};
-#endif
+  bool is_mixer_initialized = false;
+  if (GPIO_PinInGet(gpioPortA, 0))
+  {
+    mixer_init();
+    is_mixer_initialized = true;
+  }
+
   bool debounce_flag = false;
   uint8_t debounce_count = 0;
   uint32_t test_adc = 0;
   uint32_t xf_adc[2];
 #endif
 
-#if 1
   double xf1_avg[16] = {0.0};
   double xf2_avg[16] = {0.0};
-#endif
 
-  bool if_rev = false;
-  double if_curve = 0.0;
+  //bool if_rev = false;
+  //double if_curve = 0.0;
   bool xf_rev = true;
-  double xf_curve = -4.0;
+  double xf_curve = 2.0;
+
+  uint8_t xf_type = 0;
+  uint8_t fx_type = 0;
+
+  read_settings();
+  r_settings[16] = 100;
 
   while (1)
   {
@@ -182,11 +219,16 @@ void main(void)
 
       /* Value of attribute changed from the local database by remote GATT client */
       case gecko_evt_gatt_server_attribute_value_id:
+        if (!is_mixer_initialized)
+        {
+          break;
+        }
 	/* Check if changed characteristic is the Immediate Alert level */
         if (gattdb_line_phono_switch == evt->data.evt_gatt_server_attribute_value.attribute)
         {
           uint8_t lps_val = evt->data.evt_gatt_server_attribute_value.value.data[0];
 
+          settings[0] = lps_val;
           send_line_phono_switch(lps_val);
         }
         else if (gattdb_input_gain == evt->data.evt_gatt_server_attribute_value.attribute)
@@ -199,6 +241,10 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[1] = ch1_gain;
+          settings[2] = ch2_gain;
+
           send_input_gain(ch1_gain, ch2_gain);
         }
         else if (gattdb_eq_hi == evt->data.evt_gatt_server_attribute_value.attribute)
@@ -211,6 +257,10 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[3] = ch1_gain;
+          settings[4] = ch2_gain;
+
           send_hi_shelf_ch1(ch1_gain);
           send_hi_shelf_ch2(ch2_gain);
         }
@@ -224,6 +274,10 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[5] = ch1_gain;
+          settings[6] = ch2_gain;
+
           send_mid_peaking_ch1(ch1_gain);
           send_mid_peaking_ch2(ch2_gain);
         }
@@ -237,6 +291,10 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[7] = ch1_gain;
+          settings[8] = ch2_gain;
+
           send_low_shelf_ch1(ch1_gain);
           send_low_shelf_ch2(ch2_gain);
         }
@@ -250,6 +308,10 @@ void main(void)
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           ch2_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[9] = ch1_gain;
+          settings[10] = ch2_gain;
+
           send_ifader(ch1_gain, ch2_gain);
         }
         else if (gattdb_ifader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
@@ -267,6 +329,8 @@ void main(void)
             xf_rev = false;
           }
 
+          settings[12] = xf_setting_val;
+
           xf_curve = ((xf_setting_val & 0x0F) - 8.0) / 2.0;
         }
         else if (gattdb_master_booth_gain == evt->data.evt_gatt_server_attribute_value.attribute)
@@ -279,10 +343,44 @@ void main(void)
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          settings[13] = master_gain;
+          settings[14] = booth_gain;
+
           send_master_booth_gain(master_gain, booth_gain);
         }
         else if (gattdb_monitor_level_select == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+        }
+        else if (gattdb_effect_selector == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          fx_type = evt->data.evt_gatt_server_attribute_value.value.data[0];
+
+          settings[17] = fx_type;
+          send_select_fx(fx_type);
+        }
+        else if (gattdb_settings_write == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          if (evt->data.evt_gatt_server_attribute_value.value.data[0] == 1)
+          {
+            write_settings();
+          }
+          else if (evt->data.evt_gatt_server_attribute_value.value.data[0] == 2)
+          {
+            read_settings();
+            r_settings[17] = 101;
+
+#if 0
+            uint8_t test[18] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12};
+#else
+            uint8_t test[17] = {0};
+            for (int i = 0; i < 18; i++)
+            {
+              test[i] = (uint8_t)r_settings[i];
+            }
+#endif
+            gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+          }
         }
         break;
 #if 0
@@ -339,76 +437,11 @@ void main(void)
 #endif
 
 #ifdef CONTROL_SIGMADSP
-#if 1
-    if (GPIO_PinInGet(gpioPortA, 0))
+    if (!is_mixer_initialized)
     {
-      if (debounce_flag)
-      {
-        debounce_count++;
-        if (debounce_count == 16)
-        {
-          // off
-          //GPIO_PinOutClear(gpioPortA, 1);
-          debounce_flag = false;
-          debounce_count = 0;
-#if 0
-          // Sine Tone
-          val2[1] = 0x00;
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_STATIC_TONE1_ALG0_MASK_ADDR, 4, val0);
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_INCREMENT_ADDR,   4, val1);
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_ON_ADDR,          4, val2);
-#endif
-        }
-      }
-      else
-      {
-        debounce_count = 0;
-      }
+      continue;
     }
-    else
-    {
-      if (!debounce_flag)
-      {
-        debounce_count++;
-        if (debounce_count == 16)
-        {
-          // on
-          //GPIO_PinOutSet(gpioPortA, 0);
-          debounce_flag = true;
-          debounce_count = 0;
 
-#if 0
-          // Sine Tone
-          val2[1] = 0x80;
-
-          // ADI_REG_TYPE val1[4] = {0x00, 0x02, 0x58, 0xBF};
-          if(test_adc < 2048)
-          {
-            val1[0] = 0x00;
-            val1[1] = 0x02;
-            val1[2] = 0x58;
-            val1[3] = 0xBF;
-          }
-          else
-          {
-            val1[0] = ((uint32_t)((880.0 / 24000.0) * pow(2, 23)) >> 24) & 0x000000FF;
-            val1[1] = ((uint32_t)((880.0 / 24000.0) * pow(2, 23)) >> 16) & 0x000000FF;
-            val1[2] = ((uint32_t)((880.0 / 24000.0) * pow(2, 23)) >> 8)  & 0x000000FF;
-            val1[3] =  (uint32_t)((880.0 / 24000.0) * pow(2, 23))        & 0x000000FF;
-          }
-
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_STATIC_TONE1_ALG0_MASK_ADDR, 4, val0);
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_INCREMENT_ADDR,   4, val1);
-          SIGMA_WRITE_REGISTER_CONTROL(DEVICE_ADDR_IC_1, MOD_TONE1_ALG0_ON_ADDR,          4, val2);
-#endif
-        }
-      }
-      else
-      {
-        debounce_count = 0;
-      }
-    }
-#endif
 #if 1
     for (uint8_t i = 0; i < 16; i++)
     {
@@ -454,7 +487,80 @@ void main(void)
     //send_mid_peaking_ch1(test_adc);
     //send_low_shelf_ch1(test_adc);
 
-    send_xfader(xf_adc, xf_curve, xf_rev);
+    if (GPIO_PinInGet(gpioPortA, 0))
+    {
+      if (debounce_flag)
+      {
+        debounce_count++;
+        if (debounce_count == 4)
+        {
+          // off
+          //GPIO_PinOutClear(gpioPortA, 1);
+          debounce_flag = false;
+          debounce_count = 0;
+
+          xf_type = 0;
+          send_lpf(4095);
+        }
+      }
+      else
+      {
+        debounce_count = 0;
+      }
+    }
+    else
+    {
+      if (!debounce_flag)
+      {
+        debounce_count++;
+        if (debounce_count == 4)
+        {
+          // on
+          //GPIO_PinOutSet(gpioPortA, 0);
+          debounce_flag = true;
+          debounce_count = 0;
+
+          xf_type = 1;
+        }
+      }
+      else
+      {
+        debounce_count = 0;
+      }
+    }
+
+    switch (xf_type)
+    {
+    case 0:
+      send_xfader(xf_adc, xf_curve, xf_rev);
+      break;
+    case 1:
+      switch (fx_type)
+      {
+      case 1:
+        send_pitch_shifter(xf_adc[1]);
+        break;
+      case 2:
+        send_lpf(xf_adc[1]);
+        break;
+      case 3:
+        send_pitch_shifter(xf_adc[0]);
+        break;
+      case 4:
+        send_lpf(xf_adc[0]);
+        break;
+      case 5:
+        send_pitch_shifter(xf_adc[1]);
+        send_lpf(xf_adc[0]);
+        break;
+      case 6:
+        send_pitch_shifter(xf_adc[0]);
+        send_lpf(xf_adc[1]);
+        break;
+      }
+      send_xfader(xf_adc, xf_curve, xf_rev);
+      break;
+    }
 
     const uint8 val[2] = {(uint32_t)xf_adc[0] >> 4, (uint32_t)xf_adc[1] >> 4};
     gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_cross_fader, 2, val);
