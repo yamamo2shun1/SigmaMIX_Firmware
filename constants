@@ -1,4 +1,16 @@
 service_changed_char 3
 device_name 7
 ota_control 19
-xfader_curve 22
+xfader_setting 22
+ifader_setting 24
+line_phono_switch 26
+input_gain 28
+eq_hi 30
+eq_mid 32
+eq_low 34
+input_fader 36
+cross_fader 38
+master_booth_gain 41
+monitor_level_select 43
+settings_write 45
+settings_read 47
