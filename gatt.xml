@@ -141,6 +141,27 @@
         <value length="6" type="hex" variable_length="false">0x000000000000</value>
         <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
       </characteristic>
+      
+      <!--Settings Write-->
+      <characteristic id="settings_write" name="Settings Write" sourceId="net.tkrworks.characteristic.settings_write" uuid="1e28f515-0dd6-486c-a5f0-9a2c53d3d309">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Settings Read-->
+      <characteristic id="settings_read" name="Settings Read" sourceId="net.tkrworks.characteristic.settings_read" uuid="13fb5580-85b2-4b83-b160-1fca96aea6c1">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="17" type="hex" variable_length="false">0x0000000000000000000000000000000000</value>
+        <properties read="true" read_requirement="optional"/>
+      </characteristic>
+      
+      <!--Effect Selector-->
+      <characteristic id="effect_selector" name="Effect Selector" sourceId="net.tkrworks.characteristic.effect_selector" uuid="a57df03d-c72f-42da-8507-90cc5f48173f">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
     </service>
   </gatt>
 </project>
