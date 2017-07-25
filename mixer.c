@@ -621,7 +621,7 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
   if (xf_adc[0] != xf0_adc[0] && xf_adc[1] != xf0_adc[1])
     {
       double xf1 = (xf_rev ? xf_adc[1] : xf_adc[0]) / 2047.0;
-      if (xf1 < 0.0032)
+      if (xf1 < 0.0064)
         xf1 = 0.0;
       else if (xf1 > 1.0)
         xf1 = 1.0;
@@ -634,7 +634,7 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
       xf1_val[3] =  xf11_u32        & 0x000000FF;
 
       double xf2 = (xf_rev ? xf_adc[0] : xf_adc[1]) / 2047.0;
-      if (xf2 < 0.0032)
+      if (xf2 < 0.0064)
         xf2 = 0.0;
       else if (xf2 > 1.0)
         xf2 = 1.0;
@@ -699,7 +699,9 @@ void send_lpf(uint32_t value)
 
   //double freq = ((double)value / 4095.0) * 20000.0;
   //double freq = pow(10.0, ((double)value / 4095.0) * 2) * 200.0;
-  double freq = pow(100.0, ((double)value / 4095.0) * 2) * 2.0 + 198.0 * (1.0 - (double)value / 4095.0);
+  //double freq = pow(100.0, ((double)value / 4095.0) * 2) * 2.0 + 198.0 * (1.0 - (double)value / 4095.0);
+  //double freq = pow(100.0, (tanh((double)value / 4095.0 * 3.0) * 2.0)) * 2.08 + 198.0 * (1.0 - tanh((double)value / 4095.0 * 3.0));
+  double freq = (tanh((((double)value / 4095.0) - 1.0) * 3.0) + 1.0) * 20000 + 198.0 * (1 - ((double)value / 4095.0));
 
   double w0 = 2.0 * M_PI * freq / SAMPLE_RATE;
   double a = sin(w0) / (2.0 * Q);
