@@ -90,37 +90,128 @@ static const gecko_configuration_t config = {
 /* Flag for indicating DFU Reset must be performed */
 uint8_t boot_to_dfu = 0;
 
-#if 1
 uint32_t settings[18] = {0x00000000};
 uint32_t r_settings[18] = {0};
+
+bool xf_rev = true;
+double xf_curve = 2.0;
+
+void reset_settings()
+{
+  MSC_Init();
+
+  settings[0]  = 0x00; // ch1 line/phono sw(upper) , ch2 line/phono sw(lower)
+  settings[1]  = 0x7F; // ch1 input gain
+  settings[2]  = 0x7F; // ch2 input gain
+  settings[3]  = 0x7F; // ch1 eq hi
+  settings[4]  = 0x7F; // ch2 eq hi
+  settings[5]  = 0x7F; // ch1 eq mid
+  settings[6]  = 0x7F; // ch2 eq mid
+  settings[7]  = 0x7F; // ch1 eq lo
+  settings[8]  = 0x7F; // ch2 eq lo
+  settings[9]  = 0xFF; // ch1 input fader
+  settings[10] = 0xFF; // ch2 input fader
+  settings[11] = 0x04; // input fader setting
+  settings[12] = 0x02; // cross fader setting
+  settings[13] = 0x7F; // master gain
+  settings[14] = 0x7F; // booth gain
+  settings[15] = 0x00; // monitor select
+  settings[16] = 0x7F; // monitor gain
+  settings[17] = 0x00; // effect select
+
+  uint32_t *w_addr = (uint32_t *)(0x3e000 + 0 * 4);
+  MSC_ErasePage(w_addr);
+  MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
+
+  MSC_Deinit();
+
+  send_line_phono_switch(settings[0]);
+  send_input_gain(settings[1], settings[2]);
+  send_hi_shelf_ch1(settings[3]);
+  send_hi_shelf_ch2(settings[4]);
+  send_mid_peaking_ch1(settings[5]);
+  send_mid_peaking_ch2(settings[6]);
+  send_low_shelf_ch1(settings[7]);
+  send_low_shelf_ch2(settings[8]);
+  send_ifader(settings[9], settings[10]);
+  send_master_booth_gain(settings[13], settings[14]);
+  send_select_fx(settings[17]);
+
+  // xfader setting
+  if ((settings[12] >> 4) & 0x0F == 0x01)
+  {
+    xf_rev = true;
+  }
+  else
+  {
+    xf_rev = false;
+  }
+  xf_curve = (double)(settings[12] & 0x0F);
+
+  uint8_t test[18] = {0};
+  for (int i = 0; i < 18; i++)
+  {
+    test[i] = (uint8_t)settings[i];
+  }
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+}
 
 void write_settings()
 {
   MSC_Init();
 
-#if 1
-  for (int i = 0; i < 18; i++)
-  {
-    settings[i] = 100 + i;
-  }
-#endif
-
-  uint32_t *w_addr = (uint32_t *)(0x3f000 + 0 * 4);
+  uint32_t *w_addr = (uint32_t *)(0x3e000 + 0 * 4);
   MSC_ErasePage(w_addr);
   MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
 
   MSC_Deinit();
+
+  uint8_t test[18] = {0};
+  for (int i = 0; i < 18; i++)
+  {
+    test[i] = (uint8_t)settings[i];
+  }
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
 }
 
 void read_settings()
 {
   for (int i = 0; i < 18; i++)
   {
-    uint32_t *r_addr = (uint32_t *)(0x3f000 + i * 4);
+    uint32_t *r_addr = (uint32_t *)(0x3e000 + i * 4);
     r_settings[i] = *r_addr;
   }
+
+  send_line_phono_switch(r_settings[0]);
+  send_input_gain(r_settings[1], r_settings[2]);
+  send_hi_shelf_ch1(r_settings[3]);
+  send_hi_shelf_ch2(r_settings[4]);
+  send_mid_peaking_ch1(r_settings[5]);
+  send_mid_peaking_ch2(r_settings[6]);
+  send_low_shelf_ch1(r_settings[7]);
+  send_low_shelf_ch2(r_settings[8]);
+  send_ifader(r_settings[9], r_settings[10]);
+  send_master_booth_gain(r_settings[13], r_settings[14]);
+  send_select_fx(r_settings[17]);
+
+  // xfader setting
+  if ((r_settings[12] >> 4) & 0x0F == 0x01)
+  {
+    xf_rev = true;
+  }
+  else
+  {
+    xf_rev = false;
+  }
+  xf_curve = (double)(r_settings[12] & 0x0F);
+
+  uint8_t test[18] = {0};
+  for (int i = 0; i < 18; i++)
+  {
+    test[i] = (uint8_t)r_settings[i];
+  }
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
 }
-#endif
 
 /**
  * @brief  Main function
@@ -159,16 +250,10 @@ void main(void)
   double xf1_avg[16] = {0.0};
   double xf2_avg[16] = {0.0};
 
-  //bool if_rev = false;
-  //double if_curve = 0.0;
-  bool xf_rev = true;
-  double xf_curve = 2.0;
-
   uint8_t xf_type = 0;
   uint8_t fx_type = 0;
 
   read_settings();
-  r_settings[16] = 100;
 
   while (1)
   {
@@ -331,7 +416,7 @@ void main(void)
 
           settings[12] = xf_setting_val;
 
-          xf_curve = ((xf_setting_val & 0x0F) - 8.0) / 2.0;
+          xf_curve = (double)(xf_setting_val & 0x0F);
         }
         else if (gattdb_master_booth_gain == evt->data.evt_gatt_server_attribute_value.attribute)
         {
@@ -371,18 +456,10 @@ void main(void)
           else if (evt->data.evt_gatt_server_attribute_value.value.data[0] == 2)
           {
             read_settings();
-            r_settings[17] = 101;
-
-#if 0
-            uint8_t test[18] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12};
-#else
-            uint8_t test[17] = {0};
-            for (int i = 0; i < 18; i++)
-            {
-              test[i] = (uint8_t)r_settings[i];
-            }
-#endif
-            gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+          }
+          else if(evt->data.evt_gatt_server_attribute_value.value.data[0] == 3)
+          {
+            reset_settings();
           }
         }
         break;
