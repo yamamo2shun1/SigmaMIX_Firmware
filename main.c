@@ -91,10 +91,31 @@ static const gecko_configuration_t config = {
 uint8_t boot_to_dfu = 0;
 
 uint32_t settings[18] = {0x00000000};
-uint32_t r_settings[18] = {0};
 
 bool xf_rev = true;
 double xf_curve = 2.0;
+
+void init_settings()
+{
+  settings[0]  = 0x00; // ch1 line/phono sw(upper) , ch2 line/phono sw(lower)
+  settings[1]  = 0x7F; // ch1 input gain
+  settings[2]  = 0x7F; // ch2 input gain
+  settings[3]  = 0x7F; // ch1 eq hi
+  settings[4]  = 0x7F; // ch2 eq hi
+  settings[5]  = 0x7F; // ch1 eq mid
+  settings[6]  = 0x7F; // ch2 eq mid
+  settings[7]  = 0x7F; // ch1 eq lo
+  settings[8]  = 0x7F; // ch2 eq lo
+  settings[9]  = 0xFF; // ch1 input fader
+  settings[10] = 0xFF; // ch2 input fader
+  settings[11] = 0x04; // input fader setting
+  settings[12] = 0x02; // cross fader setting
+  settings[13] = 0x7F; // master gain
+  settings[14] = 0x7F; // booth gain
+  settings[15] = 0x00; // monitor select
+  settings[16] = 0x7F; // monitor gain
+  settings[17] = 0x00; // effect select
+}
 
 void reset_settings()
 {
@@ -179,23 +200,23 @@ void read_settings()
   for (int i = 0; i < 18; i++)
   {
     uint32_t *r_addr = (uint32_t *)(0x3e000 + i * 4);
-    r_settings[i] = *r_addr;
+    settings[i] = *r_addr;
   }
 
-  send_line_phono_switch(r_settings[0]);
-  send_input_gain(r_settings[1], r_settings[2]);
-  send_hi_shelf_ch1(r_settings[3]);
-  send_hi_shelf_ch2(r_settings[4]);
-  send_mid_peaking_ch1(r_settings[5]);
-  send_mid_peaking_ch2(r_settings[6]);
-  send_low_shelf_ch1(r_settings[7]);
-  send_low_shelf_ch2(r_settings[8]);
-  send_ifader(r_settings[9], r_settings[10]);
-  send_master_booth_gain(r_settings[13], r_settings[14]);
-  send_select_fx(r_settings[17]);
+  send_line_phono_switch(settings[0]);
+  send_input_gain(settings[1], settings[2]);
+  send_hi_shelf_ch1(settings[3]);
+  send_hi_shelf_ch2(settings[4]);
+  send_mid_peaking_ch1(settings[5]);
+  send_mid_peaking_ch2(settings[6]);
+  send_low_shelf_ch1(settings[7]);
+  send_low_shelf_ch2(settings[8]);
+  send_ifader(settings[9], settings[10]);
+  send_master_booth_gain(settings[13], settings[14]);
+  send_select_fx(settings[17]);
 
   // xfader setting
-  if ((r_settings[12] >> 4) & 0x0F == 0x01)
+  if ((settings[12] >> 4) & 0x0F == 0x01)
   {
     xf_rev = true;
   }
@@ -203,12 +224,12 @@ void read_settings()
   {
     xf_rev = false;
   }
-  xf_curve = (double)(r_settings[12] & 0x0F);
+  xf_curve = (double)(settings[12] & 0x0F);
 
   uint8_t test[18] = {0};
   for (int i = 0; i < 18; i++)
   {
-    test[i] = (uint8_t)r_settings[i];
+    test[i] = (uint8_t)settings[i];
   }
   gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
 }
@@ -304,6 +325,7 @@ void main(void)
 
       /* Value of attribute changed from the local database by remote GATT client */
       case gecko_evt_gatt_server_attribute_value_id:
+#ifdef CONTROL_SIGMADSP
         if (!is_mixer_initialized)
         {
           break;
@@ -462,6 +484,7 @@ void main(void)
             reset_settings();
           }
         }
+#endif
         break;
 #if 0
       /* Indicates the changed value of CCC or received characteristic confirmation */
@@ -618,24 +641,24 @@ void main(void)
       switch (fx_type)
       {
       case 1:
-        send_pitch_shifter(xf_adc[1]);
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       case 2:
-        send_lpf(xf_adc[1]);
+        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       case 3:
-        send_pitch_shifter(xf_adc[0]);
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 4:
-        send_lpf(xf_adc[0]);
+        send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 5:
-        send_pitch_shifter(xf_adc[1]);
-        send_lpf(xf_adc[0]);
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0]);
+        send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 6:
-        send_pitch_shifter(xf_adc[0]);
-        send_lpf(xf_adc[1]);
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1]);
+        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       }
       send_xfader(xf_adc, xf_curve, xf_rev);
