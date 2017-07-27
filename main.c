@@ -1,17 +1,23 @@
-/***********************************************************************************************//**
- * \file   main.c
- * \brief  Silicon Labs Empty Example Project
+/*
+ * Copylight (C) 2017, Shunichi Yamamoto, tkrworks.net
  *
- * This example demonstrates the bare minimum needed for a Blue Gecko C application
- * that allows Over-the-Air Device Firmware Upgrading (OTA DFU). The application
- * starts advertising after boot and restarts advertising after a connection is closed.
- ***************************************************************************************************
- * <b> (C) Copyright 2016 Silicon Labs, http://www.silabs.com</b>
- ***************************************************************************************************
- * This file is licensed under the Silabs License Agreement. See the file
- * "Silabs_License_Agreement.txt" for details. Before using this software for
- * any purpose, you must agree to the terms of that agreement.
- **************************************************************************************************/
+ * This file is part of SigmaMIX_Firmware.
+ *
+ * SigmaMIX_Firmware is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option ) any later version.
+ *
+ * SigmaMIX_Firmware is distributed in the hope that it will be useful,
+ * but WITHIOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with COSC. if not, see <http:/www.gnu.org/licenses/>.
+ *
+ * main.c
+ */
 
 #ifndef GENERATION_DONE
 #error You must run generate first!

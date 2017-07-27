@@ -1,12 +1,28 @@
 /*
+ * Copylight (C) 2017, Shunichi Yamamoto, tkrworks.net
  *
+ * This file is part of SigmaMIX_Firmware.
+ *
+ * SigmaMIX_Firmware is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option ) any later version.
+ *
+ * SigmaMIX_Firmware is distributed in the hope that it will be useful,
+ * but WITHIOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with COSC. if not, see <http:/www.gnu.org/licenses/>.
+ *
+ * mixer.c
  */
 
 #include <stdint.h>
 
 #include "mixer.h"
 
-//#include "SigmaStudioFW.h"
 #include "SigmaMIX_IC_1.h"
 #include "SigmaMIX_IC_1_PARAM.h"
 #include "SigmaMIX_IC_2.h"
