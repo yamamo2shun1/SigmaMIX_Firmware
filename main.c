@@ -98,8 +98,8 @@ uint8_t boot_to_dfu = 0;
 
 uint32_t settings[18] = {0x00000000};
 
-bool xf_rev = true;
-double xf_curve = 2.0;
+bool xf_rev = false;
+double xf_curve = 4.0;
 
 void init_settings()
 {
@@ -165,7 +165,7 @@ void reset_settings()
   send_select_fx(settings[17]);
 
   // xfader setting
-  if ((settings[12] >> 4) & 0x0F == 0x01)
+  if ((settings[12] >> 4) & 0x01 == 0x01)
   {
     xf_rev = true;
   }
@@ -222,7 +222,7 @@ void read_settings()
   send_select_fx(settings[17]);
 
   // xfader setting
-  if ((settings[12] >> 4) & 0x0F == 0x01)
+  if ((settings[12] >> 4) & 0x01 == 0x01)
   {
     xf_rev = true;
   }
@@ -469,7 +469,7 @@ void main(void)
           settings[17] = evt->data.evt_gatt_server_attribute_value.value.data[0];
           send_select_fx(settings[17]);
 
-          send_pitch_shifter(2047);
+          send_pitch_shifter(2047, 0);
           send_lpf(4095);
         }
         else if (gattdb_settings_write == evt->data.evt_gatt_server_attribute_value.attribute)
@@ -623,26 +623,27 @@ void main(void)
       send_xfader(xf_adc, xf_curve, xf_rev);
       break;
     case 1:
+      uint8_t pitch_type = 2;
       switch (settings[17])
       {
       case 1:
-        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0]);
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
         break;
       case 2:
         send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       case 3:
-        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1]);
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
         break;
       case 4:
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 5:
-        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0]);
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 6:
-        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1]);
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
         send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       }

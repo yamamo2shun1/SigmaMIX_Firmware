@@ -670,9 +670,22 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
     xf0_adc[1] = xf_adc[1];
 }
 
-void send_pitch_shifter(uint32_t xf_adc)
+void send_pitch_shifter(uint32_t xf_adc, uint8_t type)
 {
-  double pitch_trans = (((xf_adc / 4095.0) * 2.0 - 1.0) * 360.0) / SAMPLE_RATE;
+  double pitch_trans;
+  switch (type)
+  {
+    case 0:// -1 ~ +1
+      pitch_trans = (((xf_adc / 4095.0) * 2.0 - 1.0) * 360.0) / SAMPLE_RATE;
+      break;
+    case 1:// 0 ~ +1
+      pitch_trans = ((xf_adc / 4095.0) * 360.0) / SAMPLE_RATE;
+      break;
+    case 2:// -1 ~ 0
+      pitch_trans = (((xf_adc / 4095.0) - 1.0) * 360.0) / SAMPLE_RATE;
+      break;
+  }
+  
   uint32_t pitch_u32 = 0;
 
   if (pitch_trans >= 0.0)
