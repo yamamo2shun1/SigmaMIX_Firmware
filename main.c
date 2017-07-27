@@ -278,7 +278,6 @@ void main(void)
   double xf2_avg[16] = {0.0};
 
   uint8_t xf_type = 0;
-  uint8_t fx_type = 0;
 
   read_settings();
 
@@ -467,10 +466,8 @@ void main(void)
         }
         else if (gattdb_effect_selector == evt->data.evt_gatt_server_attribute_value.attribute)
         {
-          fx_type = evt->data.evt_gatt_server_attribute_value.value.data[0];
-
-          settings[17] = fx_type;
-          send_select_fx(fx_type);
+          settings[17] = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          send_select_fx(settings[17]);
 
           send_pitch_shifter(2047);
           send_lpf(4095);
@@ -492,25 +489,10 @@ void main(void)
         }
 #endif
         break;
-#if 0
-      /* Indicates the changed value of CCC or received characteristic confirmation */
-      case gecko_evt_gatt_server_characteristic_status_id:
-        /* Check if changed client char config is for the temperature measurement */
-        if ((gattdb_xfader_curve == evt->data.evt_gatt_server_attribute_value.attribute)
-            && (evt->data.evt_gatt_server_characteristic_status.status_flags == 0x01)) {
-          /* Call HTM temperature characteristic status changed callback */
-          htmTemperatureCharStatusChange(
-            evt->data.evt_gatt_server_characteristic_status.connection,
-            evt->data.evt_gatt_server_characteristic_status.client_config_flags);
-        }
-        break;
-#endif
       case gecko_evt_gatt_characteristic_id:
-        GPIO_PinOutSet(gpioPortA, 0);
         break;
 
       case gecko_evt_gatt_characteristic_value_id:
-        GPIO_PinOutClear(gpioPortA, 0);
         break;
 
       /* Events related to OTA upgrading
@@ -592,9 +574,6 @@ void main(void)
     xf_adc[0] = sum1 / 16.0;
     xf_adc[1] = sum2 / 16.0;
 #endif
-    //send_high_shelf_ch1(test_adc);
-    //send_mid_peaking_ch1(test_adc);
-    //send_low_shelf_ch1(test_adc);
 
     if (GPIO_PinInGet(gpioPortA, 0))
     {
@@ -604,7 +583,7 @@ void main(void)
         if (debounce_count == 4)
         {
           // off
-          //GPIO_PinOutClear(gpioPortA, 1);
+          GPIO_PinOutClear(gpioPortA, 1);
           debounce_flag = false;
           debounce_count = 0;
 
@@ -625,7 +604,7 @@ void main(void)
         if (debounce_count == 4)
         {
           // on
-          //GPIO_PinOutSet(gpioPortA, 0);
+          GPIO_PinOutSet(gpioPortA, 1);
           debounce_flag = true;
           debounce_count = 0;
 
@@ -644,7 +623,7 @@ void main(void)
       send_xfader(xf_adc, xf_curve, xf_rev);
       break;
     case 1:
-      switch (fx_type)
+      switch (settings[17])
       {
       case 1:
         send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0]);
