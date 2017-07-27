@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_PARAM.h
  *
- * Created:        Friday, July 21, 2017 4:59:40 PM
+ * Created:        Thursday, July 27, 2017 9:26:17 AM
  * Description:    SigmaMIX_2:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -52,29 +52,37 @@
 #define MOD_DC4_DCINPALG4_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_DC4_DCINPALG4_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 
-/* Module if1 - Single SW slew vol (adjustable)*/
-#define MOD_IF1_COUNT                                  2
+/* Module if1 - DC Input Entry*/
+#define MOD_IF1_COUNT                                  1
 #define MOD_IF1_DEVICE                                 "IC2"
-#define MOD_IF1_ALG0_TARGET_ADDR                       4
-#define MOD_IF1_ALG0_TARGET_FIXPT                      0x00800000
-#define MOD_IF1_ALG0_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
-#define MOD_IF1_ALG0_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_IF1_ALG0_STEP_ADDR                         5
-#define MOD_IF1_ALG0_STEP_FIXPT                        0x00008000
-#define MOD_IF1_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
-#define MOD_IF1_ALG0_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
+#define MOD_IF1_DCINPALG5_ADDR                         4
+#define MOD_IF1_DCINPALG5_FIXPT                        0x00800000
+#define MOD_IF1_DCINPALG5_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
+#define MOD_IF1_DCINPALG5_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 
-/* Module if2 - Single SW slew vol (adjustable)*/
-#define MOD_IF2_COUNT                                  2
+/* Module if2 - DC Input Entry*/
+#define MOD_IF2_COUNT                                  1
 #define MOD_IF2_DEVICE                                 "IC2"
-#define MOD_IF2_ALG0_TARGET_ADDR                       6
-#define MOD_IF2_ALG0_TARGET_FIXPT                      0x00800000
-#define MOD_IF2_ALG0_TARGET_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
-#define MOD_IF2_ALG0_TARGET_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_IF2_ALG0_STEP_ADDR                         7
-#define MOD_IF2_ALG0_STEP_FIXPT                        0x00008000
-#define MOD_IF2_ALG0_STEP_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
-#define MOD_IF2_ALG0_STEP_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
+#define MOD_IF2_DCINPALG6_ADDR                         5
+#define MOD_IF2_DCINPALG6_FIXPT                        0x00800000
+#define MOD_IF2_DCINPALG6_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
+#define MOD_IF2_DCINPALG6_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
+
+/* Module SW vol 3 - Single slew ext vol*/
+#define MOD_SWVOL3_COUNT                               1
+#define MOD_SWVOL3_DEVICE                              "IC2"
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_ADDR               6
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_FIXPT              0x00010000
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
+
+/* Module SW vol 4 - Single slew ext vol*/
+#define MOD_SWVOL4_COUNT                               1
+#define MOD_SWVOL4_DEVICE                              "IC2"
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_ADDR               7
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_FIXPT              0x00010000
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module ch sel sw - Stereo Switch Nx2*/
 #define MOD_CHSELSW_COUNT                              1
