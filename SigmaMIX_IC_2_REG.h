@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_REG.h
  *
- * Created:        Thursday, July 27, 2017 9:26:17 AM
+ * Created:        Monday, July 31, 2017 3:20:12 PM
  * Description:    SigmaMIX_2:IC 2 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -98,7 +98,7 @@
 /* SerialOutRegister1  - Registers (IC 2) */
 #define REG_SERIALOUTREGISTER1_IC_2_ADDR          0x81E
 #define REG_SERIALOUTREGISTER1_IC_2_BYTE          2
-#define REG_SERIALOUTREGISTER1_IC_2_VALUE         0x820
+#define REG_SERIALOUTREGISTER1_IC_2_VALUE         0xA20
 
 /* SerialInputRegister  - Registers (IC 2) */
 #define REG_SERIALINPUTREGISTER_IC_2_ADDR         0x81F
@@ -296,7 +296,7 @@
 #define R15_TDM_IC_2                              0x1    /* 1b	[5] */
 #define R15_FRAMESYNC_TYPE_IC_2                   0x0    /* 0b	[6] */
 #define R15_LRCLK_FREQ_IC_2                       0x0    /* 00b	[8:7] */
-#define R15_BCLK_FREQ_IC_2                        0x0    /* 00b	[10:9] */
+#define R15_BCLK_FREQ_IC_2                        0x1    /* 01b	[10:9] */
 #define R15_MASTER_SLAVE_IC_2                     0x1    /* 1b	[11] */
 #define R15_BCLK_POLARITY_IC_2                    0x0    /* 0b	[12] */
 #define R15_LRCLK_POLARITY_IC_2                   0x0    /* 0b	[13] */

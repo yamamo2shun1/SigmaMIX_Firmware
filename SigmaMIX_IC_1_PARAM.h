@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_1_PARAM.h
  *
- * Created:        Thursday, July 27, 2017 9:26:17 AM
+ * Created:        Monday, July 31, 2017 3:20:12 PM
  * Description:    SigmaMIX_2:IC 1 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -292,14 +292,26 @@
 #define MOD_PHONOEQ2_ALG0_STAGE2_A1_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.412859693914238)
 #define MOD_PHONOEQ2_ALG0_STAGE2_A1_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
+/* Module booth gain - Single SW slew vol (adjustable)*/
+#define MOD_BOOTHGAIN_COUNT                            2
+#define MOD_BOOTHGAIN_DEVICE                           "IC1"
+#define MOD_BOOTHGAIN_ALG0_TARGET_ADDR                 34
+#define MOD_BOOTHGAIN_ALG0_TARGET_FIXPT                0x00800000
+#define MOD_BOOTHGAIN_ALG0_TARGET_VALUE                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
+#define MOD_BOOTHGAIN_ALG0_TARGET_TYPE                 SIGMASTUDIOTYPE_FIXPOINT
+#define MOD_BOOTHGAIN_ALG0_STEP_ADDR                   35
+#define MOD_BOOTHGAIN_ALG0_STEP_FIXPT                  0x00008000
+#define MOD_BOOTHGAIN_ALG0_STEP_VALUE                  SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
+#define MOD_BOOTHGAIN_ALG0_STEP_TYPE                   SIGMASTUDIOTYPE_FIXPOINT
+
 /* Module phono gain1 - Single SW slew vol (adjustable)*/
 #define MOD_PHONOGAIN1_COUNT                           2
 #define MOD_PHONOGAIN1_DEVICE                          "IC1"
-#define MOD_PHONOGAIN1_ALG0_TARGET_ADDR                34
+#define MOD_PHONOGAIN1_ALG0_TARGET_ADDR                36
 #define MOD_PHONOGAIN1_ALG0_TARGET_FIXPT               0x03F8BD79
 #define MOD_PHONOGAIN1_ALG0_TARGET_VALUE               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(7.94328234724282)
 #define MOD_PHONOGAIN1_ALG0_TARGET_TYPE                SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_PHONOGAIN1_ALG0_STEP_ADDR                  35
+#define MOD_PHONOGAIN1_ALG0_STEP_ADDR                  37
 #define MOD_PHONOGAIN1_ALG0_STEP_FIXPT                 0x00008000
 #define MOD_PHONOGAIN1_ALG0_STEP_VALUE                 SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
 #define MOD_PHONOGAIN1_ALG0_STEP_TYPE                  SIGMASTUDIOTYPE_FIXPOINT
@@ -307,11 +319,11 @@
 /* Module phono gain2 - Single SW slew vol (adjustable)*/
 #define MOD_PHONOGAIN2_COUNT                           2
 #define MOD_PHONOGAIN2_DEVICE                          "IC1"
-#define MOD_PHONOGAIN2_ALG0_TARGET_ADDR                36
+#define MOD_PHONOGAIN2_ALG0_TARGET_ADDR                38
 #define MOD_PHONOGAIN2_ALG0_TARGET_FIXPT               0x03F8BD79
 #define MOD_PHONOGAIN2_ALG0_TARGET_VALUE               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(7.94328234724282)
 #define MOD_PHONOGAIN2_ALG0_TARGET_TYPE                SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_PHONOGAIN2_ALG0_STEP_ADDR                  37
+#define MOD_PHONOGAIN2_ALG0_STEP_ADDR                  39
 #define MOD_PHONOGAIN2_ALG0_STEP_FIXPT                 0x00008000
 #define MOD_PHONOGAIN2_ALG0_STEP_VALUE                 SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
 #define MOD_PHONOGAIN2_ALG0_STEP_TYPE                  SIGMASTUDIOTYPE_FIXPOINT
@@ -319,7 +331,7 @@
 /* Module mg3 - Signal Merger*/
 #define MOD_MG3_COUNT                                  1
 #define MOD_MG3_DEVICE                                 "IC1"
-#define MOD_MG3_SINGLECTRLMIXER19403_ADDR              38
+#define MOD_MG3_SINGLECTRLMIXER19403_ADDR              40
 #define MOD_MG3_SINGLECTRLMIXER19403_FIXPT             0x00400000
 #define MOD_MG3_SINGLECTRLMIXER19403_VALUE             SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.5)
 #define MOD_MG3_SINGLECTRLMIXER19403_TYPE              SIGMASTUDIOTYPE_FIXPOINT
@@ -327,7 +339,7 @@
 /* Module mg2 - Signal Merger*/
 #define MOD_MG2_COUNT                                  1
 #define MOD_MG2_DEVICE                                 "IC1"
-#define MOD_MG2_SINGLECTRLMIXER19402_ADDR              39
+#define MOD_MG2_SINGLECTRLMIXER19402_ADDR              41
 #define MOD_MG2_SINGLECTRLMIXER19402_FIXPT             0x00400000
 #define MOD_MG2_SINGLECTRLMIXER19402_VALUE             SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.5)
 #define MOD_MG2_SINGLECTRLMIXER19402_TYPE              SIGMASTUDIOTYPE_FIXPOINT
@@ -335,7 +347,7 @@
 /* Module mg1 - Signal Merger*/
 #define MOD_MG1_COUNT                                  1
 #define MOD_MG1_DEVICE                                 "IC1"
-#define MOD_MG1_SINGLECTRLMIXER19401_ADDR              40
+#define MOD_MG1_SINGLECTRLMIXER19401_ADDR              42
 #define MOD_MG1_SINGLECTRLMIXER19401_FIXPT             0x00400000
 #define MOD_MG1_SINGLECTRLMIXER19401_VALUE             SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.5)
 #define MOD_MG1_SINGLECTRLMIXER19401_TYPE              SIGMASTUDIOTYPE_FIXPOINT
@@ -343,7 +355,7 @@
 /* Module mg4 - Signal Merger*/
 #define MOD_MG4_COUNT                                  1
 #define MOD_MG4_DEVICE                                 "IC1"
-#define MOD_MG4_SINGLECTRLMIXER19404_ADDR              41
+#define MOD_MG4_SINGLECTRLMIXER19404_ADDR              43
 #define MOD_MG4_SINGLECTRLMIXER19404_FIXPT             0x00400000
 #define MOD_MG4_SINGLECTRLMIXER19404_VALUE             SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.5)
 #define MOD_MG4_SINGLECTRLMIXER19404_TYPE              SIGMASTUDIOTYPE_FIXPOINT
@@ -351,11 +363,11 @@
 /* Module gain1 - Single SW slew vol (adjustable)*/
 #define MOD_GAIN1_COUNT                                2
 #define MOD_GAIN1_DEVICE                               "IC1"
-#define MOD_GAIN1_ALG0_TARGET_ADDR                     42
+#define MOD_GAIN1_ALG0_TARGET_ADDR                     44
 #define MOD_GAIN1_ALG0_TARGET_FIXPT                    0x00800000
 #define MOD_GAIN1_ALG0_TARGET_VALUE                    SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_GAIN1_ALG0_TARGET_TYPE                     SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_GAIN1_ALG0_STEP_ADDR                       43
+#define MOD_GAIN1_ALG0_STEP_ADDR                       45
 #define MOD_GAIN1_ALG0_STEP_FIXPT                      0x00008000
 #define MOD_GAIN1_ALG0_STEP_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
 #define MOD_GAIN1_ALG0_STEP_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
@@ -363,11 +375,11 @@
 /* Module gain2 - Single SW slew vol (adjustable)*/
 #define MOD_GAIN2_COUNT                                2
 #define MOD_GAIN2_DEVICE                               "IC1"
-#define MOD_GAIN2_ALG0_TARGET_ADDR                     44
+#define MOD_GAIN2_ALG0_TARGET_ADDR                     46
 #define MOD_GAIN2_ALG0_TARGET_FIXPT                    0x00800000
 #define MOD_GAIN2_ALG0_TARGET_VALUE                    SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_GAIN2_ALG0_TARGET_TYPE                     SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_GAIN2_ALG0_STEP_ADDR                       45
+#define MOD_GAIN2_ALG0_STEP_ADDR                       47
 #define MOD_GAIN2_ALG0_STEP_FIXPT                      0x00008000
 #define MOD_GAIN2_ALG0_STEP_VALUE                      SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
 #define MOD_GAIN2_ALG0_STEP_TYPE                       SIGMASTUDIOTYPE_FIXPOINT
@@ -375,63 +387,63 @@
 /* Module eq1 - Medium Size Eq*/
 #define MOD_EQ1_COUNT                                  15
 #define MOD_EQ1_DEVICE                                 "IC1"
-#define MOD_EQ1_ALG0_STAGE0_B0_ADDR                    46
+#define MOD_EQ1_ALG0_STAGE0_B0_ADDR                    48
 #define MOD_EQ1_ALG0_STAGE0_B0_FIXPT                   0x00800000
 #define MOD_EQ1_ALG0_STAGE0_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_EQ1_ALG0_STAGE0_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE0_B1_ADDR                    47
+#define MOD_EQ1_ALG0_STAGE0_B1_ADDR                    49
 #define MOD_EQ1_ALG0_STAGE0_B1_FIXPT                   0xFF264598
 #define MOD_EQ1_ALG0_STAGE0_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-1.70100119556335)
 #define MOD_EQ1_ALG0_STAGE0_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE0_B2_ADDR                    48
+#define MOD_EQ1_ALG0_STAGE0_B2_ADDR                    50
 #define MOD_EQ1_ALG0_STAGE0_B2_FIXPT                   0x005EBF9B
 #define MOD_EQ1_ALG0_STAGE0_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.740222370963895)
 #define MOD_EQ1_ALG0_STAGE0_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE0_A1_ADDR                    49
+#define MOD_EQ1_ALG0_STAGE0_A1_ADDR                    51
 #define MOD_EQ1_ALG0_STAGE0_A1_FIXPT                   0x00D9BA68
 #define MOD_EQ1_ALG0_STAGE0_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.70100119556335)
 #define MOD_EQ1_ALG0_STAGE0_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE0_A2_ADDR                    50
+#define MOD_EQ1_ALG0_STAGE0_A2_ADDR                    52
 #define MOD_EQ1_ALG0_STAGE0_A2_FIXPT                   0xFFA14065
 #define MOD_EQ1_ALG0_STAGE0_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.740222370963895)
 #define MOD_EQ1_ALG0_STAGE0_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE1_B0_ADDR                    51
+#define MOD_EQ1_ALG0_STAGE1_B0_ADDR                    53
 #define MOD_EQ1_ALG0_STAGE1_B0_FIXPT                   0x007FFAD2
 #define MOD_EQ1_ALG0_STAGE1_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.999841930418486)
 #define MOD_EQ1_ALG0_STAGE1_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE1_B1_ADDR                    52
+#define MOD_EQ1_ALG0_STAGE1_B1_ADDR                    54
 #define MOD_EQ1_ALG0_STAGE1_B1_FIXPT                   0xFF03BAD0
 #define MOD_EQ1_ALG0_STAGE1_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-1.97086149316823)
 #define MOD_EQ1_ALG0_STAGE1_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE1_B2_ADDR                    53
+#define MOD_EQ1_ALG0_STAGE1_B2_ADDR                    55
 #define MOD_EQ1_ALG0_STAGE1_B2_FIXPT                   0x007C7C32
 #define MOD_EQ1_ALG0_STAGE1_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.972540197890118)
 #define MOD_EQ1_ALG0_STAGE1_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE1_A1_ADDR                    54
+#define MOD_EQ1_ALG0_STAGE1_A1_ADDR                    56
 #define MOD_EQ1_ALG0_STAGE1_A1_FIXPT                   0x00FC4530
 #define MOD_EQ1_ALG0_STAGE1_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.97086149316823)
 #define MOD_EQ1_ALG0_STAGE1_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE1_A2_ADDR                    55
+#define MOD_EQ1_ALG0_STAGE1_A2_ADDR                    57
 #define MOD_EQ1_ALG0_STAGE1_A2_FIXPT                   0xFF8388FC
 #define MOD_EQ1_ALG0_STAGE1_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.972382128308604)
 #define MOD_EQ1_ALG0_STAGE1_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE2_B0_ADDR                    56
+#define MOD_EQ1_ALG0_STAGE2_B0_ADDR                    58
 #define MOD_EQ1_ALG0_STAGE2_B0_FIXPT                   0x00800000
 #define MOD_EQ1_ALG0_STAGE2_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_EQ1_ALG0_STAGE2_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE2_B1_ADDR                    57
+#define MOD_EQ1_ALG0_STAGE2_B1_ADDR                    59
 #define MOD_EQ1_ALG0_STAGE2_B1_FIXPT                   0xFF012F4D
 #define MOD_EQ1_ALG0_STAGE2_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-1.99074405950505)
 #define MOD_EQ1_ALG0_STAGE2_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE2_B2_ADDR                    58
+#define MOD_EQ1_ALG0_STAGE2_B2_ADDR                    60
 #define MOD_EQ1_ALG0_STAGE2_B2_FIXPT                   0x007ED219
 #define MOD_EQ1_ALG0_STAGE2_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.990786698843211)
 #define MOD_EQ1_ALG0_STAGE2_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE2_A1_ADDR                    59
+#define MOD_EQ1_ALG0_STAGE2_A1_ADDR                    61
 #define MOD_EQ1_ALG0_STAGE2_A1_FIXPT                   0x00FED0B3
 #define MOD_EQ1_ALG0_STAGE2_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99074405950505)
 #define MOD_EQ1_ALG0_STAGE2_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ1_ALG0_STAGE2_A2_ADDR                    60
+#define MOD_EQ1_ALG0_STAGE2_A2_ADDR                    62
 #define MOD_EQ1_ALG0_STAGE2_A2_FIXPT                   0xFF812DE7
 #define MOD_EQ1_ALG0_STAGE2_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.990786698843211)
 #define MOD_EQ1_ALG0_STAGE2_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
@@ -439,63 +451,63 @@
 /* Module eq2 - Medium Size Eq*/
 #define MOD_EQ2_COUNT                                  15
 #define MOD_EQ2_DEVICE                                 "IC1"
-#define MOD_EQ2_ALG0_STAGE0_B0_ADDR                    61
+#define MOD_EQ2_ALG0_STAGE0_B0_ADDR                    63
 #define MOD_EQ2_ALG0_STAGE0_B0_FIXPT                   0x00800000
 #define MOD_EQ2_ALG0_STAGE0_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_EQ2_ALG0_STAGE0_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE0_B1_ADDR                    62
+#define MOD_EQ2_ALG0_STAGE0_B1_ADDR                    64
 #define MOD_EQ2_ALG0_STAGE0_B1_FIXPT                   0xFF264598
 #define MOD_EQ2_ALG0_STAGE0_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-1.70100119556335)
 #define MOD_EQ2_ALG0_STAGE0_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE0_B2_ADDR                    63
+#define MOD_EQ2_ALG0_STAGE0_B2_ADDR                    65
 #define MOD_EQ2_ALG0_STAGE0_B2_FIXPT                   0x005EBF9B
 #define MOD_EQ2_ALG0_STAGE0_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.740222370963895)
 #define MOD_EQ2_ALG0_STAGE0_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE0_A1_ADDR                    64
+#define MOD_EQ2_ALG0_STAGE0_A1_ADDR                    66
 #define MOD_EQ2_ALG0_STAGE0_A1_FIXPT                   0x00D9BA68
 #define MOD_EQ2_ALG0_STAGE0_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.70100119556335)
 #define MOD_EQ2_ALG0_STAGE0_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE0_A2_ADDR                    65
+#define MOD_EQ2_ALG0_STAGE0_A2_ADDR                    67
 #define MOD_EQ2_ALG0_STAGE0_A2_FIXPT                   0xFFA14065
 #define MOD_EQ2_ALG0_STAGE0_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.740222370963895)
 #define MOD_EQ2_ALG0_STAGE0_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE1_B0_ADDR                    66
+#define MOD_EQ2_ALG0_STAGE1_B0_ADDR                    68
 #define MOD_EQ2_ALG0_STAGE1_B0_FIXPT                   0x00800000
 #define MOD_EQ2_ALG0_STAGE1_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_EQ2_ALG0_STAGE1_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE1_B1_ADDR                    67
+#define MOD_EQ2_ALG0_STAGE1_B1_ADDR                    69
 #define MOD_EQ2_ALG0_STAGE1_B1_FIXPT                   0x00000000
 #define MOD_EQ2_ALG0_STAGE1_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0)
 #define MOD_EQ2_ALG0_STAGE1_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE1_B2_ADDR                    68
+#define MOD_EQ2_ALG0_STAGE1_B2_ADDR                    70
 #define MOD_EQ2_ALG0_STAGE1_B2_FIXPT                   0x00000000
 #define MOD_EQ2_ALG0_STAGE1_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0)
 #define MOD_EQ2_ALG0_STAGE1_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE1_A1_ADDR                    69
+#define MOD_EQ2_ALG0_STAGE1_A1_ADDR                    71
 #define MOD_EQ2_ALG0_STAGE1_A1_FIXPT                   0x00000000
 #define MOD_EQ2_ALG0_STAGE1_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0)
 #define MOD_EQ2_ALG0_STAGE1_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE1_A2_ADDR                    70
+#define MOD_EQ2_ALG0_STAGE1_A2_ADDR                    72
 #define MOD_EQ2_ALG0_STAGE1_A2_FIXPT                   0x00000000
 #define MOD_EQ2_ALG0_STAGE1_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0)
 #define MOD_EQ2_ALG0_STAGE1_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE2_B0_ADDR                    71
+#define MOD_EQ2_ALG0_STAGE2_B0_ADDR                    73
 #define MOD_EQ2_ALG0_STAGE2_B0_FIXPT                   0x00800000
 #define MOD_EQ2_ALG0_STAGE2_B0_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_EQ2_ALG0_STAGE2_B0_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE2_B1_ADDR                    72
+#define MOD_EQ2_ALG0_STAGE2_B1_ADDR                    74
 #define MOD_EQ2_ALG0_STAGE2_B1_FIXPT                   0xFF012F4D
 #define MOD_EQ2_ALG0_STAGE2_B1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-1.99074405950505)
 #define MOD_EQ2_ALG0_STAGE2_B1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE2_B2_ADDR                    73
+#define MOD_EQ2_ALG0_STAGE2_B2_ADDR                    75
 #define MOD_EQ2_ALG0_STAGE2_B2_FIXPT                   0x007ED219
 #define MOD_EQ2_ALG0_STAGE2_B2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.990786698843211)
 #define MOD_EQ2_ALG0_STAGE2_B2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE2_A1_ADDR                    74
+#define MOD_EQ2_ALG0_STAGE2_A1_ADDR                    76
 #define MOD_EQ2_ALG0_STAGE2_A1_FIXPT                   0x00FED0B3
 #define MOD_EQ2_ALG0_STAGE2_A1_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1.99074405950505)
 #define MOD_EQ2_ALG0_STAGE2_A1_TYPE                    SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_EQ2_ALG0_STAGE2_A2_ADDR                    75
+#define MOD_EQ2_ALG0_STAGE2_A2_ADDR                    77
 #define MOD_EQ2_ALG0_STAGE2_A2_FIXPT                   0xFF812DE7
 #define MOD_EQ2_ALG0_STAGE2_A2_VALUE                   SIGMASTUDIOTYPE_FIXPOINT_CONVERT(-0.990786698843211)
 #define MOD_EQ2_ALG0_STAGE2_A2_TYPE                    SIGMASTUDIOTYPE_FIXPOINT

@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_PARAM.h
  *
- * Created:        Thursday, July 27, 2017 9:26:17 AM
+ * Created:        Monday, July 31, 2017 3:20:12 PM
  * Description:    SigmaMIX_2:IC 2 parameter RAM definitions.
  *
  * This software is distributed in the hope that it will be useful,
@@ -40,8 +40,8 @@
 #define MOD_DC3_COUNT                                  1
 #define MOD_DC3_DEVICE                                 "IC2"
 #define MOD_DC3_DCINPALG3_ADDR                         2
-#define MOD_DC3_DCINPALG3_FIXPT                        0x00400000
-#define MOD_DC3_DCINPALG3_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.5)
+#define MOD_DC3_DCINPALG3_FIXPT                        0x00800000
+#define MOD_DC3_DCINPALG3_VALUE                        SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_DC3_DCINPALG3_TYPE                         SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module DC4 - DC Input Entry*/
@@ -72,16 +72,16 @@
 #define MOD_SWVOL3_COUNT                               1
 #define MOD_SWVOL3_DEVICE                              "IC2"
 #define MOD_SWVOL3_EXTSWGAINDB5STEP_ADDR               6
-#define MOD_SWVOL3_EXTSWGAINDB5STEP_FIXPT              0x00010000
-#define MOD_SWVOL3_EXTSWGAINDB5STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_FIXPT              0x00004000
+#define MOD_SWVOL3_EXTSWGAINDB5STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
 #define MOD_SWVOL3_EXTSWGAINDB5STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module SW vol 4 - Single slew ext vol*/
 #define MOD_SWVOL4_COUNT                               1
 #define MOD_SWVOL4_DEVICE                              "IC2"
 #define MOD_SWVOL4_EXTSWGAINDB6STEP_ADDR               7
-#define MOD_SWVOL4_EXTSWGAINDB6STEP_FIXPT              0x00010000
-#define MOD_SWVOL4_EXTSWGAINDB6STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_FIXPT              0x00004000
+#define MOD_SWVOL4_EXTSWGAINDB6STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
 #define MOD_SWVOL4_EXTSWGAINDB6STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module ch sel sw - Stereo Switch Nx2*/
@@ -92,13 +92,13 @@
 #define MOD_CHSELSW_STEREOSWSLEW_VALUE                 SIGMASTUDIOTYPE_INTEGER_CONVERT(0)
 #define MOD_CHSELSW_STEREOSWSLEW_TYPE                  SIGMASTUDIOTYPE_INTEGER
 
-/* Module SW vol 1_2 - Single slew ext vol*/
-#define MOD_SWVOL1_2_COUNT                             1
-#define MOD_SWVOL1_2_DEVICE                            "IC2"
-#define MOD_SWVOL1_2_EXTSWGAINDB1STEP_ADDR             9
-#define MOD_SWVOL1_2_EXTSWGAINDB1STEP_FIXPT            0x00010000
-#define MOD_SWVOL1_2_EXTSWGAINDB1STEP_VALUE            SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
-#define MOD_SWVOL1_2_EXTSWGAINDB1STEP_TYPE             SIGMASTUDIOTYPE_FIXPOINT
+/* Module SW vol 5 - Single slew ext vol*/
+#define MOD_SWVOL5_COUNT                               1
+#define MOD_SWVOL5_DEVICE                              "IC2"
+#define MOD_SWVOL5_EXTSWGAINDB1STEP_ADDR               9
+#define MOD_SWVOL5_EXTSWGAINDB1STEP_FIXPT              0x00004000
+#define MOD_SWVOL5_EXTSWGAINDB1STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
+#define MOD_SWVOL5_EXTSWGAINDB1STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module fxSnd1 - Stereo Switch 2xN*/
 #define MOD_FXSND1_COUNT                               3
@@ -216,32 +216,32 @@
 #define MOD_SWVOL1_COUNT                               1
 #define MOD_SWVOL1_DEVICE                              "IC2"
 #define MOD_SWVOL1_EXTSWGAINDB2STEP_ADDR               31
-#define MOD_SWVOL1_EXTSWGAINDB2STEP_FIXPT              0x00010000
-#define MOD_SWVOL1_EXTSWGAINDB2STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL1_EXTSWGAINDB2STEP_FIXPT              0x00004000
+#define MOD_SWVOL1_EXTSWGAINDB2STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
 #define MOD_SWVOL1_EXTSWGAINDB2STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module SW vol 2 - Single slew ext vol*/
 #define MOD_SWVOL2_COUNT                               1
 #define MOD_SWVOL2_DEVICE                              "IC2"
 #define MOD_SWVOL2_EXTSWGAINDB3STEP_ADDR               32
-#define MOD_SWVOL2_EXTSWGAINDB3STEP_FIXPT              0x00010000
-#define MOD_SWVOL2_EXTSWGAINDB3STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
+#define MOD_SWVOL2_EXTSWGAINDB3STEP_FIXPT              0x00004000
+#define MOD_SWVOL2_EXTSWGAINDB3STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
 #define MOD_SWVOL2_EXTSWGAINDB3STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
-/* Module SW vol 2_2 - Single slew ext vol*/
-#define MOD_SWVOL2_2_COUNT                             1
-#define MOD_SWVOL2_2_DEVICE                            "IC2"
-#define MOD_SWVOL2_2_EXTSWGAINDB4STEP_ADDR             33
-#define MOD_SWVOL2_2_EXTSWGAINDB4STEP_FIXPT            0x00010000
-#define MOD_SWVOL2_2_EXTSWGAINDB4STEP_VALUE            SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.0078125)
-#define MOD_SWVOL2_2_EXTSWGAINDB4STEP_TYPE             SIGMASTUDIOTYPE_FIXPOINT
+/* Module SW vol 6 - Single slew ext vol*/
+#define MOD_SWVOL6_COUNT                               1
+#define MOD_SWVOL6_DEVICE                              "IC2"
+#define MOD_SWVOL6_EXTSWGAINDB4STEP_ADDR               33
+#define MOD_SWVOL6_EXTSWGAINDB4STEP_FIXPT              0x00004000
+#define MOD_SWVOL6_EXTSWGAINDB4STEP_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.001953125)
+#define MOD_SWVOL6_EXTSWGAINDB4STEP_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module master gain - Single SW slew vol (adjustable)*/
 #define MOD_MASTERGAIN_COUNT                           2
 #define MOD_MASTERGAIN_DEVICE                          "IC2"
 #define MOD_MASTERGAIN_ALG0_TARGET_ADDR                34
-#define MOD_MASTERGAIN_ALG0_TARGET_FIXPT               0x0074BCC5
-#define MOD_MASTERGAIN_ALG0_TARGET_VALUE               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.91201083935591)
+#define MOD_MASTERGAIN_ALG0_TARGET_FIXPT               0x00800000
+#define MOD_MASTERGAIN_ALG0_TARGET_VALUE               SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_MASTERGAIN_ALG0_TARGET_TYPE                SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_MASTERGAIN_ALG0_STEP_ADDR                  35
 #define MOD_MASTERGAIN_ALG0_STEP_FIXPT                 0x00008000
@@ -249,23 +249,15 @@
 #define MOD_MASTERGAIN_ALG0_STEP_TYPE                  SIGMASTUDIOTYPE_FIXPOINT
 
 /* Module monitor gain - Single SW slew vol (adjustable)*/
-#define MOD_MONITORGAIN_COUNT                          4
+#define MOD_MONITORGAIN_COUNT                          2
 #define MOD_MONITORGAIN_DEVICE                         "IC2"
 #define MOD_MONITORGAIN_ALG0_TARGET_ADDR               36
-#define MOD_MONITORGAIN_ALG0_TARGET_FIXPT              0x0073A2C4
-#define MOD_MONITORGAIN_ALG0_TARGET_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.903404715133357)
+#define MOD_MONITORGAIN_ALG0_TARGET_FIXPT              0x00800000
+#define MOD_MONITORGAIN_ALG0_TARGET_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(1)
 #define MOD_MONITORGAIN_ALG0_TARGET_TYPE               SIGMASTUDIOTYPE_FIXPOINT
 #define MOD_MONITORGAIN_ALG0_STEP_ADDR                 37
-#define MOD_MONITORGAIN_ALG0_STEP_FIXPT                0x00000800
-#define MOD_MONITORGAIN_ALG0_STEP_VALUE                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.000244140625)
+#define MOD_MONITORGAIN_ALG0_STEP_FIXPT                0x00008000
+#define MOD_MONITORGAIN_ALG0_STEP_VALUE                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.00390625)
 #define MOD_MONITORGAIN_ALG0_STEP_TYPE                 SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_MONITORGAIN_ALG1_TARGET_ADDR               38
-#define MOD_MONITORGAIN_ALG1_TARGET_FIXPT              0x0073A2C4
-#define MOD_MONITORGAIN_ALG1_TARGET_VALUE              SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.903404715133357)
-#define MOD_MONITORGAIN_ALG1_TARGET_TYPE               SIGMASTUDIOTYPE_FIXPOINT
-#define MOD_MONITORGAIN_ALG1_STEP_ADDR                 39
-#define MOD_MONITORGAIN_ALG1_STEP_FIXPT                0x00000800
-#define MOD_MONITORGAIN_ALG1_STEP_VALUE                SIGMASTUDIOTYPE_FIXPOINT_CONVERT(0.000244140625)
-#define MOD_MONITORGAIN_ALG1_STEP_TYPE                 SIGMASTUDIOTYPE_FIXPOINT
 
 #endif
