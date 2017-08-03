@@ -632,10 +632,10 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
 {
   if (xf_adc[0] != xf0_adc[0] && xf_adc[1] != xf0_adc[1])
     {
-      double xf1 = (xf_rev ? xf_adc[1] : xf_adc[0]) / 2047.0;
+      double xf1 = (xf_rev ? xf_adc[0] : xf_adc[1]) / 2047.0;
       if (xf1 < 0.0064)
         xf1 = 0.0;
-      else if (xf1 > 1.0)
+      else if (xf1 > 0.9968)
         xf1 = 1.0;
 
       double xf11 = pow(xf1, pow(2.0, 2.0 * xf_curve - 8.0));
@@ -645,10 +645,10 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
       xf1_val[2] = (xf11_u32 >> 8)  & 0x000000FF;
       xf1_val[3] =  xf11_u32        & 0x000000FF;
 
-      double xf2 = (xf_rev ? xf_adc[0] : xf_adc[1]) / 2047.0;
+      double xf2 = (xf_rev ? xf_adc[1] : xf_adc[0]) / 2047.0;
       if (xf2 < 0.0064)
         xf2 = 0.0;
-      else if (xf2 > 1.0)
+      else if (xf2 > 0.9968)
         xf2 = 1.0;
 
       double xf12 = pow(xf2, pow(2.0, 2.0 * xf_curve - 8.0));
@@ -679,13 +679,13 @@ void send_pitch_shifter(uint32_t xf_adc, uint8_t type)
       pitch_trans = (((xf_adc / 4095.0) * 2.0 - 1.0) * 360.0) / SAMPLE_RATE;
       break;
     case 1:// 0 ~ +1
-      pitch_trans = ((xf_adc / 4095.0) * 360.0) / SAMPLE_RATE;
+      pitch_trans = ((1.0 - (xf_adc / 4095.0)) * 360.0) / SAMPLE_RATE;
       break;
     case 2:// -1 ~ 0
       pitch_trans = (((xf_adc / 4095.0) - 1.0) * 360.0) / SAMPLE_RATE;
       break;
   }
-  
+
   uint32_t pitch_u32 = 0;
 
   if (pitch_trans >= 0.0)

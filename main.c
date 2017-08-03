@@ -627,27 +627,28 @@ void main(void)
       switch (settings[17])
       {
       case 1:
-        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
         break;
       case 2:
-        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
-        break;
-      case 3:
-        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
-        break;
-      case 4:
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
+      case 3:
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
+        break;
+      case 4:
+        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
+        break;
       case 5:
+        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
+        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
+        break;
+      case 6:
         send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
-      case 6:
-        send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
-        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
-        break;
       }
-      send_xfader(xf_adc, xf_curve, xf_rev);
+      uint32_t center[2] = {2047, 2047};
+      send_xfader(center, xf_curve, xf_rev);
       break;
     }
 
