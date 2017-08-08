@@ -22,8 +22,8 @@
                 <Link pin="O_C110_A0_P2_out" dir="out" link="Link22" />
                 <Link pin="O_C110_A0_P3_out" dir="out" link="Link8" />
                 <Link pin="O_C110_A0_P4_out" dir="out" link="Link9" />
-                <Link pin="O_C110_A0_P5_out" dir="out" link="Link94" />
-                <Link pin="O_C110_A0_P6_out" dir="out" link="Link95" />
+                <Link pin="O_C110_A0_P5_out" dir="out" link="Link98" />
+                <Link pin="O_C110_A0_P6_out" dir="out" link="Link99" />
             </Algorithm>
             <Algorithm name="stereoDemux1940ns2" friendlyname="Stereo" cell="ph ln sw2 ">
                 <Link pin="I_C75_A0_P1_in" dir="in" link="Link8" />
@@ -54,10 +54,10 @@
                 <Link pin="O_C136_A0_P4_out" dir="out" link="Link30" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg4" friendlyname="Gain (RC Slew)" cell="booth gain ">
-                <Link pin="I_C100_A0_P1_in" dir="in" link="Link94" />
-                <Link pin="I_C100_A0_P3_in" dir="in" link="Link95" />
-                <Link pin="O_C100_A0_P2_out" dir="out" link="Link69" />
-                <Link pin="O_C100_A0_P4_out" dir="out" link="Link70" />
+                <Link pin="I_C100_A0_P1_in" dir="in" link="Link98" />
+                <Link pin="I_C100_A0_P3_in" dir="in" link="Link99" />
+                <Link pin="O_C100_A0_P2_out" dir="out" link="Link68" />
+                <Link pin="O_C100_A0_P4_out" dir="out" link="Link69" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg9" friendlyname="Gain (RC Slew)" cell="phono gain1 ">
                 <Link pin="I_C464_A0_P1_in" dir="in" link="Link18" />
@@ -68,14 +68,26 @@
             <Algorithm name="SWGain1940DBAlg10" friendlyname="Gain (RC Slew)" cell="phono gain2 ">
                 <Link pin="I_C469_A0_P1_in" dir="in" link="Link29" />
                 <Link pin="I_C469_A0_P3_in" dir="in" link="Link30" />
-                <Link pin="O_C469_A0_P2_out" dir="out" link="Link31" />
-                <Link pin="O_C469_A0_P4_out" dir="out" link="Link32" />
+                <Link pin="O_C469_A0_P2_out" dir="out" link="Link70" />
+                <Link pin="O_C469_A0_P4_out" dir="out" link="Link71" />
             </Algorithm>
             <Algorithm name="ICSigma100Out13" friendlyname="170x\140x output" cell="booth out1 ">
-                <Link pin="I_C59_A0_P1_in" dir="in" link="Link69" />
+                <Link pin="I_C59_A0_P1_in" dir="in" link="Link68" />
             </Algorithm>
             <Algorithm name="ICSigma100Out14" friendlyname="170x\140x output" cell="booth out2 ">
-                <Link pin="I_C63_A0_P1_in" dir="in" link="Link70" />
+                <Link pin="I_C63_A0_P1_in" dir="in" link="Link69" />
+            </Algorithm>
+            <Algorithm name="EQ1940Dual5" friendlyname="2 Channel - Double Precision" cell="Mid EQ1_2 ">
+                <Link pin="I_C239_A0_P1_in" dir="in" link="Link11" />
+                <Link pin="I_C239_A0_P2_in" dir="in" link="Link17" />
+                <Link pin="O_C239_A0_P3_out" dir="out" link="Link72" />
+                <Link pin="O_C239_A0_P4_out" dir="out" link="Link73" />
+            </Algorithm>
+            <Algorithm name="EQ1940Dual4" friendlyname="2 Channel - Double Precision" cell="Mid EQ1 ">
+                <Link pin="I_C88_A0_P1_in" dir="in" link="Link70" />
+                <Link pin="I_C88_A0_P2_in" dir="in" link="Link71" />
+                <Link pin="O_C88_A0_P3_out" dir="out" link="Link31" />
+                <Link pin="O_C88_A0_P4_out" dir="out" link="Link74" />
             </Algorithm>
             <Algorithm name="SingleCtrlMixer19403" friendlyname="Signal MixerC" cell="mg3 ">
                 <Link pin="I_C206_A0_P2_in" dir="in" link="Link10" />
@@ -84,17 +96,17 @@
             </Algorithm>
             <Algorithm name="SingleCtrlMixer19402" friendlyname="Signal MixerC" cell="mg2 ">
                 <Link pin="I_C183_A0_P2_in" dir="in" link="Link20" />
-                <Link pin="I_C183_A0_P3_in" dir="in" link="Link17" />
+                <Link pin="I_C183_A0_P3_in" dir="in" link="Link73" />
                 <Link pin="O_C183_A0_P1_out" dir="out" link="Link13" />
             </Algorithm>
             <Algorithm name="SingleCtrlMixer19401" friendlyname="Signal MixerC" cell="mg1 ">
                 <Link pin="I_C174_A0_P2_in" dir="in" link="Link21" />
-                <Link pin="I_C174_A0_P3_in" dir="in" link="Link11" />
+                <Link pin="I_C174_A0_P3_in" dir="in" link="Link72" />
                 <Link pin="O_C174_A0_P1_out" dir="out" link="Link12" />
             </Algorithm>
             <Algorithm name="SingleCtrlMixer19404" friendlyname="Signal MixerC" cell="mg4 ">
                 <Link pin="I_C212_A0_P2_in" dir="in" link="Link28" />
-                <Link pin="I_C212_A0_P3_in" dir="in" link="Link32" />
+                <Link pin="I_C212_A0_P3_in" dir="in" link="Link74" />
                 <Link pin="O_C212_A0_P1_out" dir="out" link="Link15" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg1" friendlyname="Gain (RC Slew)" cell="gain1 ">
@@ -112,7 +124,7 @@
             <Algorithm name="EQ1940Dual2" friendlyname="2 Channel - Double Precision" cell="eq1 ">
                 <Link pin="I_C178_A0_P1_in" dir="in" link="Link2" />
                 <Link pin="I_C178_A0_P2_in" dir="in" link="Link3" />
-                <Link pin="O_C178_A0_P3_out" dir="out" link="Link33" />
+                <Link pin="O_C178_A0_P3_out" dir="out" link="Link32" />
                 <Link pin="O_C178_A0_P4_out" dir="out" link="Link16" />
             </Algorithm>
             <Algorithm name="EQ1940Dual3" friendlyname="2 Channel - Double Precision" cell="eq2 ">
@@ -131,7 +143,7 @@
                 <Link pin="I_C93_A0_P1_in" dir="in" link="Link16" />
             </Algorithm>
             <Algorithm name="ICSigma100Out1" friendlyname="170x\140x output" cell="output1 ">
-                <Link pin="I_C11_A0_P1_in" dir="in" link="Link33" />
+                <Link pin="I_C11_A0_P1_in" dir="in" link="Link32" />
             </Algorithm>
         </Schematic>
     </IC>
@@ -140,28 +152,28 @@
             <Algorithm name="ICSigma100In2" friendlyname="170x\140x input" cell="input2 ">
                 <Link pin="O_C16_A0_P1_out" dir="out" link="Link0" />
                 <Link pin="O_C16_A0_P2_out" dir="out" link="Link1" />
-                <Link pin="O_C16_A0_P3_out" dir="out" link="Link73" />
-                <Link pin="O_C16_A0_P4_out" dir="out" link="Link74" />
-                <Link pin="O_C16_A0_P5_out" dir="out" link="Link75" />
-                <Link pin="O_C16_A0_P6_out" dir="out" link="Link76" />
+                <Link pin="O_C16_A0_P3_out" dir="out" link="Link77" />
+                <Link pin="O_C16_A0_P4_out" dir="out" link="Link78" />
+                <Link pin="O_C16_A0_P5_out" dir="out" link="Link79" />
+                <Link pin="O_C16_A0_P6_out" dir="out" link="Link80" />
             </Algorithm>
             <Algorithm name="DCInpAlg1" friendlyname="dc Input" cell="DC1 ">
-                <Link pin="O_C148_A0_P1_out" dir="out" link="Link46" />
+                <Link pin="O_C148_A0_P1_out" dir="out" link="Link45" />
             </Algorithm>
             <Algorithm name="DCInpAlg2" friendlyname="dc Input" cell="DC2 ">
-                <Link pin="O_C193_A0_P1_out" dir="out" link="Link47" />
+                <Link pin="O_C193_A0_P1_out" dir="out" link="Link46" />
             </Algorithm>
-            <Algorithm name="DCInpAlg3" friendlyname="dc Input" cell="DC3 ">
-                <Link pin="O_C603_A0_P1_out" dir="out" link="Link93" />
+            <Algorithm name="DCInpAlg3" friendlyname="dc Input" cell="mix rate ">
+                <Link pin="O_C603_A0_P1_out" dir="out" link="Link97" />
             </Algorithm>
             <Algorithm name="DCInpAlg4" friendlyname="dc Input" cell="DC4 ">
-                <Link pin="O_C661_A0_P1_out" dir="out" link="Link66" />
+                <Link pin="O_C661_A0_P1_out" dir="out" link="Link65" />
             </Algorithm>
             <Algorithm name="DCInpAlg5" friendlyname="dc Input" cell="if1 ">
-                <Link pin="O_C5_A0_P1_out" dir="out" link="Link62" />
+                <Link pin="O_C5_A0_P1_out" dir="out" link="Link61" />
             </Algorithm>
             <Algorithm name="DCInpAlg6" friendlyname="dc Input" cell="if2 ">
-                <Link pin="O_C8_A0_P1_out" dir="out" link="Link63" />
+                <Link pin="O_C8_A0_P1_out" dir="out" link="Link62" />
             </Algorithm>
             <Algorithm name="ICSigma100Out5" friendlyname="170x\140x output" cell="output5 ">
                 <Link pin="I_C149_A0_P1_in" dir="in" link="Link0" />
@@ -170,187 +182,187 @@
                 <Link pin="I_C150_A0_P1_in" dir="in" link="Link1" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB5" friendlyname="Ext vol (SW slew)" cell="SW vol 3 ">
-                <Link pin="I_C10_A0_P1_in" dir="in" link="Link62" />
-                <Link pin="I_C10_A0_P2_in" dir="in" link="Link73" />
-                <Link pin="I_C10_A0_P4_in" dir="in" link="Link74" />
-                <Link pin="O_C10_A0_P3_out" dir="out" link="Link89" />
-                <Link pin="O_C10_A0_P5_out" dir="out" link="Link90" />
+                <Link pin="I_C10_A0_P1_in" dir="in" link="Link61" />
+                <Link pin="I_C10_A0_P2_in" dir="in" link="Link77" />
+                <Link pin="I_C10_A0_P4_in" dir="in" link="Link78" />
+                <Link pin="O_C10_A0_P3_out" dir="out" link="Link93" />
+                <Link pin="O_C10_A0_P5_out" dir="out" link="Link94" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB6" friendlyname="Ext vol (SW slew)" cell="SW vol 4 ">
-                <Link pin="I_C45_A0_P1_in" dir="in" link="Link63" />
-                <Link pin="I_C45_A0_P2_in" dir="in" link="Link75" />
-                <Link pin="I_C45_A0_P4_in" dir="in" link="Link76" />
-                <Link pin="O_C45_A0_P3_out" dir="out" link="Link91" />
-                <Link pin="O_C45_A0_P5_out" dir="out" link="Link92" />
+                <Link pin="I_C45_A0_P1_in" dir="in" link="Link62" />
+                <Link pin="I_C45_A0_P2_in" dir="in" link="Link79" />
+                <Link pin="I_C45_A0_P4_in" dir="in" link="Link80" />
+                <Link pin="O_C45_A0_P3_out" dir="out" link="Link95" />
+                <Link pin="O_C45_A0_P5_out" dir="out" link="Link96" />
             </Algorithm>
             <Algorithm name="SubAlg1" friendlyname="Subtract" cell="Sub1 ">
-                <Link pin="I_C655_A0_P2_in" dir="in" link="Link93" />
-                <Link pin="I_C655_A0_P3_in" dir="in" link="Link66" />
-                <Link pin="O_C655_A0_P1_out" dir="out" link="Link67" />
+                <Link pin="I_C655_A0_P2_in" dir="in" link="Link97" />
+                <Link pin="I_C655_A0_P3_in" dir="in" link="Link65" />
+                <Link pin="O_C655_A0_P1_out" dir="out" link="Link66" />
             </Algorithm>
             <Algorithm name="StMuxSwSlew1" friendlyname="Stereo SW Slew" cell="ch sel sw ">
-                <Link pin="I_C310_A0_P3_in" dir="in" link="Link73" />
-                <Link pin="I_C310_A0_P4_in" dir="in" link="Link74" />
-                <Link pin="I_C310_A0_P5_in" dir="in" link="Link75" />
-                <Link pin="I_C310_A0_P6_in" dir="in" link="Link76" />
-                <Link pin="O_C310_A0_P1_out" dir="out" link="Link36" />
-                <Link pin="O_C310_A0_P2_out" dir="out" link="Link37" />
+                <Link pin="I_C310_A0_P3_in" dir="in" link="Link77" />
+                <Link pin="I_C310_A0_P4_in" dir="in" link="Link78" />
+                <Link pin="I_C310_A0_P5_in" dir="in" link="Link79" />
+                <Link pin="I_C310_A0_P6_in" dir="in" link="Link80" />
+                <Link pin="O_C310_A0_P1_out" dir="out" link="Link35" />
+                <Link pin="O_C310_A0_P2_out" dir="out" link="Link36" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB1" friendlyname="Ext vol (SW slew)" cell="SW vol 5 ">
-                <Link pin="I_C632_A0_P1_in" dir="in" link="Link93" />
-                <Link pin="I_C632_A0_P2_in" dir="in" link="Link36" />
-                <Link pin="I_C632_A0_P4_in" dir="in" link="Link37" />
-                <Link pin="O_C632_A0_P3_out" dir="out" link="Link57" />
-                <Link pin="O_C632_A0_P5_out" dir="out" link="Link56" />
+                <Link pin="I_C632_A0_P1_in" dir="in" link="Link97" />
+                <Link pin="I_C632_A0_P2_in" dir="in" link="Link35" />
+                <Link pin="I_C632_A0_P4_in" dir="in" link="Link36" />
+                <Link pin="O_C632_A0_P3_out" dir="out" link="Link56" />
+                <Link pin="O_C632_A0_P5_out" dir="out" link="Link55" />
             </Algorithm>
             <Algorithm name="AbsAlg1" friendlyname="Absolute Value" cell="Abs1 ">
-                <Link pin="I_C356_A0_P1_in" dir="in" link="Link67" />
-                <Link pin="O_C356_A0_P2_out" dir="out" link="Link68" />
+                <Link pin="I_C356_A0_P1_in" dir="in" link="Link66" />
+                <Link pin="O_C356_A0_P2_out" dir="out" link="Link67" />
             </Algorithm>
             <Algorithm name="stereoDemuxSlew1" friendlyname="Stereo SW Slew" cell="fxSnd1 ">
-                <Link pin="I_C364_A0_P1_in" dir="in" link="Link89" />
-                <Link pin="I_C364_A0_P2_in" dir="in" link="Link90" />
-                <Link pin="O_C364_A0_P3_out" dir="out" link="Link40" />
-                <Link pin="O_C364_A0_P4_out" dir="out" link="Link41" />
-                <Link pin="O_C364_A0_P5_out" dir="out" link="Link77" />
-                <Link pin="O_C364_A0_P6_out" dir="out" link="Link78" />
-                <Link pin="O_C364_A0_P7_out" dir="out" link="Link83" />
-                <Link pin="O_C364_A0_P8_out" dir="out" link="Link84" />
+                <Link pin="I_C364_A0_P1_in" dir="in" link="Link93" />
+                <Link pin="I_C364_A0_P2_in" dir="in" link="Link94" />
+                <Link pin="O_C364_A0_P3_out" dir="out" link="Link39" />
+                <Link pin="O_C364_A0_P4_out" dir="out" link="Link40" />
+                <Link pin="O_C364_A0_P5_out" dir="out" link="Link81" />
+                <Link pin="O_C364_A0_P6_out" dir="out" link="Link82" />
+                <Link pin="O_C364_A0_P7_out" dir="out" link="Link87" />
+                <Link pin="O_C364_A0_P8_out" dir="out" link="Link88" />
             </Algorithm>
             <Algorithm name="stereoDemuxSlew2" friendlyname="Stereo SW Slew" cell="fxSnd2 ">
-                <Link pin="I_C376_A0_P1_in" dir="in" link="Link91" />
-                <Link pin="I_C376_A0_P2_in" dir="in" link="Link92" />
-                <Link pin="O_C376_A0_P3_out" dir="out" link="Link42" />
-                <Link pin="O_C376_A0_P4_out" dir="out" link="Link43" />
-                <Link pin="O_C376_A0_P5_out" dir="out" link="Link79" />
-                <Link pin="O_C376_A0_P6_out" dir="out" link="Link80" />
-                <Link pin="O_C376_A0_P7_out" dir="out" link="Link85" />
-                <Link pin="O_C376_A0_P8_out" dir="out" link="Link86" />
+                <Link pin="I_C376_A0_P1_in" dir="in" link="Link95" />
+                <Link pin="I_C376_A0_P2_in" dir="in" link="Link96" />
+                <Link pin="O_C376_A0_P3_out" dir="out" link="Link41" />
+                <Link pin="O_C376_A0_P4_out" dir="out" link="Link42" />
+                <Link pin="O_C376_A0_P5_out" dir="out" link="Link83" />
+                <Link pin="O_C376_A0_P6_out" dir="out" link="Link84" />
+                <Link pin="O_C376_A0_P7_out" dir="out" link="Link89" />
+                <Link pin="O_C376_A0_P8_out" dir="out" link="Link90" />
             </Algorithm>
             <Algorithm name="AdderAlg3" friendlyname="Signal Mix" cell="Add3 ">
-                <Link pin="I_C400_A0_P2_in" dir="in" link="Link77" />
-                <Link pin="I_C400_A0_P3_in" dir="in" link="Link79" />
-                <Link pin="O_C400_A0_P1_out" dir="out" link="Link39" />
+                <Link pin="I_C400_A0_P2_in" dir="in" link="Link81" />
+                <Link pin="I_C400_A0_P3_in" dir="in" link="Link83" />
+                <Link pin="O_C400_A0_P1_out" dir="out" link="Link38" />
             </Algorithm>
             <Algorithm name="AdderAlg4" friendlyname="Signal Mix" cell="Add4 ">
-                <Link pin="I_C404_A0_P2_in" dir="in" link="Link78" />
-                <Link pin="I_C404_A0_P3_in" dir="in" link="Link80" />
-                <Link pin="O_C404_A0_P1_out" dir="out" link="Link38" />
+                <Link pin="I_C404_A0_P2_in" dir="in" link="Link82" />
+                <Link pin="I_C404_A0_P3_in" dir="in" link="Link84" />
+                <Link pin="O_C404_A0_P1_out" dir="out" link="Link37" />
             </Algorithm>
             <Algorithm name="AdderAlg5" friendlyname="Signal Mix" cell="Add5 ">
-                <Link pin="I_C583_A0_P2_in" dir="in" link="Link83" />
-                <Link pin="I_C583_A0_P3_in" dir="in" link="Link85" />
-                <Link pin="O_C583_A0_P1_out" dir="out" link="Link44" />
+                <Link pin="I_C583_A0_P2_in" dir="in" link="Link87" />
+                <Link pin="I_C583_A0_P3_in" dir="in" link="Link89" />
+                <Link pin="O_C583_A0_P1_out" dir="out" link="Link43" />
             </Algorithm>
             <Algorithm name="AdderAlg6" friendlyname="Signal Mix" cell="Add6 ">
-                <Link pin="I_C587_A0_P2_in" dir="in" link="Link84" />
-                <Link pin="I_C587_A0_P3_in" dir="in" link="Link86" />
-                <Link pin="O_C587_A0_P1_out" dir="out" link="Link45" />
+                <Link pin="I_C587_A0_P2_in" dir="in" link="Link88" />
+                <Link pin="I_C587_A0_P3_in" dir="in" link="Link90" />
+                <Link pin="O_C587_A0_P1_out" dir="out" link="Link44" />
             </Algorithm>
             <Algorithm name="PitchShiftsAlg2" friendlyname="Pitch Transposer" cell="PitchTransL2 ">
-                <Link pin="I_C155_A0_P1_in" dir="in" link="Link38" />
-                <Link pin="O_C155_A0_P2_out" dir="out" link="Link82" />
+                <Link pin="I_C155_A0_P1_in" dir="in" link="Link37" />
+                <Link pin="O_C155_A0_P2_out" dir="out" link="Link86" />
             </Algorithm>
             <Algorithm name="PitchShiftsAlg1" friendlyname="Pitch Transposer" cell="PitchTransL1 ">
-                <Link pin="I_C146_A0_P1_in" dir="in" link="Link39" />
-                <Link pin="O_C146_A0_P2_out" dir="out" link="Link81" />
+                <Link pin="I_C146_A0_P1_in" dir="in" link="Link38" />
+                <Link pin="O_C146_A0_P2_out" dir="out" link="Link85" />
             </Algorithm>
             <Algorithm name="EQ1940Dual1" friendlyname="2 Channel - Double Precision" cell="lpf1 ">
-                <Link pin="I_C67_A0_P1_in" dir="in" link="Link44" />
-                <Link pin="I_C67_A0_P2_in" dir="in" link="Link45" />
-                <Link pin="O_C67_A0_P3_out" dir="out" link="Link87" />
-                <Link pin="O_C67_A0_P4_out" dir="out" link="Link88" />
+                <Link pin="I_C67_A0_P1_in" dir="in" link="Link43" />
+                <Link pin="I_C67_A0_P2_in" dir="in" link="Link44" />
+                <Link pin="O_C67_A0_P3_out" dir="out" link="Link91" />
+                <Link pin="O_C67_A0_P4_out" dir="out" link="Link92" />
             </Algorithm>
             <Algorithm name="StMuxSwSlew2" friendlyname="Stereo SW Slew" cell="fxRtn1 ">
-                <Link pin="I_C449_A0_P3_in" dir="in" link="Link40" />
-                <Link pin="I_C449_A0_P4_in" dir="in" link="Link41" />
-                <Link pin="I_C449_A0_P5_in" dir="in" link="Link81" />
-                <Link pin="I_C449_A0_P6_in" dir="in" link="Link82" />
-                <Link pin="I_C449_A0_P7_in" dir="in" link="Link87" />
-                <Link pin="I_C449_A0_P8_in" dir="in" link="Link88" />
-                <Link pin="O_C449_A0_P1_out" dir="out" link="Link48" />
-                <Link pin="O_C449_A0_P2_out" dir="out" link="Link49" />
+                <Link pin="I_C449_A0_P3_in" dir="in" link="Link39" />
+                <Link pin="I_C449_A0_P4_in" dir="in" link="Link40" />
+                <Link pin="I_C449_A0_P5_in" dir="in" link="Link85" />
+                <Link pin="I_C449_A0_P6_in" dir="in" link="Link86" />
+                <Link pin="I_C449_A0_P7_in" dir="in" link="Link91" />
+                <Link pin="I_C449_A0_P8_in" dir="in" link="Link92" />
+                <Link pin="O_C449_A0_P1_out" dir="out" link="Link47" />
+                <Link pin="O_C449_A0_P2_out" dir="out" link="Link48" />
             </Algorithm>
             <Algorithm name="StMuxSwSlew3" friendlyname="Stereo SW Slew" cell="fxRtn2 ">
-                <Link pin="I_C458_A0_P3_in" dir="in" link="Link42" />
-                <Link pin="I_C458_A0_P4_in" dir="in" link="Link43" />
-                <Link pin="I_C458_A0_P5_in" dir="in" link="Link81" />
-                <Link pin="I_C458_A0_P6_in" dir="in" link="Link82" />
-                <Link pin="I_C458_A0_P7_in" dir="in" link="Link87" />
-                <Link pin="I_C458_A0_P8_in" dir="in" link="Link88" />
-                <Link pin="O_C458_A0_P1_out" dir="out" link="Link50" />
-                <Link pin="O_C458_A0_P2_out" dir="out" link="Link51" />
+                <Link pin="I_C458_A0_P3_in" dir="in" link="Link41" />
+                <Link pin="I_C458_A0_P4_in" dir="in" link="Link42" />
+                <Link pin="I_C458_A0_P5_in" dir="in" link="Link85" />
+                <Link pin="I_C458_A0_P6_in" dir="in" link="Link86" />
+                <Link pin="I_C458_A0_P7_in" dir="in" link="Link91" />
+                <Link pin="I_C458_A0_P8_in" dir="in" link="Link92" />
+                <Link pin="O_C458_A0_P1_out" dir="out" link="Link49" />
+                <Link pin="O_C458_A0_P2_out" dir="out" link="Link50" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB2" friendlyname="Ext vol (SW slew)" cell="SW vol 1 ">
-                <Link pin="I_C411_A0_P1_in" dir="in" link="Link46" />
-                <Link pin="I_C411_A0_P2_in" dir="in" link="Link48" />
-                <Link pin="I_C411_A0_P4_in" dir="in" link="Link49" />
-                <Link pin="O_C411_A0_P3_out" dir="out" link="Link52" />
-                <Link pin="O_C411_A0_P5_out" dir="out" link="Link54" />
+                <Link pin="I_C411_A0_P1_in" dir="in" link="Link45" />
+                <Link pin="I_C411_A0_P2_in" dir="in" link="Link47" />
+                <Link pin="I_C411_A0_P4_in" dir="in" link="Link48" />
+                <Link pin="O_C411_A0_P3_out" dir="out" link="Link51" />
+                <Link pin="O_C411_A0_P5_out" dir="out" link="Link53" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB3" friendlyname="Ext vol (SW slew)" cell="SW vol 2 ">
-                <Link pin="I_C429_A0_P1_in" dir="in" link="Link47" />
-                <Link pin="I_C429_A0_P2_in" dir="in" link="Link50" />
-                <Link pin="I_C429_A0_P4_in" dir="in" link="Link51" />
-                <Link pin="O_C429_A0_P3_out" dir="out" link="Link53" />
-                <Link pin="O_C429_A0_P5_out" dir="out" link="Link55" />
+                <Link pin="I_C429_A0_P1_in" dir="in" link="Link46" />
+                <Link pin="I_C429_A0_P2_in" dir="in" link="Link49" />
+                <Link pin="I_C429_A0_P4_in" dir="in" link="Link50" />
+                <Link pin="O_C429_A0_P3_out" dir="out" link="Link52" />
+                <Link pin="O_C429_A0_P5_out" dir="out" link="Link54" />
             </Algorithm>
             <Algorithm name="AdderAlg1" friendlyname="Signal Mix" cell="Add1 ">
-                <Link pin="I_C306_A0_P2_in" dir="in" link="Link52" />
-                <Link pin="I_C306_A0_P3_in" dir="in" link="Link53" />
-                <Link pin="O_C306_A0_P1_out" dir="out" link="Link71" />
+                <Link pin="I_C306_A0_P2_in" dir="in" link="Link51" />
+                <Link pin="I_C306_A0_P3_in" dir="in" link="Link52" />
+                <Link pin="O_C306_A0_P1_out" dir="out" link="Link75" />
             </Algorithm>
             <Algorithm name="AdderAlg2" friendlyname="Signal Mix" cell="Add2 ">
-                <Link pin="I_C349_A0_P2_in" dir="in" link="Link54" />
-                <Link pin="I_C349_A0_P3_in" dir="in" link="Link55" />
-                <Link pin="O_C349_A0_P1_out" dir="out" link="Link72" />
+                <Link pin="I_C349_A0_P2_in" dir="in" link="Link53" />
+                <Link pin="I_C349_A0_P3_in" dir="in" link="Link54" />
+                <Link pin="O_C349_A0_P1_out" dir="out" link="Link76" />
             </Algorithm>
             <Algorithm name="ExtSWGainDB4" friendlyname="Ext vol (SW slew)" cell="SW vol 6 ">
-                <Link pin="I_C638_A0_P1_in" dir="in" link="Link68" />
-                <Link pin="I_C638_A0_P2_in" dir="in" link="Link71" />
-                <Link pin="I_C638_A0_P4_in" dir="in" link="Link72" />
-                <Link pin="O_C638_A0_P3_out" dir="out" link="Link59" />
-                <Link pin="O_C638_A0_P5_out" dir="out" link="Link58" />
+                <Link pin="I_C638_A0_P1_in" dir="in" link="Link67" />
+                <Link pin="I_C638_A0_P2_in" dir="in" link="Link75" />
+                <Link pin="I_C638_A0_P4_in" dir="in" link="Link76" />
+                <Link pin="O_C638_A0_P3_out" dir="out" link="Link58" />
+                <Link pin="O_C638_A0_P5_out" dir="out" link="Link57" />
             </Algorithm>
             <Algorithm name="AdderAlg8" friendlyname="Signal Mix" cell="Add8 ">
-                <Link pin="I_C628_A0_P2_in" dir="in" link="Link56" />
-                <Link pin="I_C628_A0_P3_in" dir="in" link="Link58" />
-                <Link pin="O_C628_A0_P1_out" dir="out" link="Link61" />
+                <Link pin="I_C628_A0_P2_in" dir="in" link="Link55" />
+                <Link pin="I_C628_A0_P3_in" dir="in" link="Link57" />
+                <Link pin="O_C628_A0_P1_out" dir="out" link="Link60" />
             </Algorithm>
             <Algorithm name="AdderAlg7" friendlyname="Signal Mix" cell="Add7 ">
-                <Link pin="I_C624_A0_P2_in" dir="in" link="Link57" />
-                <Link pin="I_C624_A0_P3_in" dir="in" link="Link59" />
-                <Link pin="O_C624_A0_P1_out" dir="out" link="Link60" />
+                <Link pin="I_C624_A0_P2_in" dir="in" link="Link56" />
+                <Link pin="I_C624_A0_P3_in" dir="in" link="Link58" />
+                <Link pin="O_C624_A0_P1_out" dir="out" link="Link59" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg3" friendlyname="Gain (RC Slew)" cell="master gain ">
-                <Link pin="I_C268_A0_P1_in" dir="in" link="Link71" />
-                <Link pin="I_C268_A0_P3_in" dir="in" link="Link72" />
-                <Link pin="O_C268_A0_P2_out" dir="out" link="Link34" />
-                <Link pin="O_C268_A0_P4_out" dir="out" link="Link35" />
+                <Link pin="I_C268_A0_P1_in" dir="in" link="Link75" />
+                <Link pin="I_C268_A0_P3_in" dir="in" link="Link76" />
+                <Link pin="O_C268_A0_P2_out" dir="out" link="Link33" />
+                <Link pin="O_C268_A0_P4_out" dir="out" link="Link34" />
             </Algorithm>
             <Algorithm name="ICSigma100Out2" friendlyname="170x\140x output" cell="Output1 ">
-                <Link pin="I_C30_A0_P1_in" dir="in" link="Link71" />
+                <Link pin="I_C30_A0_P1_in" dir="in" link="Link75" />
             </Algorithm>
             <Algorithm name="ICSigma100Out8" friendlyname="170x\140x output" cell="Output2 ">
-                <Link pin="I_C47_A0_P1_in" dir="in" link="Link72" />
+                <Link pin="I_C47_A0_P1_in" dir="in" link="Link76" />
             </Algorithm>
             <Algorithm name="ICSigma100Out3" friendlyname="170x\140x output" cell="master out1 ">
-                <Link pin="I_C33_A0_P1_in" dir="in" link="Link34" />
+                <Link pin="I_C33_A0_P1_in" dir="in" link="Link33" />
             </Algorithm>
             <Algorithm name="ICSigma100Out4" friendlyname="170x\140x output" cell="master out2 ">
-                <Link pin="I_C61_A0_P1_in" dir="in" link="Link35" />
+                <Link pin="I_C61_A0_P1_in" dir="in" link="Link34" />
             </Algorithm>
             <Algorithm name="SWGain1940DBAlg6" friendlyname="Gain (RC Slew)" cell="monitor gain ">
-                <Link pin="I_C309_A0_P1_in" dir="in" link="Link60" />
-                <Link pin="I_C309_A0_P3_in" dir="in" link="Link61" />
-                <Link pin="O_C309_A0_P2_out" dir="out" link="Link64" />
-                <Link pin="O_C309_A0_P4_out" dir="out" link="Link65" />
+                <Link pin="I_C309_A0_P1_in" dir="in" link="Link59" />
+                <Link pin="I_C309_A0_P3_in" dir="in" link="Link60" />
+                <Link pin="O_C309_A0_P2_out" dir="out" link="Link63" />
+                <Link pin="O_C309_A0_P4_out" dir="out" link="Link64" />
             </Algorithm>
             <Algorithm name="ICSigma100Out11" friendlyname="170x\140x output" cell="mnitor out1 ">
-                <Link pin="I_C288_A0_P1_in" dir="in" link="Link64" />
+                <Link pin="I_C288_A0_P1_in" dir="in" link="Link63" />
             </Algorithm>
             <Algorithm name="ICSigma100Out12" friendlyname="170x\140x output" cell="monitor out2 ">
-                <Link pin="I_C290_A0_P1_in" dir="in" link="Link65" />
+                <Link pin="I_C290_A0_P1_in" dir="in" link="Link64" />
             </Algorithm>
         </Schematic>
     </IC>

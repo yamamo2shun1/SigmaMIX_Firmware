@@ -2404,6 +2404,9 @@
         <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\midi.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\mixer.c</name>
     </file>
     <file>

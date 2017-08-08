@@ -1,7 +1,7 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_REG.h
  *
- * Created:        Monday, July 31, 2017 3:20:12 PM
+ * Created:        Tuesday, August 08, 2017 8:27:50 PM
  * Description:    SigmaMIX_2:IC 2 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,

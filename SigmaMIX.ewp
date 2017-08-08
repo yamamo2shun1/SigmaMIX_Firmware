@@ -291,6 +291,7 @@
                 <option>
                     <name>IExtraOptions</name>
                     <state>--enum_is_int</state>
+                    <state>--macro_positions_in_diagnostics</state>
                 </option>
                 <option>
                     <name>CCLangConformance</name>
@@ -2152,6 +2153,9 @@
     </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\midi.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\mixer.c</name>

@@ -154,13 +154,21 @@ PATH(PROJECT_RELATIVE):main.c
       </characteristic>
       <characteristic id="settings_read" name="Settings Read" sourceId="net.tkrworks.characteristic.settings_read" uuid="13fb5580-85b2-4b83-b160-1fca96aea6c1">
         <informativeText>Custom characteristic</informativeText>
-        <value length="17" type="hex" variable_length="false">0x0000000000000000000000000000000000</value>
+        <value length="18" type="hex" variable_length="false">0x000000000000000000000000000000000000</value>
         <properties read="true" read_requirement="optional"/>
       </characteristic>
       <characteristic id="effect_selector" name="Effect Selector" sourceId="net.tkrworks.characteristic.effect_selector" uuid="a57df03d-c72f-42da-8507-90cc5f48173f">
         <informativeText>Custom characteristic</informativeText>
         <value length="1" type="hex" variable_length="false">0x00</value>
         <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+    </service>
+    <service advertise="true" name="MIDI Service" requirement="mandatory" sourceId="net.tkrworks.service.midi" type="primary" uuid="03B80E5A-EDE8-4B33-A751-6CE34EC4C700">
+      <informativeText>Custom service</informativeText>
+      <characteristic id="midi_io" name="MIDI I/O Characteristic" sourceId="net.tkrworks.characteristic.midi_io" uuid="7772E5DB-3868-4112-A1A9-F2669D106BF3">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="20" type="hex" variable_length="true">0x00</value>
+        <properties encrypted_read="true" encrypted_read_requirement="optional" encrypted_write="true" encrypted_write_requirement="optional" notify="true" notify_requirement="optional" read="true" read_requirement="optional" write_no_response="true" write_no_response_requirement="optional"/>
       </characteristic>
     </service>
   </gatt>
