@@ -11,8 +11,12 @@
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfaclocksource" value="LFXO"/>
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfbclocksource" value="LFXO"/>
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfeclocksource" value="LFXO"/>
+    <property object="CMU" propertyId="clocksettings.lfclocksettings.ulfrcorequired" value="Yes"/>
     <property object="CMU" propertyId="hfxo.initialization.autostarthfxoonem01entry" value="Enable"/>
     <property object="CMU" propertyId="lfxo.initialization.internalloadcapacitancectune" value="32"/>
+    <property object="CRYOTIMER" propertyId="ABPeripheral.included" value="true"/>
+    <property object="CRYOTIMER" propertyId="cryotimer.clocking.clocksourceforcryotimer" value="ULFRCO"/>
+    <property object="CRYOTIMER" propertyId="cryotimer.clocking.eventafterevery" value="1 cycle"/>
     <property object="CRYPTO" propertyId="ABPeripheral.included" value="true"/>
     <property object="CRYPTO" propertyId="crypto.settings.hiddenbysdk" value="On"/>
     <property object="DefaultMode" propertyId="mode.diagramLocation" value="0, 0"/>

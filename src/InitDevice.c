@@ -20,6 +20,7 @@
 #include "em_chip.h"
 #include "em_assert.h"
 #include "em_adc.h"
+#include "em_cryotimer.h"
 #include "em_crypto.h"
 #include "em_gpcrc.h"
 #include "em_gpio.h"
@@ -44,6 +45,7 @@ extern void enter_DefaultMode_from_RESET(void) {
 	I2C0_enter_DefaultMode_from_RESET();
 	GPCRC_enter_DefaultMode_from_RESET();
 	LDMA_enter_DefaultMode_from_RESET();
+	CRYOTIMER_enter_DefaultMode_from_RESET();
 	PRS_enter_DefaultMode_from_RESET();
 	PORTIO_enter_DefaultMode_from_RESET();
 	// [Config Calls]$
@@ -140,6 +142,9 @@ extern void CMU_enter_DefaultMode_from_RESET(void) {
 	/* Setting system LFXO frequency */
 	SystemLFXOClockSet(32768);
 
+	/* Enable ULFRCO oscillator, and wait for it to be stable */
+	CMU_OscillatorEnable(cmuOsc_ULFRCO, true, true);
+
 	// [LE clocks enable]$
 
 	// $[LFACLK Setup]
@@ -163,6 +168,9 @@ extern void CMU_enter_DefaultMode_from_RESET(void) {
 
 	/* Enable clock for ADC0 */
 	CMU_ClockEnable(cmuClock_ADC0, true);
+
+	/* Enable clock for CRYOTIMER */
+	CMU_ClockEnable(cmuClock_CRYOTIMER, true);
 
 	/* Enable clock for GPCRC */
 	CMU_ClockEnable(cmuClock_GPCRC, true);
@@ -245,7 +253,7 @@ extern void ADC0_enter_DefaultMode_from_RESET(void) {
 
 	ADC_InitSingle(ADC0, &ADC0_init_single);
 #else
-         ADC_InitScan_TypeDef ADC0_init_scan = ADC_INITSCAN_DEFAULT;
+        ADC_InitScan_TypeDef ADC0_init_scan = ADC_INITSCAN_DEFAULT;
 
 	/* PRS settings */
 	ADC0_init_scan.prsEnable = 0;
@@ -526,6 +534,19 @@ extern void LETIMER0_enter_DefaultMode_from_RESET(void) {
 extern void CRYOTIMER_enter_DefaultMode_from_RESET(void) {
 
 	// $[CRYOTIMER_Init]
+	CRYOTIMER_Init_TypeDef cryoInit = CRYOTIMER_INIT_DEFAULT;
+
+	/* General settings */
+	cryoInit.enable = 1;
+	cryoInit.debugRun = 0;
+	cryoInit.em4Wakeup = 0;
+
+	/* Clocking settings */
+	/* With a frequency of 1000Hz on ULFRCO, this will result in a 1.00 ms timeout */
+	cryoInit.osc = cryotimerOscULFRCO;
+	cryoInit.presc = cryotimerPresc_1;
+	cryoInit.period = cryotimerPeriod_1;
+	CRYOTIMER_Init(&cryoInit);
 	// [CRYOTIMER_Init]$
 
 }
