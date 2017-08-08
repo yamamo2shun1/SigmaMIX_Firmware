@@ -15,3 +15,4 @@ monitor_level_select 43
 settings_write 45
 settings_read 47
 effect_selector 49
+midi_io 52
