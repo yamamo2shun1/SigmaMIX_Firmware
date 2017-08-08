@@ -12,7 +12,7 @@
         <ByteLimit>50</ByteLimit>
     </Stack>
     <DebugChecksum>
-        <Checksum>3431428982</Checksum>
+        <Checksum>2959936520</Checksum>
     </DebugChecksum>
     <CodeCoverage>
         <Enabled>_ 0</Enabled>
@@ -66,17 +66,17 @@
         <ITMlogFile>$PROJ_DIR$\ITM.log</ITMlogFile>
     </SWOTraceHWSettings>
     <Jet>
-        <JetConnSerialNo>84001</JetConnSerialNo>
-        <JetConnFoundProbes />
-        <PrevWtdReset>システム</PrevWtdReset>
         <DisableInterrupts>0</DisableInterrupts>
         <LeaveRunning>0</LeaveRunning>
         <MultiCoreRunAll>0</MultiCoreRunAll>
         <OnlineReset>ソフトウェア</OnlineReset>
+        <JetConnSerialNo>84001</JetConnSerialNo>
+        <JetConnFoundProbes />
+        <PrevWtdReset>システム</PrevWtdReset>
     </Jet>
     <PlDriver>
-        <FirstRun>0</FirstRun>
         <MemConfigValue>C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CONFIG\debugger\SiliconLaboratories\EFR32BG1B132F256GM32.ddf</MemConfigValue>
+        <FirstRun>0</FirstRun>
     </PlDriver>
     <SWOManager>
         <SamplingDivider>8192</SamplingDivider>
@@ -193,12 +193,12 @@
         <LogFile>_ ""</LogFile>
         <Category>_ 0</Category>
     </LogFile>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
     <Aliases>
         <Count>0</Count>
         <SuppressDialog>0</SuppressDialog>
     </Aliases>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
 </settings>
