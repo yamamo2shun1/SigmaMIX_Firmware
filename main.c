@@ -102,6 +102,9 @@ uint8_t boot_to_dfu = 0;
 
 uint32_t settings[18] = {0x00000000};
 
+bool if_rev = false;
+double if_curve = 4.0;
+
 bool xf_rev = false;
 double xf_curve = 4.0;
 
@@ -164,10 +167,21 @@ void reset_settings()
   send_mid_peaking_ch2(settings[6]);
   send_low_shelf_ch1(settings[7]);
   send_low_shelf_ch2(settings[8]);
-  send_ifader(settings[9], settings[10]);
   send_master_booth_gain(settings[13], settings[14]);
   send_monitor_mix_gain(((settings[15] >> 7) & 0x01 == 0x01) ? true : false, settings[15] & 0x7F, settings[16]);
   send_select_fx(settings[17]);
+
+  // ifader setting
+  if ((settings[11] >> 4) & 0x01 == 0x01)
+  {
+    if_rev = true;
+  }
+  else
+  {
+    if_rev = false;
+  }
+  if_curve = (double) (settings[11] & 0x0F);
+  send_ifader(settings[9], settings[10], if_curve, if_rev);
 
   // xfader setting
   if ((settings[12] >> 4) & 0x01 == 0x01)
@@ -222,10 +236,21 @@ void read_settings()
   send_mid_peaking_ch2(settings[6]);
   send_low_shelf_ch1(settings[7]);
   send_low_shelf_ch2(settings[8]);
-  send_ifader(settings[9], settings[10]);
   send_master_booth_gain(settings[13], settings[14]);
   send_monitor_mix_gain(((settings[15] >> 16) & 0x0000FF == 1) ? true : false, settings[15] & 0x00FFFF, settings[16]);
   send_select_fx(settings[17]);
+
+  // ifader setting
+  if ((settings[11] >> 4) & 0x01 == 0x01)
+  {
+    if_rev = true;
+  }
+  else
+  {
+    if_rev = false;
+  }
+  if_curve = (double) (settings[11] & 0x0F);
+  send_ifader(settings[9], settings[10], if_curve, if_rev);
 
   // xfader setting
   if ((settings[12] >> 4) & 0x01 == 0x01)
@@ -236,7 +261,7 @@ void read_settings()
   {
     xf_rev = false;
   }
-  xf_curve = (double)(settings[12] & 0x0F);
+  xf_curve = (double) (settings[12] & 0x0F);
 
   uint8_t test[18] = {0};
   for (int i = 0; i < 18; i++)
@@ -432,10 +457,25 @@ void main(void)
           settings[9] = ch1_gain;
           settings[10] = ch2_gain;
 
-          send_ifader(ch1_gain, ch2_gain);
+          send_ifader(ch1_gain, ch2_gain, if_curve, if_rev);
         }
         else if (gattdb_ifader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint8_t if_setting_val = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          if ((if_setting_val >> 4) & 0x01)
+          {
+            if_rev = true;
+          }
+          else
+          {
+            if_rev = false;
+          }
+
+          settings[11] = if_setting_val;
+
+          if_curve = (double)(if_setting_val & 0x0F);
+
+          send_ifader(settings[9], settings[10], if_curve, if_rev);
         }
         else if (gattdb_xfader_setting == evt->data.evt_gatt_server_attribute_value.attribute)
         {

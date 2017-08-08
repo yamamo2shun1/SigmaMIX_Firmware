@@ -599,25 +599,25 @@ void send_low_shelf_ch2(uint32_t value)
   SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
 }
 
-void send_ifader(uint32_t ch1_val, uint32_t ch2_val)
+void send_ifader(uint32_t ch1_val, uint32_t ch2_val, double if_curve, bool if_rev)
 {
-  double ch1_db = ((ch1_val / 255.0) - 1.0) * 80.0;
-  double ch2_db = ((ch2_val / 255.0) - 1.0) * 80.0;
+  double ch1_rate = (if_rev ? (255 - ch1_val) : ch1_val) / 255.0;
+  double ch2_rate = (if_rev ? (255 - ch2_val) : ch2_val) / 255.0;
 
-  double ch1_rate = pow(10.0, ch1_db / 20);
-  double ch2_rate = pow(10.0, ch2_db / 20);
+  double ch1_rate1 = pow(ch1_rate, pow(2.0, 2.0 * if_curve - 8.0));
+  double ch2_rate1 = pow(ch2_rate, pow(2.0, 2.0 * if_curve - 8.0));
 
   uint8_t ch1_gain[4] = {0x00};
-  ch1_gain[0] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 24) & 0x000000FF;
-  ch1_gain[1] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 16) & 0x000000FF;
-  ch1_gain[2] = ((uint32_t)(ch1_rate * pow(2, 23)) >> 8)  & 0x000000FF;
-  ch1_gain[3] =  (uint32_t)(ch1_rate * pow(2, 23))        & 0x000000FF;
+  ch1_gain[0] = ((uint32_t)(ch1_rate1 * pow(2, 23)) >> 24) & 0x000000FF;
+  ch1_gain[1] = ((uint32_t)(ch1_rate1 * pow(2, 23)) >> 16) & 0x000000FF;
+  ch1_gain[2] = ((uint32_t)(ch1_rate1 * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch1_gain[3] =  (uint32_t)(ch1_rate1 * pow(2, 23))        & 0x000000FF;
 
   uint8_t ch2_gain[4] = {0x00};
-  ch2_gain[0] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 24) & 0x000000FF;
-  ch2_gain[1] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 16) & 0x000000FF;
-  ch2_gain[2] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 8)  & 0x000000FF;
-  ch2_gain[3] =  (uint32_t)(ch2_rate * pow(2, 23))        & 0x000000FF;
+  ch2_gain[0] = ((uint32_t)(ch2_rate1 * pow(2, 23)) >> 24) & 0x000000FF;
+  ch2_gain[1] = ((uint32_t)(ch2_rate1 * pow(2, 23)) >> 16) & 0x000000FF;
+  ch2_gain[2] = ((uint32_t)(ch2_rate1 * pow(2, 23)) >> 8)  & 0x000000FF;
+  ch2_gain[3] =  (uint32_t)(ch2_rate1 * pow(2, 23))        & 0x000000FF;
 
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, ch1_gain);
   SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_IF1_DCINPALG5_ADDR);
