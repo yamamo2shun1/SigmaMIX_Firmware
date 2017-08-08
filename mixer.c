@@ -619,8 +619,6 @@ void send_ifader(uint32_t ch1_val, uint32_t ch2_val)
   ch2_gain[2] = ((uint32_t)(ch2_rate * pow(2, 23)) >> 8)  & 0x000000FF;
   ch2_gain[3] =  (uint32_t)(ch2_rate * pow(2, 23))        & 0x000000FF;
 
-  ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
-
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, ch1_gain);
   SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_IF1_DCINPALG5_ADDR);
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, ch2_gain);
@@ -991,25 +989,68 @@ void send_master_booth_gain(uint32_t master_val, uint32_t booth_val)
   master_gain[2] = ((uint32_t)(master_rate * pow(2, 23)) >> 8)  & 0x000000FF;
   master_gain[3] =  (uint32_t)(master_rate * pow(2, 23))        & 0x000000FF;
 
-#if 0
   uint8_t booth_gain[4] = {0x00};
   booth_gain[0] = ((uint32_t)(booth_rate * pow(2, 23)) >> 24) & 0x000000FF;
   booth_gain[1] = ((uint32_t)(booth_rate * pow(2, 23)) >> 16) & 0x000000FF;
   booth_gain[2] = ((uint32_t)(booth_rate * pow(2, 23)) >> 8)  & 0x000000FF;
   booth_gain[3] =  (uint32_t)(booth_rate * pow(2, 23))        & 0x000000FF;
-#endif
 
   ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
 
-#if 0
-  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, booth_gain);
-  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_BOOTHGAIN_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_0, 4, booth_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_0, MOD_BOOTHGAIN_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_DATA_1, 4, if_step);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_1, SIGMA_SAFELOAD_ADDR_1, MOD_BOOTHGAIN_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, master_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_MASTERGAIN_ALG0_TARGET_ADDR);
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, if_step);
-  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_BOOTHGAIN_ALG0_STEP_ADDR);
-#endif
-  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, master_gain);
-  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_MASTERGAIN_ALG0_TARGET_ADDR);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_MASTERGAIN_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
+}
+
+void send_monitor_mix_gain(bool ch_sel, uint32_t mix_val, uint32_t monitor_val)
+{
+  ADI_REG_U8 monitor_ch[4] = {0x00, 0x00, 0x00, 0x00};
+  monitor_ch[3] = ch_sel ? 0x01 : 0x00;
+
+  double mix_rate = 1.0 - (mix_val / 127.0);
+
+  uint8_t mix[4] = {0x00};
+  mix[0] = ((uint32_t)(mix_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  mix[1] = ((uint32_t)(mix_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  mix[2] = ((uint32_t)(mix_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  mix[3] =  (uint32_t)(mix_rate * pow(2, 23))        & 0x000000FF;
+
+  double monitor_db = (monitor_val / 127.0) - 1.0;
+
+  if (monitor_db > 0.0)
+  {
+    monitor_db *= 15.0;
+  }
+  else if(monitor_db < 0.0)
+  {
+    monitor_db *= 120.0;
+  }
+
+  double monitor_rate = pow(10.0, monitor_db / 20);
+
+  uint8_t monitor_gain[4] = {0x00};
+  monitor_gain[0] = ((uint32_t)(monitor_rate * pow(2, 23)) >> 24) & 0x000000FF;
+  monitor_gain[1] = ((uint32_t)(monitor_rate * pow(2, 23)) >> 16) & 0x000000FF;
+  monitor_gain[2] = ((uint32_t)(monitor_rate * pow(2, 23)) >> 8)  & 0x000000FF;
+  monitor_gain[3] =  (uint32_t)(monitor_rate * pow(2, 23))        & 0x000000FF;
+
+  ADI_REG_U8 if_step[4] = {0x00, 0x00, 0x80, 0x00};
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, monitor_ch);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_CHSELSW_STEREOSWSLEW_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, mix);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_MIXRATE_DCINPALG3_ADDR);
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, monitor_gain);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_MONITORGAIN_ALG0_TARGET_ADDR);
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, if_step);
-  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_MASTERGAIN_ALG0_STEP_ADDR);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_MONITORGAIN_ALG0_STEP_ADDR);
   SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
 }

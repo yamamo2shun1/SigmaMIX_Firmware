@@ -52,8 +52,10 @@
 
 #include "em_msc.h"
 #include "em_adc.h"
+#include "em_cryotimer.h"
 
 #include "mixer.h"
+#include "midi.h"
 
 #define CONTROL_SIGMADSP
 
@@ -71,6 +73,8 @@
 #define MAX_CONNECTIONS 4
 #endif
 uint8_t bluetooth_stack_heap[DEFAULT_BLUETOOTH_HEAP(MAX_CONNECTIONS)];
+
+#define SAVE_PARAM_ADDR 0x3e000
 
 #ifdef FEATURE_PTI_SUPPORT
 static const RADIO_PTIInit_t ptiInit = RADIO_PTI_INIT;
@@ -118,7 +122,7 @@ void init_settings()
   settings[12] = 0x02; // cross fader setting
   settings[13] = 0x7F; // master gain
   settings[14] = 0x7F; // booth gain
-  settings[15] = 0x00; // monitor select
+  settings[15] = 0x40; // monitor select
   settings[16] = 0x7F; // monitor gain
   settings[17] = 0x00; // effect select
 }
@@ -142,11 +146,11 @@ void reset_settings()
   settings[12] = 0x02; // cross fader setting
   settings[13] = 0x7F; // master gain
   settings[14] = 0x7F; // booth gain
-  settings[15] = 0x00; // monitor select
+  settings[15] = 0x40; // monitor select
   settings[16] = 0x7F; // monitor gain
   settings[17] = 0x00; // effect select
 
-  uint32_t *w_addr = (uint32_t *)(0x3e000 + 0 * 4);
+  uint32_t *w_addr = (uint32_t *)(SAVE_PARAM_ADDR + 0 * 4);
   MSC_ErasePage(w_addr);
   MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
 
@@ -162,6 +166,7 @@ void reset_settings()
   send_low_shelf_ch2(settings[8]);
   send_ifader(settings[9], settings[10]);
   send_master_booth_gain(settings[13], settings[14]);
+  send_monitor_mix_gain(((settings[15] >> 7) & 0x01 == 0x01) ? true : false, settings[15] & 0x7F, settings[16]);
   send_select_fx(settings[17]);
 
   // xfader setting
@@ -187,7 +192,7 @@ void write_settings()
 {
   MSC_Init();
 
-  uint32_t *w_addr = (uint32_t *)(0x3e000 + 0 * 4);
+  uint32_t *w_addr = (uint32_t *)(SAVE_PARAM_ADDR + 0 * 4);
   MSC_ErasePage(w_addr);
   MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
 
@@ -205,7 +210,7 @@ void read_settings()
 {
   for (int i = 0; i < 18; i++)
   {
-    uint32_t *r_addr = (uint32_t *)(0x3e000 + i * 4);
+    uint32_t *r_addr = (uint32_t *)(SAVE_PARAM_ADDR + i * 4);
     settings[i] = *r_addr;
   }
 
@@ -219,6 +224,7 @@ void read_settings()
   send_low_shelf_ch2(settings[8]);
   send_ifader(settings[9], settings[10]);
   send_master_booth_gain(settings[13], settings[14]);
+  send_monitor_mix_gain(((settings[15] >> 16) & 0x0000FF == 1) ? true : false, settings[15] & 0x00FFFF, settings[16]);
   send_select_fx(settings[17]);
 
   // xfader setting
@@ -276,6 +282,8 @@ void main(void)
 
   double xf1_avg[16] = {0.0};
   double xf2_avg[16] = {0.0};
+
+  uint8_t val0_old = 0;
 
   uint8_t xf_type = 0;
 
@@ -448,10 +456,11 @@ void main(void)
         else if (gattdb_master_booth_gain == evt->data.evt_gatt_server_attribute_value.attribute)
         {
           uint32_t master_gain = 0;
-          uint32_t booth_gain = 0;
           master_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
           master_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
           master_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+
+          uint32_t booth_gain = 0;
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[0];
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
           booth_gain += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
@@ -463,6 +472,22 @@ void main(void)
         }
         else if (gattdb_monitor_level_select == evt->data.evt_gatt_server_attribute_value.attribute)
         {
+          uint32_t monitor_mix = 0;
+          monitor_mix += evt->data.evt_gatt_server_attribute_value.value.data[0];
+          monitor_mix += evt->data.evt_gatt_server_attribute_value.value.data[1] << 8;
+          //monitor_mix += evt->data.evt_gatt_server_attribute_value.value.data[2] << 16;
+
+          bool monitor_ch = (evt->data.evt_gatt_server_attribute_value.value.data[2] == 1) ? true : false;
+
+          uint32_t monitor_gain = 0;
+          monitor_gain += evt->data.evt_gatt_server_attribute_value.value.data[3];
+          monitor_gain += evt->data.evt_gatt_server_attribute_value.value.data[4] << 8;
+          monitor_gain += evt->data.evt_gatt_server_attribute_value.value.data[5] << 16;
+
+          settings[15] = monitor_mix | ((monitor_ch ? 1 : 0) << 7);
+          settings[16] = monitor_gain;
+
+          send_monitor_mix_gain(monitor_ch, monitor_mix, monitor_gain);
         }
         else if (gattdb_effect_selector == evt->data.evt_gatt_server_attribute_value.attribute)
         {
@@ -486,6 +511,15 @@ void main(void)
           {
             reset_settings();
           }
+        }
+        else if (gattdb_midi_io == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          uint8_t test[5];
+          test[0] = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          test[1] = evt->data.evt_gatt_server_attribute_value.value.data[1];
+          test[2] = evt->data.evt_gatt_server_attribute_value.value.data[2];
+          test[3] = evt->data.evt_gatt_server_attribute_value.value.data[3];
+          test[4] = evt->data.evt_gatt_server_attribute_value.value.data[4];
         }
 #endif
         break;
@@ -589,6 +623,8 @@ void main(void)
 
           xf_type = 0;
           send_lpf(4095);
+
+          gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_off(37));
         }
       }
       else
@@ -609,6 +645,8 @@ void main(void)
           debounce_count = 0;
 
           xf_type = 1;
+
+          gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_on(37, 127));
         }
       }
       else
@@ -652,8 +690,14 @@ void main(void)
       break;
     }
 
-    const uint8 val[2] = {(uint32_t)xf_adc[0] >> 4, (uint32_t)xf_adc[1] >> 4};
-    gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_cross_fader, 2, val);
+    const uint8_t val[2] = {(uint32_t) xf_adc[0] >> 4, (uint32_t) xf_adc[1] >> 4};
+    //gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_cross_fader, 2, val);
+
+    if (val[0] != val0_old)
+    {
+      gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) control_change(1, val[0] >> 1));
+    }
+    val0_old = val[0];
 #endif
   }
 }
