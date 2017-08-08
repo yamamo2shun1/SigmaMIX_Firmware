@@ -26,5 +26,6 @@ extern const struct bg_gattdb_def bg_gattdb_data;
 #define gattdb_settings_write                  45
 #define gattdb_settings_read                   47
 #define gattdb_effect_selector                 49
+#define gattdb_midi_io                         52
 
 #endif
