@@ -846,22 +846,22 @@ void main(void)
           {
             if (xf_rev)
             {
-              send_delay(1, false, -9, 1840);
+              send_delay(0, false, -9, 1840);
             }
             else
             {
-              send_delay(0, false, -9, 1840);
+              send_delay(1, false, -9, 1840);
             }
           }
           else if (xf_adc[1] < 26)
           {
             if (xf_rev)
             {
-              send_delay(0, false, -9, 1840);
+              send_delay(1, false, -9, 1840);
             }
             else
             {
-              send_delay(1, false, -9, 1840);
+              send_delay(0, false, -9, 1840);
             }
           }
 
@@ -904,8 +904,9 @@ void main(void)
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       }
-      uint32_t center[2] = {2047, 2047};
-      send_xfader(center, xf_curve, xf_rev);
+      //uint32_t center[2] = {2047, 2047};
+      //send_xfader(center, xf_curve, xf_rev);
+      send_xfader(xf_adc, xf_curve, xf_rev);
       break;
     }
 
