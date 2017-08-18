@@ -1,8 +1,8 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_2_REG.h
  *
- * Created:        Tuesday, August 08, 2017 8:27:50 PM
- * Description:    SigmaMIX_2:IC 2 control register definitions.
+ * Created:        Saturday, August 19, 2017 1:40:39 AM
+ * Description:    SigmaMIX_4:IC 2 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -128,7 +128,7 @@
 /* AnalogInterfaceRegister0  - Registers (IC 2) */
 #define REG_ANALOGINTERFACEREGISTER0_IC_2_ADDR    0x824
 #define REG_ANALOGINTERFACEREGISTER0_IC_2_BYTE    2
-#define REG_ANALOGINTERFACEREGISTER0_IC_2_VALUE   0x8000
+#define REG_ANALOGINTERFACEREGISTER0_IC_2_VALUE   0x0
 
 /* AnalogInterfaceRegister1  - Registers (IC 2) */
 #define REG_ANALOGINTERFACEREGISTER1_IC_2_ADDR    0x825
@@ -461,7 +461,7 @@
 #define R21_LCHOP_PMOS_CTRL_IC_2                  0x0    /* 00b	[12:11] */
 #define R21_LCHOP_AMP_ENB_IC_2                    0x0    /* 0b	[13] */
 #define R21_LSCRAM_ENB_IC_2                       0x0    /* 0b	[14] */
-#define R21_AUX_ADC_EN_IC_2                       0x1    /* 1b	[15] */
+#define R21_AUX_ADC_EN_IC_2                       0x0    /* 0b	[15] */
 #define R21_CHOP_ENB_INT_AMP_IC_2_MASK            0x1
 #define R21_CHOP_ENB_INT_AMP_IC_2_SHIFT           0
 #define R21_PD_INT_AMP_IC_2_MASK                  0x2
