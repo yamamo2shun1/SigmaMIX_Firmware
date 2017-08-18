@@ -554,12 +554,163 @@ void main(void)
         }
         else if (gattdb_midi_io == evt->data.evt_gatt_server_attribute_value.attribute)
         {
-          uint8_t test[5];
-          test[0] = evt->data.evt_gatt_server_attribute_value.value.data[0];
-          test[1] = evt->data.evt_gatt_server_attribute_value.value.data[1];
-          test[2] = evt->data.evt_gatt_server_attribute_value.value.data[2];
-          test[3] = evt->data.evt_gatt_server_attribute_value.value.data[3];
-          test[4] = evt->data.evt_gatt_server_attribute_value.value.data[4];
+          uint8_t midi_in_data[5];
+          midi_in_data[0] = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          midi_in_data[1] = evt->data.evt_gatt_server_attribute_value.value.data[1];
+          midi_in_data[2] = evt->data.evt_gatt_server_attribute_value.value.data[2];
+          midi_in_data[3] = evt->data.evt_gatt_server_attribute_value.value.data[3];
+          midi_in_data[4] = evt->data.evt_gatt_server_attribute_value.value.data[4];
+
+          switch (midi_in_data[2])
+          {
+          case 0xB0:// channel 1
+            switch (midi_in_data[3])
+            {
+            case 0x01:// Input Gain
+              midi_in_data[4] <<= 1;
+              settings[1] = midi_in_data[4];
+              send_input_gain(settings[1], settings[2]);
+              break;
+            case 0x02:// EQ Hi
+              midi_in_data[4] <<= 1;
+              settings[3] = midi_in_data[4];
+              send_hi_shelf_ch1(settings[3]);
+              break;
+            case 0x03:// EQ Mid
+              midi_in_data[4] <<= 1;
+              settings[5] = midi_in_data[4];
+              send_mid_peaking_ch1(settings[5]);
+              break;
+            case 0x04:// EQ Lo
+              midi_in_data[4] <<= 1;
+              settings[7] = midi_in_data[4];
+              send_low_shelf_ch1(settings[7]);
+              break;
+            case 0x05:// Volume Fader
+              midi_in_data[4] <<= 1;
+              settings[9] = midi_in_data[4];
+              send_ifader(settings[9], settings[10], if_curve, if_rev);
+              break;
+            }
+            break;
+          case 0xB1:// channel 2
+            switch (midi_in_data[3])
+            {
+            case 0x01:// Input Gain
+              midi_in_data[4] <<= 1;
+              settings[2] = midi_in_data[4];
+              send_input_gain(settings[1], settings[2]);
+              break;
+            case 0x02:// EQ Hi
+              midi_in_data[4] <<= 1;
+              settings[4] = midi_in_data[4];
+              send_hi_shelf_ch2(settings[4]);
+              break;
+            case 0x03:// EQ Mid
+              midi_in_data[4] <<= 1;
+              settings[6] = midi_in_data[4];
+              send_mid_peaking_ch2(settings[6]);
+              break;
+            case 0x04:// EQ Lo
+              midi_in_data[4] <<= 1;
+              settings[8] = midi_in_data[4];
+              send_low_shelf_ch2(settings[8]);
+              break;
+            case 0x05:// Volume Fader
+              midi_in_data[4] <<= 1;
+              settings[10] = midi_in_data[4];
+              send_ifader(settings[9], settings[10], if_curve, if_rev);
+              break;
+            }
+            break;
+          case 0xB2:// Output Settings
+            uint32_t monitor_mix = 0;
+            bool monitor_ch = false;
+            switch (midi_in_data[3])
+            {
+            case 0x01:// Master Gain
+              midi_in_data[4] <<= 1;
+              settings[13] = midi_in_data[4];
+              send_master_booth_gain(settings[13], settings[14]);
+              break;
+            case 0x02:// Booth Gain
+              midi_in_data[4] <<= 1;
+              settings[14] = midi_in_data[4];
+              send_master_booth_gain(settings[13], settings[14]);
+              break;
+            case 0x03:// Monitor Mix
+              monitor_mix = midi_in_data[4] & 0x7F;
+              monitor_ch = (settings[15] & 0x80 == 0x80) ? true : false;
+              settings[15] = monitor_mix | ((monitor_ch ? 1 : 0) << 7);
+
+              send_monitor_mix_gain(monitor_ch, monitor_mix, settings[16]);
+              break;
+            case 0x04:// Monitor Channel
+              monitor_mix = settings[15] & 0x7F;
+              monitor_ch = (midi_in_data[4] & 0x01 == 0x01) ? true : false;
+              settings[15] = monitor_mix | ((monitor_ch ? 1 : 0) << 7);
+
+              send_monitor_mix_gain(monitor_ch, monitor_mix, settings[16]);
+              break;
+            case 0x05:// Monitor Gain
+              midi_in_data[4] <<= 1;
+              monitor_mix = settings[15] & 0x7F;
+              monitor_ch = (settings[15] & 0x80 == 0x80) ? true : false;
+
+              settings[15] = monitor_mix | ((monitor_ch ? 1 : 0) << 7);
+              settings[16] = midi_in_data[4];
+
+              send_monitor_mix_gain(monitor_ch, monitor_mix, settings[16]);
+              break;
+            }
+            break;
+          case 0xB3:// Mixer Settings
+            switch (midi_in_data[3])
+            {
+            case 0x01:// Line/Phono Switch
+              settings[0] = midi_in_data[4];
+              send_line_phono_switch(settings[0]);
+              break;
+            case 0x02:// Volume Fader Reverse & Curve
+              if ((midi_in_data[4] >> 4) & 0x01)
+              {
+                if_rev = true;
+              }
+              else
+              {
+                if_rev = false;
+              }
+
+              settings[11] = midi_in_data[4];
+
+              if_curve = (double)(midi_in_data[4] & 0x0F);
+
+              send_ifader(settings[9], settings[10], if_curve, if_rev);
+              break;
+            case 0x03:// Cross Fader Reverse & Curve
+              if ((midi_in_data[4] >> 4) & 0x01)
+              {
+                xf_rev = true;
+              }
+              else
+              {
+                xf_rev = false;
+              }
+
+              settings[12] = midi_in_data[4];
+
+              xf_curve = (double)(midi_in_data[4] & 0x0F);
+              break;
+            case 0x04:// Effect Select
+              settings[17] = midi_in_data[4];
+              send_select_fx(settings[17]);
+
+              send_pitch_shifter(2047, 0);
+              send_lpf(4095);
+              break;
+            }
+            break;
+          }
         }
 #endif
         break;
@@ -649,6 +800,9 @@ void main(void)
     xf_adc[1] = sum2 / 16.0;
 #endif
 
+    // test
+    GPIO_PinOutSet(gpioPortA, 1);
+
     if (GPIO_PinInGet(gpioPortA, 0))
     {
       if (debounce_flag)
@@ -663,6 +817,8 @@ void main(void)
 
           xf_type = 0;
           send_lpf(4095);
+
+          send_delay(0, true, -9, 1840);
 
           gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_off(37));
         }
@@ -685,6 +841,29 @@ void main(void)
           debounce_count = 0;
 
           xf_type = 1;
+
+          if (xf_adc[0] < 26)
+          {
+            if (xf_rev)
+            {
+              send_delay(1, false, -9, 1840);
+            }
+            else
+            {
+              send_delay(0, false, -9, 1840);
+            }
+          }
+          else if (xf_adc[1] < 26)
+          {
+            if (xf_rev)
+            {
+              send_delay(0, false, -9, 1840);
+            }
+            else
+            {
+              send_delay(1, false, -9, 1840);
+            }
+          }
 
           gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_on(37, 127));
         }
