@@ -695,7 +695,9 @@ void send_delay(uint8_t ch, bool is_mute, double delay_gain, uint32_t delay_time
   {
     delay_time = 1;
   }
-  ADI_REG_U8 delay_time_data[4] = {(delay_time >> 24) && 0x000000FF, (delay_time >> 16) && 0x000000FF, (delay_time >> 8) && 0x000000FF, delay_time && 0x000000FF};
+  uint32_t delay_time_upper8 = (delay_time >> 8) & 0x00FF;
+  uint32_t delay_time_lower8 = delay_time & 0x00FF;
+  ADI_REG_U8 delay_time_data[4] = {0x00, 0x00, delay_time_upper8, delay_time_lower8};
 
   SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, ch_data);
   SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_DELAYCH_STEREOSWSLEW_ADDR);
