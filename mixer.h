@@ -42,6 +42,7 @@ void send_low_shelf_ch1(uint32_t value);
 void send_low_shelf_ch2(uint32_t value);
 void send_ifader(uint32_t ch1_val, uint32_t ch2_val, double if_curve, bool if_rev);
 void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev);
+void send_delay(uint8_t ch, bool is_mute, double delay_gain, uint32_t delay_time);
 void send_pitch_shifter(uint32_t xf_adc, uint8_t type);
 void send_lpf(uint32_t value);
 void send_select_fx(uint8_t type);
