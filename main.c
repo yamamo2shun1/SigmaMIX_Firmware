@@ -710,6 +710,19 @@ void main(void)
               break;
             }
             break;
+          case 0xB4:
+            switch (midi_in_data[3])
+            {
+            case 0x01:
+              write_settings();
+              break;
+            case 0x02:
+              break;
+            case 0x03:
+              reset_settings();
+              break;
+            }
+            break;
           }
         }
 #endif
