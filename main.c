@@ -714,12 +714,18 @@ void main(void)
             switch (midi_in_data[3])
             {
             case 0x01:
-              write_settings();
+              if (midi_in_data[4] > 0)
+              {
+                write_settings();
+              }
               break;
             case 0x02:
               break;
             case 0x03:
-              reset_settings();
+              if (midi_in_data[4] > 0)
+              {
+                reset_settings();
+              }
               break;
             }
             break;
