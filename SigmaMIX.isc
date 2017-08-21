@@ -3,11 +3,12 @@
 
 # Application configuration
 stackId: com.silabs.sdk.stack.super
-stackRoot: C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0
+stackRoot: C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1
 appId: ble
-frameworkRoot: app\bluetooth_2.3\appbuilder\fwk
+frameworkRoot: app\bluetooth_2.4\appbuilder\fwk
 architecture: efr32~family[B]~series[1]~device_configuration[1]~performance[B]~radio[132]~flash[256K]~temp[G]~package[M]~pins[32]+BRD4301A+gcc
 deviceName: soc-empty_3
+sourceSampleAppId: soc-empty
 generationDirectory: PATH(ISC_RELATIVE):.
 
 # Devices
@@ -19,6 +20,7 @@ hiddenLayoutElements: plugins,callbacks
 appPlugin: bg_stack=true
 appPlugin: bgapi=true
 appPlugin: cmsis=true
+appPlugin: codegen_0=false
 appPlugin: command_interpreter=false
 appPlugin: command_interpreter_handler=false
 appPlugin: crc16_ccitt=false
@@ -42,6 +44,7 @@ appPlugin: serial_vcom=false
 appPlugin: slot-manager=false
 appPlugin: stack_bridge=false
 appPlugin: thunderboard_sense_drivers=false
+appPlugin: uartdrv=false
 
 # Setup configurations
 {setupId:additionalFiles
@@ -173,8 +176,6 @@ PATH(PROJECT_RELATIVE):main.c
     </service>
   </gatt>
 </project>
-}
-{setupId:bluetoothStackConfig
 }
 {setupId:callbackConfiguration
 }
