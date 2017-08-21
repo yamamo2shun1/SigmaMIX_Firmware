@@ -11,7 +11,7 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>28</version>
+                <version>29</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
@@ -66,7 +66,7 @@
                 </option>
                 <option>
                     <name>OGLastSavedByProductVersion</name>
-                    <state>8.11.1.13270</state>
+                    <state>8.11.2.13604</state>
                 </option>
                 <option>
                     <name>GeneralEnableMisra</name>
@@ -195,6 +195,10 @@
                 <option>
                     <name>GenLocaleDisplayOnly</name>
                     <state></state>
+                </option>
+                <option>
+                    <name>DSPExtension</name>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -339,35 +343,35 @@
                     <state>$BLUETOOTH_PROTOCOL_PATH$\ble_stack\inc\soc</state>
                     <state>$PROJ_DIR$\inc</state>
                     <state>$PROJ_DIR$</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\protocol\bluetooth_2.3\ble_stack\inc\common</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\protocol\bluetooth_2.3\ble_stack\inc\soc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\bootloader\api</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\dmadrv\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emlib\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\CMSIS\Include</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\Device\SiliconLabs\EFR32BG1B\Include</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\common\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\dmadrv\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\gpiointerrupt\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\nvm\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\nvm\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\rtcdrv\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\rtcdrv\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\sleep\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\spidrv\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\spidrv\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\tempdrv\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\tempdrv\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\uartdrv\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\uartdrv\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\ustimer\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\emdrv\ustimer\inc</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\hardware\kit\EFR32BG1_BRD4301A\config</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\hardware\kit\common\bsp</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\hardware\kit\common\drivers</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\radio\rail_lib\chip\efr32\rf\common\cortex</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\radio\rail_lib\common</state>
-                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\platform\radio\rail_lib\chip\efr32</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\ble_stack\inc\common</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\ble_stack\inc\soc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\bootloader\api</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\dmadrv\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\CMSIS\Include</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\Device\SiliconLabs\EFR32BG1B\Include</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\common\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\dmadrv\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\gpiointerrupt\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\nvm\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\nvm\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\rtcdrv\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\rtcdrv\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\sleep\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\spidrv\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\spidrv\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\tempdrv\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\tempdrv\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\uartdrv\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\uartdrv\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\ustimer\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\ustimer\inc</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\hardware\kit\EFR32BG1_BRD4301A\config</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\hardware\kit\common\bsp</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\hardware\kit\common\drivers</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\radio\rail_lib\chip\efr32\rf\common\cortex</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\radio\rail_lib\common</state>
+                    <state>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\radio\rail_lib\chip\efr32</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -684,7 +688,7 @@
             <archiveVersion>3</archiveVersion>
             <data>
                 <extensions>.xml</extensions>
-                <cmdline>C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.0\protocol\bluetooth_2.3\bin\bgbuild.exe -ng "$FILE_PATH$"</cmdline>
+                <cmdline>C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\bin\bgbuild.exe -ng "$FILE_PATH$"</cmdline>
                 <hasPrio>1</hasPrio>
                 <outputs>
                     <file>
@@ -1064,7 +1068,7 @@
             <name>General</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <version>28</version>
+                <version>29</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>0</debug>
                 <option>
@@ -1248,6 +1252,10 @@
                 <option>
                     <name>GenLocaleDisplayOnly</name>
                     <state></state>
+                </option>
+                <option>
+                    <name>DSPExtension</name>
+                    <state>0</state>
                 </option>
             </data>
         </settings>
@@ -2091,16 +2099,16 @@
     <group>
         <name>lib</name>
         <file>
-            <name>$BLUETOOTH_PROTOCOL_PATH$\lib\EFR32BG1B\EABI\bgapi.a</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\bgapi.a</name>
         </file>
         <file>
-            <name>$BLUETOOTH_PROTOCOL_PATH$\lib\EFR32BG1B\EABI\binbootloader.o</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\binbootloader.o</name>
         </file>
         <file>
-            <name>$BLUETOOTH_PROTOCOL_PATH$\lib\EFR32BG1B\EABI\binstack.o</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\binstack.o</name>
         </file>
         <file>
-            <name>$BLUETOOTH_PROTOCOL_PATH$\lib\EFR32BG1B\EABI\stack.a</name>
+            <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\stack.a</name>
         </file>
     </group>
     <file>
@@ -2110,40 +2118,40 @@
         <name>$PROJ_DIR$\ble-callbacks.c</name>
     </file>
     <file>
-        <name>$EMDRV_PATH$\dmadrv\src\dmadrv.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emdrv\dmadrv\src\dmadrv.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_adc.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_adc.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_cmu.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_cmu.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_cryotimer.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_cryotimer.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_gpio.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_gpio.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_i2c.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_i2c.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_ldma.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_ldma.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_leuart.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_leuart.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_msc.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_msc.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_rtcc.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_rtcc.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_system.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_system.c</name>
     </file>
     <file>
-        <name>$EMLIB_PATH$\src\em_usart.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\emlib\src\em_usart.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\gatt_db.c</name>
@@ -2164,6 +2172,6 @@
         <name>$PROJ_DIR$\SigmaStudioFW.c</name>
     </file>
     <file>
-        <name>$DEVICE_PATH$\SiliconLabs\EFR32BG1B\Source\IAR\startup_efr32bg1b.c</name>
+        <name>$PROJ_DIR$\..\..\..\..\..\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\platform\Device\SiliconLabs\EFR32BG1B\Source\IAR\startup_efr32bg1b.c</name>
     </file>
 </project>
