@@ -1,8 +1,8 @@
 /*
  * File:           C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\SigmaMIX_IC_1_REG.h
  *
- * Created:        Saturday, August 19, 2017 1:40:39 AM
- * Description:    SigmaMIX_4:IC 1 control register definitions.
+ * Created:        Tuesday, August 22, 2017 8:31:02 AM
+ * Description:    SigmaMIX:IC 1 control register definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR

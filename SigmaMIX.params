@@ -1036,27 +1036,27 @@ Parameter Data :
 Cell Name         = PitchTransL1
 Parameter Name    = PitchShiftsAlg1freq
 Parameter Address = 103
-Parameter Value   = 8.33272933959961E-05
+Parameter Value   = 0
 Parameter Data :
-0x00, 0x00, 0x02, 0xBB, 
+0x00, 0x00, 0x00, 0x00, 
 
 
 
 Cell Name         = PitchTransL1
 Parameter Name    = PitchShiftsAlg1scalingfactor
 Parameter Address = 104
-Parameter Value   = 400
+Parameter Value   = 160
 Parameter Data :
-0x00, 0x00, 0x01, 0x90, 
+0x00, 0x00, 0x00, 0xA0, 
 
 
 
 Cell Name         = PitchTransL1
 Parameter Name    = PitchShiftsAlg1Limit1buffersize
 Parameter Address = 105
-Parameter Value   = 800
+Parameter Value   = 320
 Parameter Data :
-0x00, 0x00, 0x03, 0x20, 
+0x00, 0x00, 0x01, 0x40, 
 
 
 
@@ -1072,27 +1072,27 @@ Parameter Data :
 Cell Name         = PitchTransL2
 Parameter Name    = PitchShiftsAlg2freq
 Parameter Address = 107
-Parameter Value   = 8.33272933959961E-05
+Parameter Value   = 0
 Parameter Data :
-0x00, 0x00, 0x02, 0xBB, 
+0x00, 0x00, 0x00, 0x00, 
 
 
 
 Cell Name         = PitchTransL2
 Parameter Name    = PitchShiftsAlg2scalingfactor
 Parameter Address = 108
-Parameter Value   = 400
+Parameter Value   = 160
 Parameter Data :
-0x00, 0x00, 0x01, 0x90, 
+0x00, 0x00, 0x00, 0xA0, 
 
 
 
 Cell Name         = PitchTransL2
 Parameter Name    = PitchShiftsAlg2Limit1buffersize
 Parameter Address = 109
-Parameter Value   = 800
+Parameter Value   = 320
 Parameter Data :
-0x00, 0x00, 0x03, 0x20, 
+0x00, 0x00, 0x01, 0x40, 
 
 
 
@@ -1405,45 +1405,45 @@ Parameter Data :
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single10B1
 Parameter Address = 30
-Parameter Value   = 0.0421524047851563
+Parameter Value   = 0.0421769618988037
 Parameter Data :
-0x00 ,	0x05 ,	0x65 ,	0x40 ,	
+0x00 ,	0x05 ,	0x66 ,	0x0E ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single11B1
 Parameter Address = 31
-Parameter Value   = 0.0843048095703125
+Parameter Value   = 0.0843538045883179
 Parameter Data :
-0x00 ,	0x0A ,	0xCA ,	0x80 ,	
+0x00 ,	0x0A ,	0xCC ,	0x1B ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single12B1
 Parameter Address = 32
-Parameter Value   = 0.0421524047851563
+Parameter Value   = 0.0421769618988037
 Parameter Data :
-0x00 ,	0x05 ,	0x65 ,	0x40 ,	
+0x00 ,	0x05 ,	0x66 ,	0x0E ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single11A1
 Parameter Address = 33
-Parameter Value   = 1.39927732944489
+Parameter Value   = 1.39907240867615
 Parameter Data :
-0x00 ,	0xB3 ,	0x1B ,	0x85 ,	
+0x00 ,	0xB3 ,	0x14 ,	0xCE ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single12A1
 Parameter Address = 34
-Parameter Value   = -0.577877640724182
+Parameter Value   = -0.577776551246643
 Parameter Data :
-0x0F ,	0xB6 ,	0x08 ,	0x1B ,	
+0x0F ,	0xB6 ,	0x0B ,	0x6B ,	
 
 
 
@@ -1831,13 +1831,13 @@ See also SigmaMIX.hex file
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0xFF , 	
-0x00 , 	0x00 , 	0x02 , 	0xBB , 	
-0x00 , 	0x00 , 	0x01 , 	0x90 , 	
-0x00 , 	0x00 , 	0x03 , 	0x20 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0xA0 , 	
+0x00 , 	0x00 , 	0x01 , 	0x40 , 	
 0x00 , 	0x00 , 	0x00 , 	0xFF , 	
-0x00 , 	0x00 , 	0x02 , 	0xBB , 	
-0x00 , 	0x00 , 	0x01 , 	0x90 , 	
-0x00 , 	0x00 , 	0x03 , 	0x20 , 	
+0x00 , 	0x00 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0xA0 , 	
+0x00 , 	0x00 , 	0x01 , 	0x40 , 	
 0x00 , 	0x75 , 	0x96 , 	0x9B , 	
 0x00 , 	0xEB , 	0x2D , 	0x37 , 	
 0x00 , 	0x75 , 	0x96 , 	0x9B , 	
@@ -2857,13 +2857,13 @@ Parameter data for: IC 1 (Binary format starting at parameter address 0)
 00000000	01000000	00000000	00000000	
 00000000	01000000	00000000	00000000	
 00000000	00000000	00000000	11111111	
-00000000	00000000	00000010	10111011	
-00000000	00000000	00000001	10010000	
-00000000	00000000	00000011	00100000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	10100000	
+00000000	00000000	00000001	01000000	
 00000000	00000000	00000000	11111111	
-00000000	00000000	00000010	10111011	
-00000000	00000000	00000001	10010000	
-00000000	00000000	00000011	00100000	
+00000000	00000000	00000000	00000000	
+00000000	00000000	00000000	10100000	
+00000000	00000000	00000001	01000000	
 00000000	01110101	10010110	10011011	
 00000000	11101011	00101101	00110111	
 00000000	01110101	10010110	10011011	
@@ -3811,11 +3811,11 @@ See also SigmaMIX.hex file
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x2D , 	0x6A , 	0x86 , 	
-0x00 , 	0x05 , 	0x65 , 	0x40 , 	
-0x00 , 	0x0A , 	0xCA , 	0x80 , 	
-0x00 , 	0x05 , 	0x65 , 	0x40 , 	
-0x00 , 	0xB3 , 	0x1B , 	0x85 , 	
-0x0F , 	0xB6 , 	0x08 , 	0x1B , 	
+0x00 , 	0x05 , 	0x66 , 	0x0E , 	
+0x00 , 	0x0A , 	0xCC , 	0x1B , 	
+0x00 , 	0x05 , 	0x66 , 	0x0E , 	
+0x00 , 	0xB3 , 	0x14 , 	0xCE , 	
+0x0F , 	0xB6 , 	0x0B , 	0x6B , 	
 0x00 , 	0x00 , 	0x07 , 	0x30 , 	
 0x00 , 	0x03 , 	0xD5 , 	0x8D , 	
 0x00 , 	0x07 , 	0xAB , 	0x1A , 	
@@ -4837,11 +4837,11 @@ Parameter data for: IC 2 (Binary format starting at parameter address 0)
 00000000	01000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	00101101	01101010	10000110	
-00000000	00000101	01100101	01000000	
-00000000	00001010	11001010	10000000	
-00000000	00000101	01100101	01000000	
-00000000	10110011	00011011	10000101	
-00001111	10110110	00001000	00011011	
+00000000	00000101	01100110	00001110	
+00000000	00001010	11001100	00011011	
+00000000	00000101	01100110	00001110	
+00000000	10110011	00010100	11001110	
+00001111	10110110	00001011	01101011	
 00000000	00000000	00000111	00110000	
 00000000	00000011	11010101	10001101	
 00000000	00000111	10101011	00011010	
