@@ -719,13 +719,13 @@ void send_pitch_shifter(uint32_t xf_adc, uint8_t type)
   switch (type)
   {
     case 0:// -1 ~ +1
-      pitch_trans = (((xf_adc / 4095.0) * 2.0 - 1.0) * 360.0) / SAMPLE_RATE;
+      pitch_trans = (((xf_adc / 4095.0) * 2.0 - 1.0) * 320.0) / SAMPLE_RATE;
       break;
     case 1:// 0 ~ +1
-      pitch_trans = ((1.0 - (xf_adc / 4095.0)) * 360.0) / SAMPLE_RATE;
+      pitch_trans = ((1.0 - (xf_adc / 4095.0)) * 320.0) / SAMPLE_RATE;
       break;
     case 2:// -1 ~ 0
-      pitch_trans = (((xf_adc / 4095.0) - 1.0) * 360.0) / SAMPLE_RATE;
+      pitch_trans = (((xf_adc / 4095.0) - 1.0) * 320.0) / SAMPLE_RATE;
       break;
   }
 
