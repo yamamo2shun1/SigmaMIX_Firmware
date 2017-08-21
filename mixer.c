@@ -631,7 +631,7 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
   if (xf_adc[0] != xf0_adc[0] && xf_adc[1] != xf0_adc[1])
     {
       double xf1 = (xf_rev ? xf_adc[0] : xf_adc[1]) / 2047.0;
-      if (xf1 < 0.0064)
+      if (xf1 < 0.0096)
         xf1 = 0.0;
       else if (xf1 > 0.9968)
         xf1 = 1.0;
@@ -644,7 +644,7 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev)
       xf1_val[3] =  xf11_u32        & 0x000000FF;
 
       double xf2 = (xf_rev ? xf_adc[1] : xf_adc[0]) / 2047.0;
-      if (xf2 < 0.0064)
+      if (xf2 < 0.0096)
         xf2 = 0.0;
       else if (xf2 > 0.9968)
         xf2 = 1.0;
