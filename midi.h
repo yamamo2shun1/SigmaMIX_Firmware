@@ -19,8 +19,8 @@
  * midi.h
  */
 
-#ifndef __MIXER_H__
-#define __MIXER_H__
+#ifndef __MIDI_H__
+#define __MIDI_H__
 
 #include <stdint.h>
 
