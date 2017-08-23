@@ -831,6 +831,79 @@ void send_lpf(uint32_t value)
   SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_1);
 }
 
+void send_dlpf(uint32_t value)
+{
+  ADI_REG_U8 low_pass_b0[4];
+  ADI_REG_U8 low_pass_b1[4];
+  ADI_REG_U8 low_pass_b2[4];
+  ADI_REG_U8 low_pass_a1[4];
+  ADI_REG_U8 low_pass_a2[4];
+
+  double low_pass_gain = 1.0;
+  double Q = 8.1;
+
+  double freq = (tanh((((double)value / 4095.0) - 1.0) * 3.0) + 1.0) * 20000 + 100.0 * (1 - ((double)value / 4095.0));
+
+  double w0 = 2.0 * M_PI * freq / SAMPLE_RATE;
+  double a = sin(w0) / (2.0 * Q);
+
+  double b0 = (1.0 - cos(w0)) * low_pass_gain / 2.0;
+  double b1 = 1.0 - cos(w0) * low_pass_gain;
+  double b2 = (1.0 - cos(w0)) * low_pass_gain / 2.0;
+  double a0 = 1.0 + a;
+  double a1 = -2.0 * cos(w0);
+  double a2 = 1 - a;
+
+  b0 /= a0;
+  b1 /= a0;
+  b2 /= a0;
+  a1 /= -a0;
+  a2 /= -a0;
+
+  uint32_t b0_u32 = (int32_t)(b0 * pow(2, 23));
+  uint32_t b1_u32 = (int32_t)(b1 * pow(2, 23));
+  uint32_t b2_u32 = (int32_t)(b2 * pow(2, 23));
+  uint32_t a1_u32 = (int32_t)(a1 * pow(2, 23));
+  uint32_t a2_u32 = (int32_t)(a2 * pow(2, 23));
+
+  low_pass_b0[0] = (b0_u32 >> 24) & 0x000000FF;
+  low_pass_b0[1] = (b0_u32 >> 16) & 0x000000FF;
+  low_pass_b0[2] = (b0_u32 >> 8)  & 0x000000FF;
+  low_pass_b0[3] =  b0_u32        & 0x000000FF;
+  low_pass_b1[0] = (b1_u32 >> 24) & 0x000000FF;
+  low_pass_b1[1] = (b1_u32 >> 16) & 0x000000FF;
+  low_pass_b1[2] = (b1_u32 >> 8)  & 0x000000FF;
+  low_pass_b1[3] =  b1_u32        & 0x000000FF;
+  low_pass_b2[0] = (b2_u32 >> 24) & 0x000000FF;
+  low_pass_b2[1] = (b2_u32 >> 16) & 0x000000FF;
+  low_pass_b2[2] = (b2_u32 >> 8)  & 0x000000FF;
+  low_pass_b2[3] =  b2_u32        & 0x000000FF;
+  low_pass_a1[0] = (a1_u32 >> 24) & 0x000000FF;
+  low_pass_a1[1] = (a1_u32 >> 16) & 0x000000FF;
+  low_pass_a1[2] = (a1_u32 >> 8)  & 0x000000FF;
+  low_pass_a1[3] =  a1_u32        & 0x000000FF;
+  low_pass_a2[0] = (a2_u32 >> 24) & 0x000000FF;
+  low_pass_a2[1] = (a2_u32 >> 16) & 0x000000FF;
+  low_pass_a2[2] = (a2_u32 >> 8)  & 0x000000FF;
+  low_pass_a2[3] =  a2_u32        & 0x000000FF;
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_0, 4, low_pass_b0);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_0, MOD_DLPF_ALG0_STAGE0_B0_ADDR);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_1, 4, low_pass_b1);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_1, MOD_DLPF_ALG0_STAGE0_B1_ADDR);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_2, 4, low_pass_b2);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_2, MOD_DLPF_ALG0_STAGE0_B2_ADDR);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_3, 4, low_pass_a1);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_3, MOD_DLPF_ALG0_STAGE0_A0_ADDR);
+
+  SIGMA_SAFELOAD_WRITE_DATA(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_DATA_4, 4, low_pass_a2);
+  SIGMA_SAFELOAD_WRITE_ADDR(DEVICE_ADDR_IC_2, SIGMA_SAFELOAD_ADDR_4, MOD_DLPF_ALG0_STAGE0_A1_ADDR);
+  SIGMA_SAFELOAD_WRITE_TRANSFER_BIT(DEVICE_ADDR_IC_2);
+}
+
 void send_select_fx(uint8_t type)
 {
   ADI_REG_U8 effect_on[4] = {0x00, 0x80, 0x00, 0x00};

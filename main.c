@@ -309,8 +309,8 @@ void main(void)
   double xf2_avg[16] = {0.0};
 
   uint8_t val0_old = 0;
-
   uint8_t xf_type = 0;
+  uint32_t delay_samples = 1780;
 
   read_settings();
 
@@ -820,7 +820,7 @@ void main(void)
 #endif
 
     // test
-    GPIO_PinOutSet(gpioPortA, 1);
+    //GPIO_PinOutSet(gpioPortA, 1);
 
     if (GPIO_PinInGet(gpioPortA, 0))
     {
@@ -837,7 +837,7 @@ void main(void)
           xf_type = 0;
           send_lpf(4095);
 
-          send_delay(0, true, -9, 1840);
+          send_delay(0, true, -9, delay_samples);
 
           gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_off(37));
         }
@@ -861,29 +861,6 @@ void main(void)
 
           xf_type = 1;
 
-          if (xf_adc[0] < 26)
-          {
-            if (xf_rev)
-            {
-              send_delay(0, false, -9, 1840);
-            }
-            else
-            {
-              send_delay(1, false, -9, 1840);
-            }
-          }
-          else if (xf_adc[1] < 26)
-          {
-            if (xf_rev)
-            {
-              send_delay(1, false, -9, 1840);
-            }
-            else
-            {
-              send_delay(0, false, -9, 1840);
-            }
-          }
-
           gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_on(37, 127));
         }
       }
@@ -897,6 +874,15 @@ void main(void)
     {
     case 0:
       send_xfader(xf_adc, xf_curve, xf_rev);
+      switch (settings[17])
+      {
+      case 4:
+        send_dlpf(xf_rev ? xf_adc[1] : xf_adc[0]);
+        break;
+      case 8:
+        send_dlpf(xf_rev ? xf_adc[0] : xf_adc[1]);
+        break;
+      }
       break;
     case 1:
       uint8_t pitch_type = 2;
@@ -909,18 +895,31 @@ void main(void)
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 3:
-        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
-        break;
       case 4:
-        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
+        send_delay(xf_rev ? 0 : 1, false, -9, delay_samples);
+        send_dlpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       case 5:
+        send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
+        break;
+      case 6:
+        send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
+        break;
+      case 7:
+      case 8:
+        send_delay(xf_rev ? 1 : 0, false, -9, delay_samples);
+        send_dlpf(xf_rev ? xf_adc[0] : xf_adc[1]);
+        break;
+      case 9:
         send_pitch_shifter(xf_rev ? xf_adc[1] : xf_adc[0], pitch_type);
         send_lpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
-      case 6:
+      case 10:
         send_pitch_shifter(xf_rev ? xf_adc[0] : xf_adc[1], pitch_type);
         send_lpf(xf_rev ? xf_adc[0] : xf_adc[1]);
+        break;
+      case 11:
+        send_delay(2, false, -9, delay_samples);
         break;
       }
       //uint32_t center[2] = {2047, 2047};

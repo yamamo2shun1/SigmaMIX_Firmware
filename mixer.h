@@ -45,6 +45,7 @@ void send_xfader(uint32_t *xf_adc, double xf_curve, bool xf_rev);
 void send_delay(uint8_t ch, bool is_mute, double delay_gain, uint32_t delay_time);
 void send_pitch_shifter(uint32_t xf_adc, uint8_t type);
 void send_lpf(uint32_t value);
+void send_dlpf(uint32_t value);
 void send_select_fx(uint8_t type);
 void send_master_booth_gain(uint32_t master_val, uint32_t booth_val);
 void send_monitor_mix_gain(bool ch_sel, uint32_t mix_val, uint32_t monitor_val);
