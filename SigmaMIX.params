@@ -954,7 +954,7 @@ Parameter Data :
 
 Cell Name         = master gain
 Parameter Name    = SWGain1940DBAlg3target
-Parameter Address = 43
+Parameter Address = 50
 Parameter Value   = 0.451855897903442
 Parameter Data :
 0x00 ,	0x39 ,	0xD6 ,	0x6A ,	
@@ -963,7 +963,7 @@ Parameter Data :
 
 Cell Name         = master gain
 Parameter Name    = SWGain1940DBAlg3step
-Parameter Address = 44
+Parameter Address = 51
 Parameter Value   = 0.00390625
 Parameter Data :
 0x00 ,	0x00 ,	0x80 ,	0x00 ,	
@@ -1378,15 +1378,15 @@ Parameter Data :
 Cell Name         = Count
 Parameter Name    = DCInpAlg9
 Parameter Address = 6
-Parameter Value   = 5
+Parameter Value   = 7
 Parameter Data :
-0x00, 0x00, 0x00, 0x05, 
+0x00, 0x00, 0x00, 0x07, 
 
 
 
 Cell Name         = Fb Mix
 Parameter Name    = MultCtrlMixer1940Alg1_2
-Parameter Address = 28
+Parameter Address = 29
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -1395,123 +1395,105 @@ Parameter Data :
 
 Cell Name         = Fb Mix
 Parameter Name    = MultCtrlMixer1940Alg1_3
-Parameter Address = 29
-Parameter Value   = 0.35481333732605
+Parameter Address = 30
+Parameter Value   = 0.707945823669434
 Parameter Data :
-0x00, 0x2D, 0x6A, 0x86, 
+0x00, 0x5A, 0x9D, 0xF8, 
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single10B1
-Parameter Address = 30
-Parameter Value   = 0.0421769618988037
+Parameter Address = 31
+Parameter Value   = 0.0421524047851563
 Parameter Data :
-0x00 ,	0x05 ,	0x66 ,	0x0E ,	
+0x00 ,	0x05 ,	0x65 ,	0x40 ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single11B1
-Parameter Address = 31
-Parameter Value   = 0.0843538045883179
+Parameter Address = 32
+Parameter Value   = 0.0843048095703125
 Parameter Data :
-0x00 ,	0x0A ,	0xCC ,	0x1B ,	
+0x00 ,	0x0A ,	0xCA ,	0x80 ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single12B1
-Parameter Address = 32
-Parameter Value   = 0.0421769618988037
+Parameter Address = 33
+Parameter Value   = 0.0421524047851563
 Parameter Data :
-0x00 ,	0x05 ,	0x66 ,	0x0E ,	
+0x00 ,	0x05 ,	0x65 ,	0x40 ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single11A1
-Parameter Address = 33
-Parameter Value   = 1.39907240867615
+Parameter Address = 34
+Parameter Value   = 1.39927732944489
 Parameter Data :
-0x00 ,	0xB3 ,	0x14 ,	0xCE ,	
+0x00 ,	0xB3 ,	0x1B ,	0x85 ,	
 
 
 
 Cell Name         = Gen Filter1
 Parameter Name    = EQ1940Single12A1
-Parameter Address = 34
-Parameter Value   = -0.577776551246643
+Parameter Address = 35
+Parameter Value   = -0.577877640724182
 Parameter Data :
-0x0F ,	0xB6 ,	0x0B ,	0x6B ,	
+0x0F ,	0xB6 ,	0x08 ,	0x1B ,	
 
 
 
 Cell Name         = DC3
 Parameter Name    = DCInpAlg10
 Parameter Address = 7
-Parameter Value   = 5
+Parameter Value   = 7
 Parameter Data :
-0x00, 0x00, 0x00, 0x05, 
+0x00, 0x00, 0x00, 0x07, 
 
 
 
 Cell Name         = Delay1
 Parameter Name    = MultCtrlDelGrowAlg1
 Parameter Address = 11
-Parameter Value   = 6
+Parameter Value   = 8
 Parameter Data :
-0x00, 0x00, 0x00, 0x06, 
+0x00, 0x00, 0x00, 0x08, 
 
 
 
 Cell Name         = Delay2
 Parameter Name    = MultCtrlDelGrowAlg2
 Parameter Address = 14
-Parameter Value   = 6
+Parameter Value   = 8
 Parameter Data :
-0x00, 0x00, 0x00, 0x06, 
+0x00, 0x00, 0x00, 0x08, 
 
 
 
 Cell Name         = Delay3
 Parameter Name    = MultCtrlDelGrowAlg3
 Parameter Address = 19
-Parameter Value   = 6
+Parameter Value   = 8
 Parameter Data :
-0x00, 0x00, 0x00, 0x06, 
+0x00, 0x00, 0x00, 0x08, 
 
 
 
-Cell Name         = Delay4
+Cell Name         = Delay6
 Parameter Name    = MultCtrlDelGrowAlg4
-Parameter Address = 26
-Parameter Value   = 6
+Parameter Address = 36
+Parameter Value   = 8
 Parameter Data :
-0x00, 0x00, 0x00, 0x06, 
+0x00, 0x00, 0x00, 0x08, 
 
 
 
 Cell Name         = Gen Filter2
 Parameter Name    = EQ1940Single20B1
-Parameter Address = 36
-Parameter Value   = 0.0299545526504517
-Parameter Data :
-0x00 ,	0x03 ,	0xD5 ,	0x8D ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940Single21B1
-Parameter Address = 37
-Parameter Value   = 0.0599091053009033
-Parameter Data :
-0x00 ,	0x07 ,	0xAB ,	0x1A ,	
-
-
-
-Cell Name         = Gen Filter2
-Parameter Name    = EQ1940Single22B1
 Parameter Address = 38
 Parameter Value   = 0.0299545526504517
 Parameter Data :
@@ -1520,8 +1502,26 @@ Parameter Data :
 
 
 Cell Name         = Gen Filter2
-Parameter Name    = EQ1940Single21A1
+Parameter Name    = EQ1940Single21B1
 Parameter Address = 39
+Parameter Value   = 0.0599091053009033
+Parameter Data :
+0x00 ,	0x07 ,	0xAB ,	0x1A ,	
+
+
+
+Cell Name         = Gen Filter2
+Parameter Name    = EQ1940Single22B1
+Parameter Address = 40
+Parameter Value   = 0.0299545526504517
+Parameter Data :
+0x00 ,	0x03 ,	0xD5 ,	0x8D ,	
+
+
+
+Cell Name         = Gen Filter2
+Parameter Name    = EQ1940Single21A1
+Parameter Address = 41
 Parameter Value   = 1.45424354076385
 Parameter Data :
 0x00 ,	0xBA ,	0x24 ,	0xA7 ,	
@@ -1530,7 +1530,7 @@ Parameter Data :
 
 Cell Name         = Gen Filter2
 Parameter Name    = EQ1940Single22A1
-Parameter Address = 40
+Parameter Address = 42
 Parameter Value   = -0.574061870574951
 Parameter Data :
 0x0F ,	0xB6 ,	0x85 ,	0x24 ,	
@@ -1539,7 +1539,7 @@ Parameter Data :
 
 Cell Name         = St Mixer1
 Parameter Name    = StereoMixerAlgSlew12
-Parameter Address = 41
+Parameter Address = 48
 Parameter Value   = 1
 Parameter Data :
 0x00, 0x80, 0x00, 0x00, 
@@ -1548,28 +1548,28 @@ Parameter Data :
 
 Cell Name         = St Mixer1
 Parameter Name    = StereoMixerAlgSlew14
-Parameter Address = 42
-Parameter Value   = 1
+Parameter Address = 49
+Parameter Value   = 0.707945823669434
 Parameter Data :
-0x00, 0x80, 0x00, 0x00, 
+0x00, 0x5A, 0x9D, 0xF8, 
 
 
 
 Cell Name         = VC Delay1
 Parameter Name    = VoltageControlledDelay1940NoZipAlgwLimit1buffersize
-Parameter Address = 35
-Parameter Value   = 1840
+Parameter Address = 37
+Parameter Value   = 1800
 Parameter Data :
-0x00, 0x00, 0x07, 0x30, 
+0x00, 0x00, 0x07, 0x08, 
 
 
 
 Cell Name         = Delay Length
 Parameter Name    = DCInpAlg11
 Parameter Address = 8
-Parameter Value   = 1840
+Parameter Value   = 1800
 Parameter Data :
-0x00, 0x00, 0x07, 0x30, 
+0x00, 0x00, 0x07, 0x08, 
 
 
 
@@ -1723,6 +1723,69 @@ Parameter Address = 97
 Parameter Value   = 0
 Parameter Data :
 0x00, 0x00, 0x00, 0x00, 
+
+
+
+Cell Name         = Delay4
+Parameter Name    = MultCtrlDelGrowAlg5
+Parameter Address = 26
+Parameter Value   = 8
+Parameter Data :
+0x00, 0x00, 0x00, 0x08, 
+
+
+
+Cell Name         = Delay5
+Parameter Name    = MultCtrlDelGrowAlg6
+Parameter Address = 28
+Parameter Value   = 8
+Parameter Data :
+0x00, 0x00, 0x00, 0x08, 
+
+
+
+Cell Name         = dlpf
+Parameter Name    = EQ1940Single30B1
+Parameter Address = 43
+Parameter Value   = 0.905078172683716
+Parameter Data :
+0x00 ,	0x73 ,	0xD9 ,	0x9A ,	
+
+
+
+Cell Name         = dlpf
+Parameter Name    = EQ1940Single31B1
+Parameter Address = 44
+Parameter Value   = 1.81015634536743
+Parameter Data :
+0x00 ,	0xE7 ,	0xB3 ,	0x34 ,	
+
+
+
+Cell Name         = dlpf
+Parameter Name    = EQ1940Single32B1
+Parameter Address = 45
+Parameter Value   = 0.905078172683716
+Parameter Data :
+0x00 ,	0x73 ,	0xD9 ,	0x9A ,	
+
+
+
+Cell Name         = dlpf
+Parameter Name    = EQ1940Single31A1
+Parameter Address = 46
+Parameter Value   = -1.6801929473877
+Parameter Data :
+0x0F ,	0x28 ,	0xEF ,	0x70 ,	
+
+
+
+Cell Name         = dlpf
+Parameter Name    = EQ1940Single32A1
+Parameter Address = 47
+Parameter Value   = -0.940119743347168
+Parameter Data :
+0x0F ,	0x87 ,	0xAA ,	0x28 ,	
 
 
 
@@ -3787,52 +3850,52 @@ See also SigmaMIX.hex file
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x05 , 	
-0x00 , 	0x00 , 	0x00 , 	0x05 , 	
-0x00 , 	0x00 , 	0x07 , 	0x30 , 	
+0x00 , 	0x00 , 	0x00 , 	0x07 , 	
+0x00 , 	0x00 , 	0x00 , 	0x07 , 	
+0x00 , 	0x00 , 	0x07 , 	0x08 , 	
 0x00 , 	0x01 , 	0x00 , 	0x00 , 	
 0x00 , 	0x01 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x06 , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x40 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x06 , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x40 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x06 , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x20 , 	0x00 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x80 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x06 , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
 0x00 , 	0x40 , 	0x00 , 	0x00 , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x2D , 	0x6A , 	0x86 , 	
-0x00 , 	0x05 , 	0x66 , 	0x0E , 	
-0x00 , 	0x0A , 	0xCC , 	0x1B , 	
-0x00 , 	0x05 , 	0x66 , 	0x0E , 	
-0x00 , 	0xB3 , 	0x14 , 	0xCE , 	
-0x0F , 	0xB6 , 	0x0B , 	0x6B , 	
-0x00 , 	0x00 , 	0x07 , 	0x30 , 	
+0x00 , 	0x5A , 	0x9D , 	0xF8 , 	
+0x00 , 	0x05 , 	0x65 , 	0x40 , 	
+0x00 , 	0x0A , 	0xCA , 	0x80 , 	
+0x00 , 	0x05 , 	0x65 , 	0x40 , 	
+0x00 , 	0xB3 , 	0x1B , 	0x85 , 	
+0x0F , 	0xB6 , 	0x08 , 	0x1B , 	
+0x00 , 	0x00 , 	0x00 , 	0x08 , 	
+0x00 , 	0x00 , 	0x07 , 	0x08 , 	
 0x00 , 	0x03 , 	0xD5 , 	0x8D , 	
 0x00 , 	0x07 , 	0xAB , 	0x1A , 	
 0x00 , 	0x03 , 	0xD5 , 	0x8D , 	
 0x00 , 	0xBA , 	0x24 , 	0xA7 , 	
 0x0F , 	0xB6 , 	0x85 , 	0x24 , 	
+0x00 , 	0x73 , 	0xD9 , 	0x9A , 	
+0x00 , 	0xE7 , 	0xB3 , 	0x34 , 	
+0x00 , 	0x73 , 	0xD9 , 	0x9A , 	
+0x0F , 	0x28 , 	0xEF , 	0x70 , 	
+0x0F , 	0x87 , 	0xAA , 	0x28 , 	
 0x00 , 	0x80 , 	0x00 , 	0x00 , 	
-0x00 , 	0x80 , 	0x00 , 	0x00 , 	
+0x00 , 	0x5A , 	0x9D , 	0xF8 , 	
 0x00 , 	0x39 , 	0xD6 , 	0x6A , 	
 0x00 , 	0x00 , 	0x80 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
-0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
 0x00 , 	0x00 , 	0x00 , 	0x00 , 	
@@ -4813,52 +4876,52 @@ Parameter data for: IC 2 (Binary format starting at parameter address 0)
 00000000	10000000	00000000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000101	
-00000000	00000000	00000000	00000101	
-00000000	00000000	00000111	00110000	
+00000000	00000000	00000000	00000111	
+00000000	00000000	00000000	00000111	
+00000000	00000000	00000111	00001000	
 00000000	00000001	00000000	00000000	
 00000000	00000001	00000000	00000000	
-00000000	00000000	00000000	00000110	
+00000000	00000000	00000000	00001000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	01000000	00000000	
-00000000	00000000	00000000	00000110	
+00000000	00000000	00000000	00001000	
 00000000	01000000	00000000	00000000	
 00000000	01000000	00000000	00000000	
 00000000	00000000	01000000	00000000	
 00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000110	
+00000000	00000000	00000000	00001000	
 00000000	01000000	00000000	00000000	
 00000000	01000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00100000	00000000	
 00000000	10000000	00000000	00000000	
 00000000	00000000	10000000	00000000	
-00000000	00000000	00000000	00000110	
+00000000	00000000	00000000	00001000	
 00000000	01000000	00000000	00000000	
+00000000	00000000	00000000	00001000	
 00000000	10000000	00000000	00000000	
-00000000	00101101	01101010	10000110	
-00000000	00000101	01100110	00001110	
-00000000	00001010	11001100	00011011	
-00000000	00000101	01100110	00001110	
-00000000	10110011	00010100	11001110	
-00001111	10110110	00001011	01101011	
-00000000	00000000	00000111	00110000	
+00000000	01011010	10011101	11111000	
+00000000	00000101	01100101	01000000	
+00000000	00001010	11001010	10000000	
+00000000	00000101	01100101	01000000	
+00000000	10110011	00011011	10000101	
+00001111	10110110	00001000	00011011	
+00000000	00000000	00000000	00001000	
+00000000	00000000	00000111	00001000	
 00000000	00000011	11010101	10001101	
 00000000	00000111	10101011	00011010	
 00000000	00000011	11010101	10001101	
 00000000	10111010	00100100	10100111	
 00001111	10110110	10000101	00100100	
+00000000	01110011	11011001	10011010	
+00000000	11100111	10110011	00110100	
+00000000	01110011	11011001	10011010	
+00001111	00101000	11101111	01110000	
+00001111	10000111	10101010	00101000	
 00000000	10000000	00000000	00000000	
-00000000	10000000	00000000	00000000	
+00000000	01011010	10011101	11111000	
 00000000	00111001	11010110	01101010	
 00000000	00000000	10000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
-00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	
 00000000	00000000	00000000	00000000	

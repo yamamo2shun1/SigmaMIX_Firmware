@@ -403,9 +403,9 @@
                 <Link pin="O_C309_A0_P2_out" dir="out" link="Link47" />
                 <Link pin="O_C309_A0_P4_out" dir="out" link="Link48" />
             </Algorithm>
-            <Algorithm name="MultCtrlDelGrowAlg4" friendlyname="Del_Grow" cell="Delay4 ">
-                <Link pin="I_C1000_A0_P1_in" dir="in" link="Link109" />
-                <Link pin="O_C1000_A0_P2_out" dir="out" link="Link60" />
+            <Algorithm name="MultCtrlDelGrowAlg5" friendlyname="Del_Grow" cell="Delay4 ">
+                <Link pin="I_C7_A0_P1_in" dir="in" link="Link109" />
+                <Link pin="O_C7_A0_P2_out" dir="out" link="Link129" />
             </Algorithm>
             <Algorithm name="ICSigma100Out11" friendlyname="170x\140x output" cell="mnitor out1 ">
                 <Link pin="I_C288_A0_P1_in" dir="in" link="Link47" />
@@ -418,6 +418,10 @@
                 <Link pin="I_C732_A0_P3_in" dir="in" link="Link127" />
                 <Link pin="O_C732_A0_P1_out" dir="out" link="Link72" />
             </Algorithm>
+            <Algorithm name="MultCtrlDelGrowAlg6" friendlyname="Del_Grow" cell="Delay5 ">
+                <Link pin="I_C38_A0_P1_in" dir="in" link="Link129" />
+                <Link pin="O_C38_A0_P2_out" dir="out" link="Link130" />
+            </Algorithm>
             <Algorithm name="MultCtrlMixer1940Alg1" friendlyname="Multiple Ctrl Mixer" cell="Fb Mix ">
                 <Link pin="I_C950_A0_P2_in" dir="in" link="Link72" />
                 <Link pin="I_C950_A0_P3_in" dir="in" link="Link81" />
@@ -427,6 +431,10 @@
                 <Link pin="I_C957_A0_P1_in" dir="in" link="Link65" />
                 <Link pin="O_C957_A0_P2_out" dir="out" link="Link59" />
             </Algorithm>
+            <Algorithm name="MultCtrlDelGrowAlg4" friendlyname="Del_Grow" cell="Delay6 ">
+                <Link pin="I_C1000_A0_P1_in" dir="in" link="Link130" />
+                <Link pin="O_C1000_A0_P2_out" dir="out" link="Link60" />
+            </Algorithm>
             <Algorithm name="DCinputmuxAlg1" friendlyname="Mono" cell="MX1 ">
                 <Link pin="I_C941_A0_P2_in" dir="in" link="Link103" />
                 <Link pin="I_C941_A0_P3_in" dir="in" link="Link59" />
@@ -434,7 +442,9 @@
                 <Link pin="I_C941_A0_P5_in" dir="in" link="Link110" />
                 <Link pin="I_C941_A0_P6_in" dir="in" link="Link106" />
                 <Link pin="I_C941_A0_P7_in" dir="in" link="Link109" />
-                <Link pin="I_C941_A0_P8_in" dir="in" link="Link60" />
+                <Link pin="I_C941_A0_P8_in" dir="in" link="Link129" />
+                <Link pin="I_C941_A0_P9_in" dir="in" link="Link130" />
+                <Link pin="I_C941_A0_P10_in" dir="in" link="Link60" />
                 <Link pin="O_C941_A0_P1_out" dir="out" link="Link68" />
             </Algorithm>
             <Algorithm name="VoltageControlledDelay1940NoZipAlgwLimit1" friendlyname="Voltage Controlled Delay NoZip" cell="VC Delay1 ">
@@ -451,11 +461,15 @@
                 <Link pin="I_C1014_A0_P1_in" dir="in" link="Link66" />
                 <Link pin="O_C1014_A0_P2_out" dir="out" link="Link108" />
             </Algorithm>
+            <Algorithm name="EQ1940Single3" friendlyname="1 Channel - Double Precision" cell="dlpf ">
+                <Link pin="I_C105_A0_P1_in" dir="in" link="Link108" />
+                <Link pin="O_C105_A0_P2_out" dir="out" link="Link128" />
+            </Algorithm>
             <Algorithm name="StereoMixerAlgSlew1" friendlyname="Stereo Mixer SW Slew" cell="St Mixer1 ">
                 <Link pin="I_C672_A0_P3_in" dir="in" link="Link90" />
                 <Link pin="I_C672_A0_P4_in" dir="in" link="Link91" />
-                <Link pin="I_C672_A0_P5_in" dir="in" link="Link108" />
-                <Link pin="I_C672_A0_P6_in" dir="in" link="Link108" />
+                <Link pin="I_C672_A0_P5_in" dir="in" link="Link128" />
+                <Link pin="I_C672_A0_P6_in" dir="in" link="Link128" />
                 <Link pin="O_C672_A0_P1_out" dir="out" link="Link97" />
                 <Link pin="O_C672_A0_P2_out" dir="out" link="Link98" />
             </Algorithm>
