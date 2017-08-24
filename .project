@@ -26,6 +26,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>InitDevice.c</name>
+			<type>1</type>
+			<location>C:/Users/shun/SimplicityStudio/v4_workspace/SigmaMIX/src/InitDevice.c</location>
+		</link>
+		<link>
 			<name>bgapi/dmadrv.c</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/platform/emdrv/dmadrv/src/dmadrv.c</locationURI>
