@@ -1,0 +1,1647 @@
+###############################################################################
+#
+# IAR ELF Linker V8.11.2.13589/W32 for ARM                21/Aug/2017  14:32:23
+# Copyright 2007-2017 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Exe\SigmaMIX.out
+#    Map file     =  
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\List\SigmaMIX.map
+#    Command line =  
+#        -f C:\Users\shun\AppData\Local\Temp\EW306.tmp
+#        (C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\bgapi.a
+#        C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\binbootloader.o
+#        C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\binstack.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\ble-callback-stubs.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\ble-callbacks.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\dmadrv.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_adc.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_cmu.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_cryotimer.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_gpio.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_i2c.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_ldma.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_leuart.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_msc.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_rtcc.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_system.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\em_usart.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\gatt_db.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\InitDevice.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\main.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\midi.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\mixer.o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\SigmaStudioFW.o
+#        C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI\stack.a
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj\startup_efr32bg1b.o
+#        -o
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Exe\SigmaMIX.out
+#        --keep __iar_program_start --map
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\List\SigmaMIX.map
+#        --config
+#        C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\linker\IAR\efr32bg1b132f256gm32.icf
+#        --no_range_reservations --semihosting --entry __iar_program_start
+#        --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** MESSAGES
+***
+
+Warning[Lt009]: Inconsistent wchar_t size
+            gecko_bgapi_dfu.c.obj(bgapi.a) and 23 other objects have wchar_t
+                      size 16 bits
+            ble-callback-stubs.o and 127 other objects have wchar_t size 32
+                      bits
+
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because no calls to memory allocation
+functions were found in the application outside of system library
+functions, and there are calls to deallocation functions in the
+application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+define block bootloader with size = 16K { ro section .binbootloader };
+".text_bootloader":
+       place in [from 0x00000000 to 0x00003fff] { block bootloader };
+define block stack with alignment = 2K { ro section .binstack };
+".text_stack":
+       place at start of [0x00004000-0x0003efff] { block stack };
+define block app
+   with fixed order, alignment = 2K { ro section .AAT, ro section .intvec, ro };
+".text_app":
+       place in [from 0x00004000 to 0x0003efff] { block app };
+define block CSTACK with size = 2K, alignment = 8 { };
+define block HEAP with size = 2K, alignment = 8 { };
+"P3":  place in [from 0x20002800 to 0x20007bfb] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+keep { section .intvec };
+keep { section .AAT };
+keep { section .binbootloader };
+keep { section .binstack };
+
+  Section              Kind        Address     Size  Object
+  -------              ----        -------     ----  ------
+".text_bootloader":                          0x4000
+  bootloader                    0x00000000   0x4000  <Block>
+    .binbootloader     const    0x00000000    0x31c  binbootloader.o [1]
+    bootloader         const    0x0000031c   0x3ce4  <Block tail>
+                              - 0x00004000   0x4000
+
+".text_stack":                              0x1cee3
+  stack                         0x00004000  0x1cee3  <Block>
+    .binstack          const    0x00004000  0x1cee3  binstack.o [1]
+                              - 0x00020ee3  0x1cee3
+
+".text_app":                                0x11c03
+  app                           0x00021000  0x11c03  <Block>
+    .AAT               const    0x00021000     0x80  main.o [2]
+    .intvec            const    0x00021100     0xc8  startup_efr32bg1b.o [2]
+    .text              ro code  0x000211c8    0xb28  pow64.o [6]
+    .text              ro code  0x00021cf0     0x20  DblCmpEq.o [6]
+    .text              ro code  0x00021d10     0x70  frexp.o [6]
+    .text              ro code  0x00021d80     0x2e  DblCmpLe.o [6]
+    .gatt_data         const    0x00021dae     0x16  gatt_db.o [2]
+    .text              ro code  0x00021dc4    0x1a2  DblMul.o [6]
+    .gatt_data         const    0x00021f66     0x12  gatt_db.o [2]
+    .text              ro code  0x00021f78    0x178  DblAdd.o [6]
+    .text              ro code  0x000220f0     0x3a  DblToS32.o [6]
+    .gatt_data         const    0x0002212a     0x16  gatt_db.o [2]
+    .text              ro code  0x00022140     0x22  S32ToDbl.o [6]
+    .gatt_data         const    0x00022162     0x16  gatt_db.o [2]
+    .text              ro code  0x00022178     0xe2  DblSub.o [6]
+    .gatt_data         const    0x0002225a     0x16  gatt_db.o [2]
+    .text              ro code  0x00022270    0x246  DblDiv.o [6]
+    .gatt_data         const    0x000224b6     0x16  gatt_db.o [2]
+    .text              ro code  0x000224cc     0x2e  DblCmpGe.o [6]
+    .gatt_data         const    0x000224fa     0x16  gatt_db.o [2]
+    .text              ro code  0x00022510    0x418  iar_Exp64.o [6]
+    .text              ro code  0x00022928    0x13a  ldexp.o [6]
+    .gatt_data         const    0x00022a62     0x16  gatt_db.o [2]
+    .gatt_data         const    0x00022a78     0x1c  gatt_db.o [2]
+    .gatt_data         const    0x00022a94    0x130  gatt_db.o [2]
+    .gatt_data         const    0x00022bc4      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bcc      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bd4      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bdc      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022be4      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bec      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bf4      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022bfc      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c04      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c0c      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c14      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c1c      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c24      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c2c      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c34      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c3c      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c44      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c4c      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00022c54    0x27c  gatt_db.o [2]
+    .gatt_data         const    0x00022ed0     0x24  gatt_db.o [2]
+    .gatt_data         const    0x00022ef4     0x10  gatt_db.o [2]
+    .gatt_header       const    0x00022f04     0x34  gatt_db.o [2]
+    .rodata            const    0x00022f38      0x4  em_i2c.o [2]
+    .rodata            const    0x00022f3c     0x1c  InitDevice.o [2]
+    .rodata            const    0x00022f58     0x14  InitDevice.o [2]
+    .rodata            const    0x00022f6c      0x8  InitDevice.o [2]
+    .rodata            const    0x00022f74     0x10  InitDevice.o [2]
+    .rodata            const    0x00022f84     0x24  InitDevice.o [2]
+    .rodata            const    0x00022fa8     0x18  InitDevice.o [2]
+    .rodata            const    0x00022fc0     0x10  InitDevice.o [2]
+    .rodata            const    0x00022fd0     0x10  InitDevice.o [2]
+    .rodata            const    0x00022fe0      0x4  main.o [2]
+    .rodata            const    0x00022fe4     0x24  main.o [2]
+    .rodata            const    0x00023008     0x38  main.o [2]
+    .rodata            const    0x00023040      0x4  mixer.o [2]
+    .rodata            const    0x00023044      0x4  mixer.o [2]
+    .rodata            const    0x00023048      0x4  mixer.o [2]
+    .rodata            const    0x0002304c      0x4  mixer.o [2]
+    .rodata            const    0x00023050      0x4  mixer.o [2]
+    .rodata            const    0x00023054   0x1400  mixer.o [2]
+    .rodata            const    0x00024454   0x1000  mixer.o [2]
+    .rodata            const    0x00025454     0x18  mixer.o [2]
+    .rodata            const    0x0002546c   0x1400  mixer.o [2]
+    .rodata            const    0x0002686c   0x1000  mixer.o [2]
+    .rodata            const    0x0002786c     0x18  mixer.o [2]
+    .rodata            const    0x00027884     0x28  gecko_bgapi_dfu.c.obj [4]
+    .rodata            const    0x000278ac     0x38  gecko_bgapi_endpoint.c.obj [4]
+    .rodata            const    0x000278e4     0x30  gecko_bgapi_flash.c.obj [4]
+    .rodata            const    0x00027914     0xa8  gecko_bgapi_gatt.c.obj [4]
+    .rodata            const    0x000279bc     0x50  gecko_bgapi_gatt_server.c.obj [4]
+    .rodata            const    0x00027a0c     0x28  gecko_bgapi_hardware.c.obj [4]
+    .rodata            const    0x00027a34     0x28  gecko_bgapi_le_connection.c.obj [4]
+    .rodata            const    0x00027a5c     0x78  gecko_bgapi_gap.c.obj [4]
+    .rodata            const    0x00027ad4     0x80  gecko_bgapi_sm.c.obj [4]
+    .rodata            const    0x00027b54     0x48  gecko_bgapi_system.c.obj [4]
+    .rodata            const    0x00027b9c     0x30  gecko_bgapi_test.c.obj [4]
+    .rodata            const    0x00027bcc      0xc  bgapi_sm.c.obj [4]
+    .rodata            const    0x00027bd8      0xc  bgapi_sm.c.obj [4]
+    .text              ro code  0x00027be4     0xac  dmadrv.o [2]
+    .text              ro code  0x00027c90    0x38c  em_adc.o [2]
+    .text              ro code  0x0002801c    0xcb8  em_cmu.o [2]
+    .text              ro code  0x00028cd4     0x5c  em_cryotimer.o [2]
+    .text              ro code  0x00028d30    0x22c  em_gpio.o [2]
+    .text              ro code  0x00028f5c    0x4b0  em_i2c.o [2]
+    .text              ro code  0x0002940c     0x34  em_msc.o [2]
+    .text              ro code  0x00029440     0x3c  em_rtcc.o [2]
+    .text              ro code  0x0002947c     0x48  em_system.o [2]
+    .text              ro code  0x000294c4    0x4f0  InitDevice.o [2]
+    .text              ro code  0x000299b4     0xa6  ABImemcpy.o [7]
+    .gatt_data         const    0x00029a5a     0x16  gatt_db.o [2]
+    Veneer             ro code  0x00029a70      0x8  - Linker created -
+    Veneer             ro code  0x00029a78      0x8  - Linker created -
+    .text              ro code  0x00029a80   0x137c  main.o [2]
+    .text              ro code  0x0002adfc     0x18  gecko_bgapi_dfu.c.obj [4]
+    .text              ro code  0x0002ae14     0x18  gecko_bgapi_system.c.obj [4]
+    .text              ro code  0x0002ae2c     0x18  gecko_bgapi_gap.c.obj [4]
+    .text              ro code  0x0002ae44     0x18  gecko_bgapi_le_connection.c.obj [4]
+    .text              ro code  0x0002ae5c     0x18  gecko_bgapi_gatt.c.obj [4]
+    .text              ro code  0x0002ae74     0x18  gecko_bgapi_gatt_server.c.obj [4]
+    .text              ro code  0x0002ae8c     0x18  gecko_bgapi_endpoint.c.obj [4]
+    .text              ro code  0x0002aea4     0x18  gecko_bgapi_hardware.c.obj [4]
+    .text              ro code  0x0002aebc     0x18  gecko_bgapi_flash.c.obj [4]
+    .text              ro code  0x0002aed4     0x18  gecko_bgapi_test.c.obj [4]
+    .text              ro code  0x0002aeec     0x18  gecko_bgapi_sm.c.obj [4]
+    .text              ro code  0x0002af04   0x4358  mixer.o [2]
+    .text              ro code  0x0002f25c     0x1a  U32ToDbl.o [6]
+    .gatt_data         const    0x0002f276     0x16  gatt_db.o [2]
+    .text              ro code  0x0002f28c      0x6  ABImemclr4.o [7]
+    .gatt_data         const    0x0002f292     0x16  gatt_db.o [2]
+    .text              ro code  0x0002f2a8     0x28  DblToU32.o [6]
+    .text              ro code  0x0002f2d0     0xc4  midi.o [2]
+    .text              ro code  0x0002f394     0x50  bgapi_dfu.c.obj [4]
+    .text              ro code  0x0002f3e4    0x16c  bgapi_system.c.obj [4]
+    .text              ro code  0x0002f550    0x280  bgapi_gap.c.obj [4]
+    .text              ro code  0x0002f7d0     0xd4  bgapi_le_connection.c.obj [4]
+    .text              ro code  0x0002f8a4    0x4bc  bgapi_gatt_lib.c.obj [4]
+    .text              ro code  0x0002fd60    0x192  bgapi_endpoint.c.obj [4]
+    .gatt_data         const    0x0002fef2     0x16  gatt_db.o [2]
+    .text              ro code  0x0002ff08    0x184  bgapi_hardware.c.obj [4]
+    .text              ro code  0x0003008c    0x1a0  bgapi_ps.c.obj [4]
+    .text              ro code  0x0003022c    0x318  bgapi_test_lib.c.obj [4]
+    .text              ro code  0x00030544    0x2b8  bgapi_sm.c.obj [4]
+    .text              ro code  0x000307fc    0x1c8  SigmaStudioFW.o [2]
+    .text              ro code  0x000309c4     0x3a  math_wrappers64.o [6]
+    .gatt_data         const    0x000309fe     0x16  gatt_db.o [2]
+    .text              ro code  0x00030a14    0x102  sqrt.o [6]
+    .gatt_data         const    0x00030b16     0x16  gatt_db.o [2]
+    .text              ro code  0x00030b2c     0x32  ABImemset48.o [7]
+    .text              ro code  0x00030b5e      0xc  memcpy.o [7]
+    .gatt_data         const    0x00030b6a     0x16  gatt_db.o [2]
+    .text              ro code  0x00030b80    0xdc8  gatt_client.c.obj [4]
+    .text              ro code  0x00031948    0x210  ubt_gatt_client.c.obj [4]
+    .text              ro code  0x00031b58    0x22c  tanh64.o [6]
+    .text              ro code  0x00031d84    0x44c  cos_sin64.o [6]
+    .text              ro code  0x000321d0    0x444  att_client.c.obj [4]
+    .text              ro code  0x00032614     0x68  memcmp.o [7]
+    .text              ro code  0x0003267c     0x4c  exp64.o [6]
+    .text              ro code  0x000326c8     0x22  fpinit_M.o [6]
+    .gatt_data         const    0x000326ea     0x16  gatt_db.o [2]
+    .text              ro code  0x00032700     0x1a  cmain.o [7]
+    .text              ro code  0x0003271a      0x4  low_level_init.o [5]
+    .gatt_data         const    0x0003271e     0x12  gatt_db.o [2]
+    .text              ro code  0x00032730     0x28  data_init.o [7]
+    .text              ro code  0x00032758      0x4  exit.o [5]
+    .text              ro code  0x0003275c      0xa  cexit.o [7]
+    .gatt_data         const    0x00032766     0x16  gatt_db.o [2]
+    .text              ro code  0x0003277c     0x14  exit.o [8]
+    .gatt_data         const    0x00032790     0x12  gatt_db.o [2]
+    .gatt_data         const    0x000327a2      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327aa      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327b2      0xc  gatt_db.o [2]
+    .gatt_data         const    0x000327be      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327c6     0x16  gatt_db.o [2]
+    .gatt_data         const    0x000327dc      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327e4      0x4  gatt_db.o [2]
+    .gatt_data         const    0x000327e8      0x4  gatt_db.o [2]
+    .gatt_data         const    0x000327ec      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327f4      0x8  gatt_db.o [2]
+    .gatt_data         const    0x000327fc      0x4  gatt_db.o [2]
+    .gatt_data         const    0x00032800      0x8  gatt_db.o [2]
+    .gatt_data         const    0x00032808      0x4  gatt_db.o [2]
+    .rodata            const    0x0003280c      0x2  mixer.o [2]
+    .rodata            const    0x0003280e      0x2  mixer.o [2]
+    .rodata            const    0x00032810      0x2  mixer.o [2]
+    .rodata            const    0x00032812      0x2  mixer.o [2]
+    .rodata            const    0x00032814      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x00032816      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x00032818      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x0003281a      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x0003281c      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x0003281e      0x2  gatt_client.c.obj [4]
+    .rodata            const    0x00032820      0x2  gatt_client.c.obj [4]
+    .text              ro code  0x00032822      0xc  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003282e      0xc  cstartup_M.o [7]
+    .text              ro code  0x0003283a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003283c      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003283e      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032840      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032842      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032844      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032846      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032848      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003284a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003284c      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003284e      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032850      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032852      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032854      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032856      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032858      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003285a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003285c      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003285e      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032860      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032862      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032864      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032866      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032868      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003286a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003286c      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003286e      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032870      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032872      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032874      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032876      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032878      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003287a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003287c      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003287e      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032880      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032882      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032884      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032886      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x00032888      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003288a      0x2  startup_efr32bg1b.o [2]
+    .text              ro code  0x0003288c     0x40  zero_init3.o [7]
+    .text              ro code  0x000328cc     0x7a  lz77_init_single.o [7]
+    .iar.init_table    const    0x00032948     0x20  - Linker created -
+    .gatt_data         const    0x00032968      0x1  gatt_db.o [2]
+    .rodata            const    0x00032969      0x1  InitDevice.o [2]
+    .rodata            const    0x0003296a      0x0  zero_init3.o [7]
+    .rodata            const    0x0003296a      0x0  lz77_init_single.o [7]
+    Initializer bytes  const    0x0003296a    0x299  <for P3-1>
+                              - 0x00032c03  0x11c03
+
+"P3", part 1 of 3:                            0x35e
+  P3-1                          0x20002800    0x35e  <Init block>
+    .data              inited   0x20002800      0x8  main.o [2]
+    .data              inited   0x20002808      0x8  main.o [2]
+    .data              inited   0x20002810      0x4  em_cmu.o [2]
+    .data              inited   0x20002814      0x8  gatt_db.o [2]
+    .textrw            inited   0x2000281c    0x32c  em_msc.o [2]
+    .data              inited   0x20002b48     0x16  gatt_db.o [2]
+                              - 0x20002b5e    0x35e
+
+"P3", part 2 of 3:                           0x2f7c
+  .bss                 zero     0x20002b60   0x18d0  main.o [2]
+  .bss                 zero     0x20004430   0x1404  SigmaStudioFW.o [2]
+  .bss                 zero     0x20005834    0x100  dmadrv.o [2]
+  .bss                 zero     0x20005934     0xa0  dmadrv.o [2]
+  .bss                 zero     0x200059d4     0x48  main.o [2]
+  .bss                 zero     0x20005a1c     0x14  gatt_db.o [2]
+  .bss                 zero     0x20005a30     0x10  em_i2c.o [2]
+  .bss                 zero     0x20005a40     0x10  SigmaStudioFW.o [2]
+  .bss                 zero     0x20005a50      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a58      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a60      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a68      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a70      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a78      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a80      0x8  gatt_db.o [2]
+  .bss                 zero     0x20005a88      0x8  midi.o [2]
+  .bss                 zero     0x20005a90      0x8  midi.o [2]
+  .bss                 zero     0x20005a98      0x8  midi.o [2]
+  .bss                 zero     0x20005aa0      0x8  mixer.o [2]
+  .bss                 zero     0x20005aa8      0x4  gatt_db.o [2]
+  .bss                 zero     0x20005aac      0x4  mixer.o [2]
+  .bss                 zero     0x20005ab0      0x4  mixer.o [2]
+  .bss                 zero     0x20005ab4      0x4  SigmaStudioFW.o [2]
+  .bss                 zero     0x20005ab8      0x4  bgapi_ps.c.obj [4]
+  .bss                 zero     0x20005abc      0x4  bgapi_hardware.c.obj [4]
+  .bss                 zero     0x20005ac0      0x4  bgapi_sm.c.obj [4]
+  .bss                 zero     0x20005ac4      0x4  bgapi_system.c.obj [4]
+  .bss                 zero     0x20005ac8      0x4  bgapi_test_lib.c.obj [4]
+  .bss                 zero     0x20005acc      0x4  bgapi_test_lib.c.obj [4]
+  .bss                 zero     0x20005ad0      0x2  gatt_db.o [2]
+  .bss                 zero     0x20005ad2      0x2  bgapi_gap.c.obj [4]
+  .bss                 zero     0x20005ad4      0x1  gatt_db.o [2]
+  .bss                 zero     0x20005ad5      0x1  gatt_db.o [2]
+  .bss                 zero     0x20005ad6      0x1  gatt_db.o [2]
+  .bss                 zero     0x20005ad7      0x1  gatt_db.o [2]
+  .bss                 zero     0x20005ad8      0x1  gatt_db.o [2]
+  .bss                 zero     0x20005ad9      0x1  main.o [2]
+  .bss                 zero     0x20005ada      0x1  main.o [2]
+  .bss                 zero     0x20005adb      0x1  main.o [2]
+                              - 0x20005adc   0x2f7c
+
+"P3", part 3 of 3:                            0x800
+  CSTACK                        0x20005ae0    0x800  <Block>
+    CSTACK             uninit   0x20005ae0    0x800  <Block tail>
+                              - 0x200062e0    0x800
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x2f7c:
+          0x20002b60  0x2f7c
+
+Copy/lz77 (__iar_lz77_init_single3)
+    1 source range, total size 0x299 (77% of destination):
+          0x0003296a   0x299
+    1 destination range, total size 0x35e:
+          0x20002800   0x35e
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                           ro code  rw code  ro data  rw data
+    ------                           -------  -------  -------  -------
+C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI: [1]
+    binbootloader.o                                        796
+    binstack.o                                         118 499
+    -------------------------------------------------------------------
+    Total:                                             119 295
+
+C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj: [2]
+    InitDevice.o                       1 264               165
+    SigmaStudioFW.o                      456                      5 144
+    dmadrv.o                             172                        416
+    em_adc.o                             908
+    em_cmu.o                           3 256                 3        4
+    em_cryotimer.o                        92
+    em_gpio.o                            556
+    em_i2c.o                           1 200                 4       16
+    em_msc.o                              52      812      627
+    em_rtcc.o                             60
+    em_system.o                           72
+    gatt_db.o                                            1 752      117
+    main.o                             4 988               236    6 443
+    midi.o                               196                         24
+    mixer.o                           17 240            18 508       16
+    startup_efr32bg1b.o                   94               200
+    -------------------------------------------------------------------
+    Total:                            30 606      812   21 495   12 180
+
+command line: [3]
+    -------------------------------------------------------------------
+    Total:
+
+bgapi.a: [4]
+    att_client.c.obj                   1 092
+    bgapi_dfu.c.obj                       80
+    bgapi_endpoint.c.obj                 402
+    bgapi_gap.c.obj                      640                          2
+    bgapi_gatt_lib.c.obj               1 212
+    bgapi_hardware.c.obj                 388                          4
+    bgapi_le_connection.c.obj            212
+    bgapi_ps.c.obj                       416                          4
+    bgapi_sm.c.obj                       696                24        4
+    bgapi_system.c.obj                   364                          4
+    bgapi_test_lib.c.obj                 792                          8
+    gatt_client.c.obj                  3 528                14
+    gecko_bgapi_dfu.c.obj                 24                40
+    gecko_bgapi_endpoint.c.obj            24                56
+    gecko_bgapi_flash.c.obj               24                48
+    gecko_bgapi_gap.c.obj                 24               120
+    gecko_bgapi_gatt.c.obj                24               168
+    gecko_bgapi_gatt_server.c.obj         24                80
+    gecko_bgapi_hardware.c.obj            24                40
+    gecko_bgapi_le_connection.c.obj       24                40
+    gecko_bgapi_sm.c.obj                  24               128
+    gecko_bgapi_system.c.obj              24                72
+    gecko_bgapi_test.c.obj                24                48
+    ubt_gatt_client.c.obj                528
+    -------------------------------------------------------------------
+    Total:                            10 614               878       26
+
+dl7M_tln.a: [5]
+    exit.o                                 4
+    low_level_init.o                       4
+    -------------------------------------------------------------------
+    Total:                                 8
+
+m7M_tls.a: [6]
+    DblAdd.o                             376
+    DblCmpEq.o                            32
+    DblCmpGe.o                            46
+    DblCmpLe.o                            46
+    DblDiv.o                             582
+    DblMul.o                             418
+    DblSub.o                             226
+    DblToS32.o                            58
+    DblToU32.o                            40
+    S32ToDbl.o                            34
+    U32ToDbl.o                            26
+    cos_sin64.o                        1 100
+    exp64.o                               76
+    fpinit_M.o                            34
+    frexp.o                              112
+    iar_Exp64.o                        1 048
+    ldexp.o                              314
+    math_wrappers64.o                     58
+    pow64.o                            2 856
+    sqrt.o                               258
+    tanh64.o                             556
+    -------------------------------------------------------------------
+    Total:                             8 296
+
+rt7M_tl.a: [7]
+    ABImemclr4.o                           6
+    ABImemcpy.o                          166
+    ABImemset48.o                         50
+    cexit.o                               10
+    cmain.o                               26
+    cstartup_M.o                          12
+    data_init.o                           40
+    lz77_init_single.o                   122
+    memcmp.o                             104
+    memcpy.o                              12
+    zero_init3.o                          64
+    -------------------------------------------------------------------
+    Total:                               612
+
+shb_l.a: [8]
+    exit.o                                20
+    -------------------------------------------------------------------
+    Total:                                20
+
+    Gaps                                                   130
+    Linker created                        16            15 620    2 048
+-----------------------------------------------------------------------
+    Grand Total:                      50 172      812  157 418   14 254
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address    Size  Type      Object
+-----                      -------    ----  ----      ------
+.iar.init_table$$Base   0x00032948           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00032968           --   Gb  - Linker created -
+?main                   0x00032701          Code  Gb  cmain.o [7]
+ADC0_enter_DefaultMode_from_RESET
+                        0x00029743    0xa0  Code  Gb  InitDevice.o [2]
+ADC_DataScanGet         0x00029eb1     0x4  Code  Lc  main.o [2]
+ADC_Init                0x00027deb    0x76  Code  Gb  em_adc.o [2]
+ADC_InitScan            0x00027ed5    0xba  Code  Gb  em_adc.o [2]
+ADC_IntClear            0x00027c91     0x4  Code  Lc  em_adc.o [2]
+ADC_LoadDevinfoCal      0x00027ccd   0x11e  Code  Lc  em_adc.o [2]
+ADC_PrescaleCalc        0x00027f8f    0x3c  Code  Gb  em_adc.o [2]
+ADC_ScanSingleEndedInputAdd
+                        0x00027e61    0x74  Code  Gb  em_adc.o [2]
+ADC_Start               0x00029eb5     0x4  Code  Lc  main.o [2]
+ADC_TimebaseCalc        0x00027fcb    0x28  Code  Gb  em_adc.o [2]
+AppAddressTable         0x00021000    0x80  Data  Gb  main.o [2]
+BUS_RegBitRead          0x0002802b    0x10  Code  Lc  em_cmu.o [2]
+BUS_RegBitRead          0x00029d07    0x10  Code  Lc  main.o [2]
+BUS_RegBitWrite         0x00027c95     0xe  Code  Lc  em_adc.o [2]
+BUS_RegBitWrite         0x0002801d     0xe  Code  Lc  em_cmu.o [2]
+BUS_RegBitWrite         0x00028cd5     0xe  Code  Lc  em_cryotimer.o [2]
+BUS_RegBitWrite         0x00028f5d     0xe  Code  Lc  em_i2c.o [2]
+BUS_RegBitWrite         0x000294d1     0xe  Code  Lc  InitDevice.o [2]
+BUS_RegMaskedClear      0x00027cab     0x8  Code  Lc  em_adc.o [2]
+BUS_RegMaskedClear      0x00028043     0x8  Code  Lc  em_cmu.o [2]
+BUS_RegMaskedClear      0x00028d39     0x8  Code  Lc  em_gpio.o [2]
+BUS_RegMaskedClear      0x00028f73     0x8  Code  Lc  em_i2c.o [2]
+BUS_RegMaskedClear      0x00029d1f     0x8  Code  Lc  main.o [2]
+BUS_RegMaskedSet        0x00027ca3     0x8  Code  Lc  em_adc.o [2]
+BUS_RegMaskedSet        0x0002803b     0x8  Code  Lc  em_cmu.o [2]
+BUS_RegMaskedSet        0x00028d31     0x8  Code  Lc  em_gpio.o [2]
+BUS_RegMaskedSet        0x00028f6b     0x8  Code  Lc  em_i2c.o [2]
+BUS_RegMaskedSet        0x00029d17     0x8  Code  Lc  main.o [2]
+BUS_RegMaskedWrite      0x00027cb3    0x1a  Code  Lc  em_adc.o [2]
+BUS_RegMaskedWrite      0x0002804b    0x1a  Code  Lc  em_cmu.o [2]
+BUS_RegMaskedWrite      0x00028f7b    0x1a  Code  Lc  em_i2c.o [2]
+CHIP_Init               0x000294df    0x9c  Code  Lc  InitDevice.o [2]
+CMU_ClockEnable         0x000282c9    0x86  Code  Gb  em_cmu.o [2]
+CMU_ClockFreqGet        0x0002834f   0x126  Code  Gb  em_cmu.o [2]
+CMU_ClockSelectGet      0x00028481   0x142  Code  Gb  em_cmu.o [2]
+CMU_ClockSelectSet      0x000285f5   0x1d4  Code  Gb  em_cmu.o [2]
+CMU_HFXOAutostartEnable
+                        0x000287dd    0x66  Code  Gb  em_cmu.o [2]
+CMU_HFXOInit            0x00028859    0xd8  Code  Gb  em_cmu.o [2]
+CMU_LFXOInit            0x00028931    0x42  Code  Gb  em_cmu.o [2]
+CMU_Log2ToDiv           0x00028065     0x8  Code  Lc  em_cmu.o [2]
+CMU_OscillatorEnable    0x0002898d   0x132  Code  Gb  em_cmu.o [2]
+CMU_OscillatorTuningGet
+                        0x00028ac1    0x40  Code  Gb  em_cmu.o [2]
+CMU_OscillatorTuningOptimize
+                        0x00028c43    0x32  Code  Gb  em_cmu.o [2]
+CMU_OscillatorTuningSet
+                        0x00028b05    0xdc  Code  Gb  em_cmu.o [2]
+CMU_OscillatorTuningWait
+                        0x00028be1    0x62  Code  Gb  em_cmu.o [2]
+CMU_UpdateWaitStates    0x000281af    0x10  Code  Gb  em_cmu.o [2]
+CMU_enter_DefaultMode_from_RESET
+                        0x00029635   0x10e  Code  Gb  InitDevice.o [2]
+CORE_EnterAtomic {Abs}  0x0000a1ab     0x8  Code  Gb  stack.a [1]
+CORE_ExitAtomic {Abs}   0x0000a1b3     0x6  Code  Gb  stack.a [1]
+CRYOTIMER_CounterGet    0x0002f2d1     0x6  Code  Lc  midi.o [2]
+CRYOTIMER_EM4WakeupEnable
+                        0x00028ce3    0x12  Code  Lc  em_cryotimer.o [2]
+CRYOTIMER_Init          0x00028cf5    0x2e  Code  Gb  em_cryotimer.o [2]
+CRYOTIMER_enter_DefaultMode_from_RESET
+                        0x0002988f    0x36  Code  Gb  InitDevice.o [2]
+CSTACK$$Base            0x20005ae0           --   Gb  - Linker created -
+CSTACK$$Limit           0x200062e0          Data  Gb  - Linker created -
+EMU_DCDCInit {Abs}      0x00019123   0x14c  Code  Gb  stack.a [1]
+EMU_DCDCModeSet {Abs}   0x00019063    0x64  Code  Gb  stack.a [1]
+EMU_EM23Init {Abs}      0x00018f9b    0x18  Code  Gb  stack.a [1]
+EMU_EM4Init {Abs}       0x00018fb3    0x34  Code  Gb  stack.a [1]
+EMU_IRQHandler {Abs}    0x00019ec1     0x2  Code  Gb  stack.a [1]
+EMU_enter_DefaultMode_from_RESET
+                        0x000295af    0x84  Code  Gb  InitDevice.o [2]
+GPCRC_enter_DefaultMode_from_RESET
+                        0x0002988b     0x2  Code  Gb  InitDevice.o [2]
+GPIO_PinInGet           0x00029d27    0x82  Code  Lc  main.o [2]
+GPIO_PinModeSet         0x00028e49   0x110  Code  Gb  em_gpio.o [2]
+GPIO_PinOutClear        0x00028d41    0x84  Code  Lc  em_gpio.o [2]
+GPIO_PinOutClear        0x00029da9    0x84  Code  Lc  main.o [2]
+GPIO_PinOutSet          0x00028dc5    0x84  Code  Lc  em_gpio.o [2]
+GPIO_PinOutSet          0x00029e2d    0x84  Code  Lc  main.o [2]
+HardFault_Handler       0x0003283d     0x2  Code  Wk  startup_efr32bg1b.o [2]
+I2C0_enter_DefaultMode_from_RESET
+                        0x00029825    0x66  Code  Gb  InitDevice.o [2]
+I2CSPM_Transfer         0x000307fd    0x2c  Code  Gb  SigmaStudioFW.o [2]
+I2C_BusFreqSet          0x00028f95    0xcc  Code  Gb  em_i2c.o [2]
+I2C_Init                0x00029061    0x4c  Code  Gb  em_i2c.o [2]
+I2C_Transfer            0x000290ad   0x2b8  Code  Gb  em_i2c.o [2]
+I2C_TransferInit        0x00029365    0x7e  Code  Gb  em_i2c.o [2]
+LDMA_IRQHandler         0x00027be5    0x96  Code  Gb  dmadrv.o [2]
+LDMA_enter_DefaultMode_from_RESET
+                        0x0002988d     0x2  Code  Gb  InitDevice.o [2]
+LFXO_enter_DefaultMode_from_RESET
+                        0x00029633     0x2  Code  Gb  InitDevice.o [2]
+MSC_Deinit              0x00029423    0x14  Code  Gb  em_msc.o [2]
+MSC_ErasePage           0x20002a79    0x96  Code  Gb  em_msc.o [2]
+MSC_Init                0x0002940d    0x16  Code  Gb  em_msc.o [2]
+MSC_LoadVerifyAddress   0x2000281d    0x54  Code  Gb  em_msc.o [2]
+MSC_LoadWriteData       0x20002871   0x138  Code  Gb  em_msc.o [2]
+MSC_WriteWord           0x20002b0f    0x16  Code  Gb  em_msc.o [2]
+MSC_WriteWordI          0x200029a9    0xd0  Code  Gb  em_msc.o [2]
+NMI_Handler             0x0003283b     0x2  Code  Wk  startup_efr32bg1b.o [2]
+PORTIO_enter_DefaultMode_from_RESET
+                        0x00029975    0x40  Code  Gb  InitDevice.o [2]
+PRS_enter_DefaultMode_from_RESET
+                        0x000298c5    0x12  Code  Gb  InitDevice.o [2]
+Param_Data_IC_1         0x00024454  0x1000  Data  Gb  mixer.o [2]
+Param_Data_IC_2         0x0002686c  0x1000  Data  Gb  mixer.o [2]
+Program_Data_IC_1       0x00023054  0x1400  Data  Gb  mixer.o [2]
+Program_Data_IC_2       0x0002546c  0x1400  Data  Gb  mixer.o [2]
+R0_COREREGISTER_IC_1_Default
+                        0x0003280c     0x2  Data  Gb  mixer.o [2]
+R0_COREREGISTER_IC_2_Default
+                        0x00032810     0x2  Data  Gb  mixer.o [2]
+R3_HWCONFIGURATION_IC_1_Default
+                        0x00025454    0x18  Data  Gb  mixer.o [2]
+R3_HWCONFIGURATION_IC_2_Default
+                        0x0002786c    0x18  Data  Gb  mixer.o [2]
+R4_COREREGISTER_IC_1_Default
+                        0x0003280e     0x2  Data  Gb  mixer.o [2]
+R4_COREREGISTER_IC_2_Default
+                        0x00032812     0x2  Data  Gb  mixer.o [2]
+RTCC_Init               0x00029441    0x38  Code  Gb  em_rtcc.o [2]
+RTCC_enter_DefaultMode_from_RESET
+                        0x000297e3    0x42  Code  Gb  InitDevice.o [2]
+Region$$Table$$Base     0x00032948           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00032968           --   Gb  - Linker created -
+Reset_Handler           0x00032823     0xc  Code  Wk  startup_efr32bg1b.o [2]
+SIGMA_SAFELOAD_WRITE_ADDR
+                        0x0003088f    0x5e  Code  Gb  SigmaStudioFW.o [2]
+SIGMA_SAFELOAD_WRITE_ADDR::i2c_write_data
+                        0x20005ab4     0x4  Data  Lc  SigmaStudioFW.o [2]
+SIGMA_SAFELOAD_WRITE_DATA
+                        0x000308ed    0x6c  Code  Gb  SigmaStudioFW.o [2]
+SIGMA_SAFELOAD_WRITE_DATA::i2c_write_data
+                        0x20005a40    0x10  Data  Lc  SigmaStudioFW.o [2]
+SIGMA_SAFELOAD_WRITE_TRANSFER_BIT
+                        0x00030959    0x56  Code  Gb  SigmaStudioFW.o [2]
+SIGMA_WRITE_REGISTER_BLOCK
+                        0x00030829    0x66  Code  Gb  SigmaStudioFW.o [2]
+SYSTEM_ChipRevisionGet  0x0002947d    0x36  Code  Gb  em_system.o [2]
+SYSTEM_GetProdRev       0x000294c5     0xc  Code  Lc  InitDevice.o [2]
+SystemCoreClock {Abs}   0x2000001c     0x4  Data  Gb  stack.a [1]
+SystemCoreClockGet {Abs}
+                        0x000172cd    0x1a  Code  Gb  stack.a [1]
+SystemHFClockGet {Abs}  0x000172eb    0x36  Code  Gb  stack.a [1]
+SystemHFXOClockGet {Abs}
+                        0x00017321     0x6  Code  Gb  stack.a [1]
+SystemHFXOClockSet {Abs}
+                        0x00017327    0x16  Code  Gb  stack.a [1]
+SystemInit {Abs}        0x0001733d    0x2e  Code  Gb  stack.a [1]
+SystemLFRCOClockGet {Abs}
+                        0x0001736b     0x6  Code  Gb  stack.a [1]
+SystemLFXOClockGet {Abs}
+                        0x00017377     0x6  Code  Gb  stack.a [1]
+SystemLFXOClockSet {Abs}
+                        0x0001737d    0x16  Code  Gb  stack.a [1]
+SystemMaxCoreClockGet {Abs}
+                        0x000172e7     0x4  Code  Gb  stack.a [1]
+SystemULFRCOClockGet {Abs}
+                        0x00017371     0x6  Code  Gb  stack.a [1]
+__aeabi_cdcmpeq         0x00021cf1          Code  Gb  DblCmpEq.o [6]
+__aeabi_cdcmple         0x00021d81          Code  Gb  DblCmpLe.o [6]
+__aeabi_cdrcmple        0x000224cd          Code  Gb  DblCmpGe.o [6]
+__aeabi_d2iz            0x000220f1          Code  Gb  DblToS32.o [6]
+__aeabi_d2uiz           0x0002f2a9          Code  Gb  DblToU32.o [6]
+__aeabi_dadd            0x00021f79          Code  Gb  DblAdd.o [6]
+__aeabi_ddiv            0x00022271          Code  Gb  DblDiv.o [6]
+__aeabi_dmul            0x00021dc5          Code  Gb  DblMul.o [6]
+__aeabi_dsub            0x00022179          Code  Gb  DblSub.o [6]
+__aeabi_i2d             0x00022141          Code  Gb  S32ToDbl.o [6]
+__aeabi_memclr4         0x0002f28d          Code  Gb  ABImemclr4.o [7]
+__aeabi_memcpy          0x000299b5          Code  Gb  ABImemcpy.o [7]
+__aeabi_memcpy4         0x000299d5          Code  Gb  ABImemcpy.o [7]
+__aeabi_memcpy8         0x000299d5          Code  Gb  ABImemcpy.o [7]
+__aeabi_ui2d            0x0002f25d          Code  Gb  U32ToDbl.o [6]
+__cmain                 0x00032701          Code  Gb  cmain.o [7]
+__exit                  0x0003277d    0x14  Code  Gb  exit.o [8]
+__iar_Exp64             0x00022511   0x3b8  Code  Gb  iar_Exp64.o [6]
+__iar_Memset4_word      0x00030b2d          Code  Gb  ABImemset48.o [7]
+__iar_Memset8_word      0x00030b2d          Code  Gb  ABImemset48.o [7]
+__iar_Pow64             0x000211c9   0x654  Code  Lc  pow64.o [6]
+__iar_Sin64             0x00031d85   0x3b2  Code  Lc  cos_sin64.o [6]
+__iar_cos64             0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+__iar_cos_medium        0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+__iar_cos_medium64      0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+__iar_cos_mediuml       0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+__iar_dadd              0x00022189          Code  Gb  DblSub.o [6]
+__iar_data_init3        0x00032731    0x28  Code  Gb  data_init.o [7]
+__iar_dsub              0x00021f89          Code  Gb  DblAdd.o [6]
+__iar_dsubStart         0x00021f9b          Code  Gb  DblAdd.o [6]
+__iar_exp64             0x0003267d    0x4c  Code  Gb  exp64.o [6]
+__iar_exp_medium        0x0003267d    0x4c  Code  Gb  exp64.o [6]
+__iar_exp_medium64      0x0003267d    0x4c  Code  Gb  exp64.o [6]
+__iar_exp_mediuml       0x0003267d    0x4c  Code  Gb  exp64.o [6]
+__iar_frexp             0x00021d1d          Code  Gb  frexp.o [6]
+__iar_frexpl            0x00021d1d          Code  Gb  frexp.o [6]
+__iar_init_vfp          0x000326c9          Code  Gb  fpinit_M.o [6]
+__iar_ldexp64           0x00022929          Code  Gb  ldexp.o [6]
+__iar_lz77_init_single3
+                        0x000328cd    0x7a  Code  Gb  lz77_init_single.o [7]
+__iar_pow64             0x000218bd    0x14  Code  Gb  pow64.o [6]
+__iar_pow_medium        0x000218bd    0x14  Code  Gb  pow64.o [6]
+__iar_pow_medium64      0x000218bd    0x14  Code  Gb  pow64.o [6]
+__iar_pow_mediuml       0x000218bd    0x14  Code  Gb  pow64.o [6]
+__iar_program_start     0x0003282f          Code  Gb  cstartup_M.o [7]
+__iar_scalbln64         0x00022929          Code  Gb  ldexp.o [6]
+__iar_scalbn64          0x00022929          Code  Gb  ldexp.o [6]
+__iar_sin64             0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+__iar_sin_medium        0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+__iar_sin_medium64      0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+__iar_sin_mediuml       0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+__iar_softfp___iar_frexp64
+                        0x00021d11          Code  Gb  frexp.o [6]
+__iar_softfp_frexp      0x00021d11          Code  Gb  frexp.o [6]
+__iar_softfp_frexpl     0x00021d11          Code  Gb  frexp.o [6]
+__iar_sqrt64            0x00030a25          Code  Gb  sqrt.o [6]
+__iar_systems$$module {Abs}
+                        0x00000001          Data  Gb  command line/config [3]
+__iar_tanh64            0x00031bed   0x14a  Code  Gb  tanh64.o [6]
+__iar_unaligned___aeabi_memcpy {Abs}
+                        0x000071f1          Code  Gb  stack.a [1]
+__iar_unaligned___aeabi_memcpy4 {Abs}
+                        0x00007211          Code  Gb  stack.a [1]
+__iar_unaligned___aeabi_memcpy8 {Abs}
+                        0x00007211          Code  Gb  stack.a [1]
+__iar_unaligned___aeabi_memmove {Abs}
+                        0x0000a1b9          Code  Gb  stack.a [1]
+__iar_unaligned___aeabi_memmove4 {Abs}
+                        0x0000a1b9          Code  Gb  stack.a [1]
+__iar_unaligned___aeabi_memmove8 {Abs}
+                        0x0000a1b9          Code  Gb  stack.a [1]
+__iar_unaligned_memcmp {Abs}
+                        0x0000890d          Code  Gb  stack.a [1]
+__iar_vfp___iar_sqrt64  0x00030a15          Code  Gb  sqrt.o [6]
+__iar_vfp_cos           0x000309e7     0xc  Code  Gb  math_wrappers64.o [6]
+__iar_vfp_pow           0x000309cb    0x10  Code  Gb  math_wrappers64.o [6]
+__iar_vfp_sin           0x000309f3     0xc  Code  Gb  math_wrappers64.o [6]
+__iar_vfp_sqrt          0x00030a15          Code  Gb  sqrt.o [6]
+__iar_vfp_sqrtl         0x00030a15          Code  Gb  sqrt.o [6]
+__iar_vfp_tanh          0x000309db     0xc  Code  Gb  math_wrappers64.o [6]
+__iar_zero_init3        0x0003288d    0x40  Code  Gb  zero_init3.o [7]
+__low_level_init        0x0003271b     0x4  Code  Gb  low_level_init.o [5]
+__vector_table          0x00021100    0xc8  Data  Gb  startup_efr32bg1b.o [2]
+_call_main              0x0003270d          Code  Gb  cmain.o [7]
+_exit                   0x0003275d          Code  Gb  cexit.o [7]
+_main                   0x00032717          Code  Gb  cmain.o [7]
+abort_long_write        0x00030dd1    0x10  Code  Lc  gatt_client.c.obj [4]
+acl_find_by_addr {Abs}  0x00006945    0x2a  Code  Gb  stack.a [1]
+acl_find_by_index {Abs}
+                        0x0000691d    0x16  Code  Gb  stack.a [1]
+adcAsyncClkGet          0x000280f7    0x44  Code  Lc  em_cmu.o [2]
+alloc_params_data       0x00030cb3    0x32  Code  Lc  gatt_client.c.obj [4]
+app$$Base               0x00021000           --   Gb  - Linker created -
+app$$Limit              0x00032c03           --   Gb  - Linker created -
+approx                  0x00031b59    0x94  Code  Lc  tanh64.o [6]
+att_alloc_pdu {Abs}     0x0000d057    0x10  Code  Gb  stack.a [1]
+att_alloc_pdu_copy_data {Abs}
+                        0x0000d067    0x3a  Code  Gb  stack.a [1]
+att_gatt_client_handler
+                        0x000324b1   0x12a  Code  Gb  att_client.c.obj [4]
+att_handle_error_response
+                        0x000323f9    0xb8  Code  Lc  att_client.c.obj [4]
+att_send_execute_write_request
+                        0x00032311    0x14  Code  Gb  att_client.c.obj [4]
+att_send_find_by_type_value_request
+                        0x000321df    0x30  Code  Gb  att_client.c.obj [4]
+att_send_find_information_request
+                        0x000321d1     0xe  Code  Gb  att_client.c.obj [4]
+att_send_handle_value_confirmation
+                        0x00032325     0xc  Code  Gb  att_client.c.obj [4]
+att_send_pdu {Abs}      0x0000d0cd    0x10  Code  Gb  stack.a [1]
+att_send_prepare_write_request
+                        0x000322d7    0x3a  Code  Gb  att_client.c.obj [4]
+att_send_read_blob_request
+                        0x0003222d     0xc  Code  Gb  att_client.c.obj [4]
+att_send_read_by_group_type_request
+                        0x00032275     0xe  Code  Gb  att_client.c.obj [4]
+att_send_read_by_type_request
+                        0x0003220f     0xe  Code  Gb  att_client.c.obj [4]
+att_send_read_multiple_request
+                        0x00032253    0x22  Code  Gb  att_client.c.obj [4]
+att_send_read_request   0x0003221d    0x10  Code  Gb  att_client.c.obj [4]
+att_send_write_command  0x000322a3    0x10  Code  Gb  att_client.c.obj [4]
+att_send_write_request  0x00032291    0x12  Code  Gb  att_client.c.obj [4]
+auxClkGet               0x000280b3     0x8  Code  Lc  em_cmu.o [2]
+auxHfrcoFreq            0x20002810     0x4  Data  Lc  em_cmu.o [2]
+bg_free {Abs}           0x0000a1a7     0x4  Code  Gb  stack.a [1]
+bg_gattdb_data          0x00022f04    0x34  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_adv_uuid128_map
+                        0x00022ef4    0x10  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_adv_uuid16_map
+                        0x00032968     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_0
+                        0x00032808     0x4  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_1
+                        0x00032800     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_10
+                        0x000327dc     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_11
+                        0x000327c6    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_12
+                        0x000327be     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_13
+                        0x000327b2     0xc  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_14
+                        0x000327aa     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_15
+                        0x000327a2     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_16
+                        0x00032790    0x12  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_17
+                        0x00032766    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_18
+                        0x00022c3c     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_19
+                        0x0003271e    0x12  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_2
+                        0x00022c4c     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_20
+                        0x000326ea    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_21
+                        0x00022c34     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_21_data
+                        0x20005ad8     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_22
+                        0x00030b6a    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_23
+                        0x00022c2c     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_23_data
+                        0x20005ad7     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_24
+                        0x00030b16    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_25
+                        0x00022c24     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_25_data
+                        0x20005ad6     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_26
+                        0x000309fe    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_27
+                        0x00022c1c     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_27_data
+                        0x20005a80     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_28
+                        0x0002fef2    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_29
+                        0x00022c14     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_29_data
+                        0x20005a78     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_2_data
+                        0x20005aa8     0x4  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_30
+                        0x0002f292    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_31
+                        0x00022c0c     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_31_data
+                        0x20005a70     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_32
+                        0x0002f276    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_33
+                        0x00022c04     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_33_data
+                        0x20005a68     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_34
+                        0x00029a5a    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_35
+                        0x00022bfc     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_35_data
+                        0x20005a60     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_36
+                        0x00022a62    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_37
+                        0x00022bf4     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_37_data
+                        0x20005ad0     0x2  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_39
+                        0x000224fa    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_4
+                        0x000327fc     0x4  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_40
+                        0x00022bec     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_40_data
+                        0x20005a58     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_41
+                        0x000224b6    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_42
+                        0x00022be4     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_42_data
+                        0x20005a50     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_43
+                        0x0002225a    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_44
+                        0x00022bdc     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_44_data
+                        0x20005ad5     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_45
+                        0x00022162    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_46
+                        0x00022bd4     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_46_data
+                        0x20005a1c    0x14  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_47
+                        0x0002212a    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_48
+                        0x00022bcc     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_48_data
+                        0x20005ad4     0x1  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_49
+                        0x00021f66    0x12  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_5
+                        0x000327f4     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_50
+                        0x00021dae    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_51
+                        0x00022bc4     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_51_data
+                        0x20002b48    0x16  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_6
+                        0x00022c44     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_6_data
+                        0x20002814     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_7
+                        0x000327ec     0x8  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_8
+                        0x000327e8     0x4  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attribute_field_9
+                        0x000327e4     0x4  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attributes_dynamic_mapping_map
+                        0x00022ed0    0x24  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_attributes_map
+                        0x00022c54   0x27c  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_uuidtable_128_map
+                        0x00022a94   0x130  Data  Gb  gatt_db.o [2]
+bg_gattdb_data_uuidtable_16_map
+                        0x00022a78    0x1c  Data  Gb  gatt_db.o [2]
+bg_malloc {Abs}         0x0000a16f    0x1e  Code  Gb  stack.a [1]
+bg_message_add_receiver {Abs}
+                        0x000087e9    0x24  Code  Gb  stack.a [1]
+bg_message_cancel_matching {Abs}
+                        0x000086fd    0x54  Code  Gb  stack.a [1]
+bg_message_send {Abs}   0x000087dd     0xc  Code  Gb  stack.a [1]
+bg_message_send_later_lazy {Abs}
+                        0x00008757    0x86  Code  Gb  stack.a [1]
+bg_pool_free_count {Abs}
+                        0x00007a4b     0xc  Code  Gb  stack.a [1]
+bg_pool_size {Abs}      0x00007a6b    0x18  Code  Gb  stack.a [1]
+bg_radio_pa_set_tx_power {Abs}
+                        0x00019d1f    0x92  Code  Gb  stack.a [1]
+bg_random_get_data {Abs}
+                        0x0000dac3    0x22  Code  Gb  stack.a [1]
+bgapi_gap_get_legacy_mode {Abs}
+                        0x00006029     0xe  Code  Gb  stack.a [1]
+bgapi_gap_set_legacy_mode {Abs}
+                        0x00006037    0x16  Code  Gb  stack.a [1]
+bgapi_hardware_soft_timer_listener
+                        0x0002ff95    0x36  Code  Gb  bgapi_hardware.c.obj [4]
+bgapi_ps_dump           0x20005ab8     0x4  Data  Lc  bgapi_ps.c.obj [4]
+bgapi_ps_dump_listener  0x00030099    0x36  Code  Gb  bgapi_ps.c.obj [4]
+bgapi_sm_handler        0x20005ac0     0x4  Data  Lc  bgapi_sm.c.obj [4]
+bgapi_sm_listener       0x00030545    0xa4  Code  Lc  bgapi_sm.c.obj [4]
+bgapi_soft_timers       0x20005abc     0x4  Data  Lc  bgapi_hardware.c.obj [4]
+bgapi_system            0x20005ac4     0x4  Data  Lc  bgapi_system.c.obj [4]
+bgapi_system_listener   0x0002f3f1    0x24  Code  Gb  bgapi_system.c.obj [4]
+bgapi_test_lib_msg_handler
+                        0x0003022d    0x48  Code  Gb  bgapi_test_lib.c.obj [4]
+bgapi_ubt_listener {Abs}
+                        0x00006063   0x300  Code  Gb  stack.a [1]
+bgbuf_alloc_copy_data {Abs}
+                        0x0000732f    0x28  Code  Gb  stack.a [1]
+bgbuf_append_data {Abs}
+                        0x0000744b    0x28  Code  Gb  stack.a [1]
+bgbuf_chain_drop_end {Abs}
+                        0x000077bd    0x4c  Code  Gb  stack.a [1]
+bgbuf_chain_free {Abs}  0x00007531    0x16  Code  Gb  stack.a [1]
+bgbuf_chain_len         0x00030b81    0x16  Code  Lc  gatt_client.c.obj [4]
+bgbuf_copy_to {Abs}     0x00007473    0x72  Code  Gb  stack.a [1]
+bgbuf_counters {Abs}    0x00007943    0x16  Code  Gb  stack.a [1]
+bgbuf_memcmp {Abs}      0x000074e5    0x4c  Code  Gb  stack.a [1]
+bluetooth_stack_heap    0x20002b60  0x18d0  Data  Gb  main.o [2]
+boot_to_dfu             0x20005ad9     0x1  Data  Gb  main.o [2]
+bootloader$$Base        0x00000000           --   Gb  - Linker created -
+bootloader$$Limit       0x00004000           --   Gb  - Linker created -
+chTable                 0x20005934    0xa0  Data  Lc  dmadrv.o [2]
+config                  0x00023008    0x38  Data  Lc  main.o [2]
+control_change          0x0002f34b    0x3a  Code  Gb  midi.o [2]
+control_change::cc      0x20005a98     0x8  Data  Lc  midi.o [2]
+cos                     0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+cosl                    0x000321c9     0x4  Code  Gb  cos_sin64.o [6]
+dbgClkGet               0x000280d1    0x26  Code  Lc  em_cmu.o [2]
+default_download_IC_1   0x0002af05    0x56  Code  Gb  mixer.o [2]
+default_download_IC_2   0x0002af5b    0x56  Code  Gb  mixer.o [2]
+disable_interrupts      0x0003028d    0x24  Code  Gb  bgapi_test_lib.c.obj [4]
+discover_characteristics
+                        0x0003109d    0x30  Code  Lc  gatt_client.c.obj [4]
+dmaXfer                 0x20005834   0x100  Data  Lc  dmadrv.o [2]
+end_procedure           0x00030c5f    0x36  Code  Lc  gatt_client.c.obj [4]
+endpoint_close {Abs}    0x00006d4d    0x24  Code  Gb  stack.a [1]
+endpoint_handle_to_conn_handle {Abs}
+                        0x0000703f    0x18  Code  Gb  stack.a [1]
+endpoint_route_available {Abs}
+                        0x00006d71    0x3e  Code  Gb  stack.a [1]
+endpoint_route_to {Abs}
+                        0x00006e6f    0x96  Code  Gb  stack.a [1]
+endpoints_find {Abs}    0x00006f3b    0x14  Code  Gb  stack.a [1]
+enter_DefaultMode_from_RESET
+                        0x0002957b    0x34  Code  Gb  InitDevice.o [2]
+exit                    0x00032759     0x4  Code  Gb  exit.o [5]
+exp                     0x0003267d    0x4c  Code  Gb  exp64.o [6]
+expl                    0x0003267d    0x4c  Code  Gb  exp64.o [6]
+flashWaitStateControl   0x0002813b    0x66  Code  Lc  em_cmu.o [2]
+flashWaitStateMax       0x000281a1     0xe  Code  Lc  em_cmu.o [2]
+free_params_data        0x00030ca1    0x12  Code  Lc  gatt_client.c.obj [4]
+gap_open_acl {Abs}      0x0000964d    0xe6  Code  Gb  stack.a [1]
+gatt_client_handle_value_indication
+                        0x000318ef     0xa  Code  Gb  gatt_client.c.obj [4]
+gatt_client_handle_value_notification
+                        0x000318e5     0xa  Code  Gb  gatt_client.c.obj [4]
+gatt_client_init        0x0003191f     0x6  Code  Gb  gatt_client.c.obj [4]
+gatt_decode_handle      0x00030c95     0xc  Code  Lc  gatt_client.c.obj [4]
+gatt_discover_characteristics
+                        0x000310cd    0x20  Code  Gb  gatt_client.c.obj [4]
+gatt_discover_characteristics_by_uuid
+                        0x000311eb    0x3e  Code  Gb  gatt_client.c.obj [4]
+gatt_discover_characteristics_handler
+                        0x00031137    0x88  Code  Lc  gatt_client.c.obj [4]
+gatt_discover_descriptors
+                        0x00031233    0x34  Code  Gb  gatt_client.c.obj [4]
+gatt_discover_primary_services
+                        0x00030de1    0x3a  Code  Gb  gatt_client.c.obj [4]
+gatt_discover_primary_services_by_uuid
+                        0x00030eff    0x50  Code  Gb  gatt_client.c.obj [4]
+gatt_discover_primary_services_by_uuid_handler
+                        0x00030f4f    0x80  Code  Lc  gatt_client.c.obj [4]
+gatt_discover_primary_services_handler
+                        0x00030e65    0x92  Code  Lc  gatt_client.c.obj [4]
+gatt_execute_characteristic_value_write
+                        0x00031433    0x20  Code  Gb  gatt_client.c.obj [4]
+gatt_find_included_services
+                        0x00030fd3    0x40  Code  Gb  gatt_client.c.obj [4]
+gatt_find_included_services_handler
+                        0x00031013    0x8a  Code  Gb  gatt_client.c.obj [4]
+gatt_get_connection {Abs}
+                        0x00009fc5     0xc  Code  Gb  stack.a [1]
+gatt_handle_exchange_mtu_rsp
+                        0x00031571    0x1a  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_execute_write_response
+                        0x000318c5    0x20  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_find_by_type_value_response
+                        0x00031629    0x12  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_find_information_response
+                        0x0003158b    0x9e  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_prepare_characteristic_value_write_resp
+                        0x0003141d    0x16  Code  Lc  gatt_client.c.obj [4]
+gatt_handle_prepare_write_response
+                        0x0003180d    0xb8  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_read_blob_response
+                        0x00031715    0x2e  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_read_by_group_type_response
+                        0x000317e3    0x10  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_read_by_type_response
+                        0x0003176f    0x5e  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_read_multiple_response
+                        0x00031743    0x2c  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_read_response
+                        0x0003163b    0xcc  Code  Gb  gatt_client.c.obj [4]
+gatt_handle_write_response
+                        0x000317fb    0x12  Code  Gb  gatt_client.c.obj [4]
+gatt_max_mtu_config {Abs}
+                        0x200001fc     0x2  Data  Gb  stack.a [1]
+gatt_prepare_characteristic_value_write
+                        0x000313a7    0x76  Code  Gb  gatt_client.c.obj [4]
+gatt_read_characteristic_value
+                        0x000312af    0x3e  Code  Gb  gatt_client.c.obj [4]
+gatt_read_characteristic_value_by_uuid
+                        0x000312f5    0x38  Code  Gb  gatt_client.c.obj [4]
+gatt_read_descriptor_value
+                        0x00031521    0x24  Code  Gb  gatt_client.c.obj [4]
+gatt_read_multiple_characteristic_values
+                        0x00031331    0x22  Code  Gb  gatt_client.c.obj [4]
+gatt_send_characteristic_confirmation
+                        0x000318ff    0x1a  Code  Gb  gatt_client.c.obj [4]
+gatt_set_characteristic_notification
+                        0x00031453    0x36  Code  Gb  gatt_client.c.obj [4]
+gatt_set_characteristic_notification_handler
+                        0x00031489    0x90  Code  Lc  gatt_client.c.obj [4]
+gatt_start_procedure_timeout_timer {Abs}
+                        0x00009f21    0x12  Code  Gb  stack.a [1]
+gatt_stop_procedure_timeout_timer {Abs}
+                        0x00009f33     0x6  Code  Gb  stack.a [1]
+gatt_write_characteristic_value
+                        0x0003135b    0x1e  Code  Gb  gatt_client.c.obj [4]
+gatt_write_characteristic_value_without_response
+                        0x0003138b    0x1c  Code  Gb  gatt_client.c.obj [4]
+gatt_write_descriptor_value
+                        0x00031545    0x20  Code  Gb  gatt_client.c.obj [4]
+gecko_apihandler_rsp {Abs}
+                        0x200003d4    0x30  Data  Gb  stack.a [1]
+gecko_bgapi_class_dfu_init
+                        0x0002adfd    0x18  Code  Gb  gecko_bgapi_dfu.c.obj [4]
+gecko_bgapi_class_endpoint_init
+                        0x0002ae8d    0x18  Code  Gb  gecko_bgapi_endpoint.c.obj [4]
+gecko_bgapi_class_flash_init
+                        0x0002aebd    0x18  Code  Gb  gecko_bgapi_flash.c.obj [4]
+gecko_bgapi_class_gatt_init
+                        0x0002ae5d    0x18  Code  Gb  gecko_bgapi_gatt.c.obj [4]
+gecko_bgapi_class_gatt_server_init
+                        0x0002ae75    0x18  Code  Gb  gecko_bgapi_gatt_server.c.obj [4]
+gecko_bgapi_class_hardware_init
+                        0x0002aea5    0x18  Code  Gb  gecko_bgapi_hardware.c.obj [4]
+gecko_bgapi_class_le_connection_init
+                        0x0002ae45    0x18  Code  Gb  gecko_bgapi_le_connection.c.obj [4]
+gecko_bgapi_class_le_gap_init
+                        0x0002ae2d    0x18  Code  Gb  gecko_bgapi_gap.c.obj [4]
+gecko_bgapi_class_sm_init
+                        0x0002aeed    0x18  Code  Gb  gecko_bgapi_sm.c.obj [4]
+gecko_bgapi_class_system_init
+                        0x0002ae15    0x18  Code  Gb  gecko_bgapi_system.c.obj [4]
+gecko_bgapi_class_test_init
+                        0x0002aed5    0x18  Code  Gb  gecko_bgapi_test.c.obj [4]
+gecko_cmd_dfu_flash_set_address
+                        0x0002f39d     0xa  Code  Gb  bgapi_dfu.c.obj [4]
+gecko_cmd_dfu_flash_upload
+                        0x0002f3a7     0x8  Code  Gb  bgapi_dfu.c.obj [4]
+gecko_cmd_dfu_flash_upload_finish
+                        0x0002f3cb     0xa  Code  Gb  bgapi_dfu.c.obj [4]
+gecko_cmd_dfu_reset     0x0002f397     0x6  Code  Gb  bgapi_dfu.c.obj [4]
+gecko_cmd_endpoint_close
+                        0x00029cd1    0x36  Code  Lc  main.o [2]
+gecko_cmd_endpoint_close
+                        0x0002fe37    0x42  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_endpoint_clr_flags
+                        0x0002fea7     0x2  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_endpoint_read_counters
+                        0x0002fea9    0x44  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_endpoint_send
+                        0x0002fd63    0x88  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_endpoint_set_flags
+                        0x0002fea5     0x2  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_endpoint_set_streaming_destination
+                        0x0002fdf3    0x44  Code  Gb  bgapi_endpoint.c.obj [4]
+gecko_cmd_flash_ps_dump
+                        0x000300cf    0x88  Code  Gb  bgapi_ps.c.obj [4]
+gecko_cmd_flash_ps_erase
+                        0x000301e1    0x2a  Code  Gb  bgapi_ps.c.obj [4]
+gecko_cmd_flash_ps_erase_all
+                        0x00030157    0x1e  Code  Gb  bgapi_ps.c.obj [4]
+gecko_cmd_flash_ps_load
+                        0x000301a5    0x3c  Code  Gb  bgapi_ps.c.obj [4]
+gecko_cmd_flash_ps_save
+                        0x00030175    0x28  Code  Gb  bgapi_ps.c.obj [4]
+gecko_cmd_gatt_discover_characteristics
+                        0x0002f94f    0x1c  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_discover_characteristics_by_uuid
+                        0x0002f96b    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_discover_descriptors
+                        0x0002fab5    0x16  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_discover_primary_services
+                        0x0002f8db    0x16  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_discover_primary_services_by_uuid
+                        0x0002f8fb    0x24  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_execute_characteristic_value_write
+                        0x0002fa89    0x14  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_find_included_services
+                        0x0002f91f    0x1e  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_prepare_characteristic_value_reliable_write
+                        0x0002fd0d    0x20  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_prepare_characteristic_value_write
+                        0x0002fa65    0x1c  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_read_characteristic_value
+                        0x0002f999    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_read_characteristic_value_by_uuid
+                        0x0002f9e1    0x1c  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_read_characteristic_value_from_offset
+                        0x0002f9b3    0x1c  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_read_descriptor_value
+                        0x0002facb    0x16  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_read_multiple_characteristic_values
+                        0x0002fa11    0x16  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_send_characteristic_confirmation
+                        0x0002fc4f    0x14  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_find_attribute
+                        0x0002fb7d    0x2a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_read_attribute_type
+                        0x0002fb2d    0x2c  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_read_attribute_value
+                        0x0002fafb    0x32  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_send_characteristic_notification
+                        0x00029c47    0x8a  Code  Lc  main.o [2]
+gecko_cmd_gatt_server_send_characteristic_notification
+                        0x0002fc11    0x22  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_send_user_read_response
+                        0x0002fbc1    0x28  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_send_user_write_response
+                        0x00029bfb    0x4c  Code  Lc  main.o [2]
+gecko_cmd_gatt_server_send_user_write_response
+                        0x0002fbf9    0x18  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_set_capabilities
+                        0x0002fc87    0x18  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_set_database
+                        0x0002fc63    0x24  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_server_write_attribute_value
+                        0x00029b73    0x88  Code  Lc  main.o [2]
+gecko_cmd_gatt_server_write_attribute_value
+                        0x0002fba7    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_set_characteristic_notification
+                        0x0002fa9d    0x18  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_set_max_mtu
+                        0x0002f8ab    0x30  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_write_characteristic_value
+                        0x0002fa27    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_write_characteristic_value_without_response
+                        0x0002fa4b    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_gatt_write_descriptor_value
+                        0x0002fae1    0x1a  Code  Gb  bgapi_gatt_lib.c.obj [4]
+gecko_cmd_hardware_enable_dcdc
+                        0x00030047    0x26  Code  Gb  bgapi_hardware.c.obj [4]
+gecko_cmd_hardware_get_time
+                        0x0003001f    0x28  Code  Gb  bgapi_hardware.c.obj [4]
+gecko_cmd_hardware_set_lazy_soft_timer
+                        0x0002ffeb    0x1e  Code  Gb  bgapi_hardware.c.obj [4]
+gecko_cmd_hardware_set_soft_timer
+                        0x0002ffcb    0x20  Code  Gb  bgapi_hardware.c.obj [4]
+gecko_cmd_le_connection_disable_slave_latency
+                        0x0002f829    0x2e  Code  Gb  bgapi_le_connection.c.obj [4]
+gecko_cmd_le_connection_get_rssi
+                        0x0002f807    0x22  Code  Gb  bgapi_le_connection.c.obj [4]
+gecko_cmd_le_connection_set_parameters
+                        0x0002f7d3    0x34  Code  Gb  bgapi_le_connection.c.obj [4]
+gecko_cmd_le_connection_set_phy
+                        0x0002f86f    0x22  Code  Gb  bgapi_le_connection.c.obj [4]
+gecko_cmd_le_gap_bt5_set_adv_data
+                        0x0002f5ef    0x1a  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_bt5_set_adv_parameters
+                        0x0002f70b    0x22  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_bt5_set_mode
+                        0x0002f57d    0x28  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_discover
+                        0x0002f6b7    0x12  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_end_procedure
+                        0x0002f6db    0x12  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_open   0x0002f65b    0x5c  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_adv_data
+                        0x0002f5b7    0x38  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_adv_parameters
+                        0x00029b29    0x4a  Code  Lc  main.o [2]
+gecko_cmd_le_gap_set_adv_parameters
+                        0x0002f6ed    0x1e  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_adv_timeout
+                        0x0002f609    0x4c  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_conn_parameters
+                        0x0002f745    0x1e  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_mode
+                        0x00029ae9    0x40  Code  Lc  main.o [2]
+gecko_cmd_le_gap_set_mode
+                        0x0002f553    0x2a  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_phy
+                        0x0002f763    0x14  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_privacy_mode
+                        0x0002f777    0x16  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_le_gap_set_scan_parameters
+                        0x0002f72d    0x18  Code  Gb  bgapi_gap.c.obj [4]
+gecko_cmd_msg {Abs}     0x200003c8     0x4  Data  Gb  stack.a [1]
+gecko_cmd_sm_bonding_confirm
+                        0x00030769    0x12  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_configure  0x0003066d    0x16  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_delete_bonding
+                        0x0003063f    0x12  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_delete_bondings
+                        0x0003065b    0x12  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_enter_passkey
+                        0x00030695    0x1c  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_increase_security
+                        0x00030609    0x18  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_list_all_bondings
+                        0x000305f3    0x16  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_passkey_confirm
+                        0x000306c5    0x14  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_set_bondable_mode
+                        0x00030621     0xe  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_set_debug_mode
+                        0x0003078d    0x16  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_set_oob_data
+                        0x000306e3    0x16  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_set_passkey
+                        0x000306b1    0x14  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_set_sc_remote_oob_data
+                        0x000306f9    0x16  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_store_bonding_configuration
+                        0x00030747    0x22  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_sm_use_sc_oob
+                        0x0003070f    0x38  Code  Gb  bgapi_sm.c.obj [4]
+gecko_cmd_system_get_bt_address
+                        0x0002f415    0x38  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_get_random_data
+                        0x0002f487    0x44  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_halt   0x0002f4cb    0x16  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_hello  0x0002f509     0xc  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_reset  0x00029ab9    0x30  Code  Lc  main.o [2]
+gecko_cmd_system_reset  0x0002f525     0x6  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_set_bt_address
+                        0x0002f44d    0x1a  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_set_device_name
+                        0x0002f467    0x20  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_system_set_tx_power
+                        0x0002f4f3    0x16  Code  Gb  bgapi_system.c.obj [4]
+gecko_cmd_test_debug_command
+                        0x000303ad    0xf2  Code  Gb  bgapi_test_lib.c.obj [4]
+gecko_cmd_test_debug_counter
+                        0x000304a9    0x6e  Code  Gb  bgapi_test_lib.c.obj [4]
+gecko_cmd_test_dtm_end  0x00030353    0x38  Code  Gb  bgapi_test_lib.c.obj [4]
+gecko_cmd_test_dtm_rx   0x0003031d    0x36  Code  Gb  bgapi_test_lib.c.obj [4]
+gecko_cmd_test_dtm_tx   0x000302b1    0x60  Code  Gb  bgapi_test_lib.c.obj [4]
+gecko_halt {Abs}        0x00019a9b    0x1a  Code  Gb  stack.a [1]
+gecko_handle_command {Abs}
+                        0x0000711d    0x74  Code  Gb  stack.a [1]
+gecko_handle_command_noresponse {Abs}
+                        0x00007191     0x2  Code  Gb  stack.a [1]
+gecko_handle_library_packet {Abs}
+                        0x000071c7    0x10  Code  Gb  stack.a [1]
+gecko_init              0x00029a81    0x38  Code  Lc  main.o [2]
+gecko_peek_event {Abs}  0x00019a81     0x4  Code  Gb  stack.a [1]
+gecko_register_bgapi_library {Abs}
+                        0x00007193    0x34  Code  Gb  stack.a [1]
+gecko_rsp_msg {Abs}     0x200003cc     0x4  Data  Gb  stack.a [1]
+gecko_stack_init {Abs}  0x00019819   0x1ba  Code  Gb  stack.a [1]
+getHfxoTuningMode       0x000281d3     0xc  Code  Lc  em_cmu.o [2]
+getRegIshUpperVal       0x000281bf    0x14  Code  Lc  em_cmu.o [2]
+get_connection_endpoint {Abs}
+                        0x00006fd9    0x4a  Code  Gb  stack.a [1]
+hfSrcClkGet             0x000280bb    0x16  Code  Lc  em_cmu.o [2]
+i2cNSum                 0x00022f38     0x4  Data  Lc  em_i2c.o [2]
+i2cTransfer             0x20005a30    0x10  Data  Lc  em_i2c.o [2]
+i2c_write_data          0x20004430  0x1404  Data  Gb  SigmaStudioFW.o [2]
+if_curve                0x20002800     0x8  Data  Gb  main.o [2]
+if_rev                  0x20005ada     0x1  Data  Gb  main.o [2]
+is_uuid_len_valid       0x00031949    0x12  Code  Lc  ubt_gatt_client.c.obj [4]
+ldexp                   0x00022929          Code  Gb  ldexp.o [6]
+ldexpl                  0x00022929          Code  Gb  ldexp.o [6]
+legacy_maxadv_events    0x20005ad2     0x2  Data  Gb  bgapi_gap.c.obj [4]
+lfClkGet                0x000281f3    0xc0  Code  Lc  em_cmu.o [2]
+lib_dfu_apis            0x00027884    0x28  Data  Lc  gecko_bgapi_dfu.c.obj [4]
+lib_dfu_handler_init    0x0002f395     0x2  Code  Gb  bgapi_dfu.c.obj [4]
+lib_endpoint_apis       0x000278ac    0x38  Data  Lc  gecko_bgapi_endpoint.c.obj [4]
+lib_endpoint_handler_init
+                        0x0002fd61     0x2  Code  Gb  bgapi_endpoint.c.obj [4]
+lib_flash_apis          0x000278e4    0x30  Data  Lc  gecko_bgapi_flash.c.obj [4]
+lib_flash_handler_init  0x0003008d     0xc  Code  Gb  bgapi_ps.c.obj [4]
+lib_gatt_apis           0x00027914    0xa8  Data  Lc  gecko_bgapi_gatt.c.obj [4]
+lib_gatt_handler_init   0x0002f8a5     0x4  Code  Gb  bgapi_gatt_lib.c.obj [4]
+lib_gatt_server_apis    0x000279bc    0x50  Data  Lc  gecko_bgapi_gatt_server.c.obj [4]
+lib_gatt_server_handler_init
+                        0x0002f8a9     0x2  Code  Gb  bgapi_gatt_lib.c.obj [4]
+lib_hardware_apis       0x00027a0c    0x28  Data  Lc  gecko_bgapi_hardware.c.obj [4]
+lib_hardware_handler_init
+                        0x0002ff09     0xc  Code  Gb  bgapi_hardware.c.obj [4]
+lib_le_connection_apis  0x00027a34    0x28  Data  Lc  gecko_bgapi_le_connection.c.obj [4]
+lib_le_connection_handler_init
+                        0x0002f7d1     0x2  Code  Gb  bgapi_le_connection.c.obj [4]
+lib_le_gap_apis         0x00027a5c    0x78  Data  Lc  gecko_bgapi_gap.c.obj [4]
+lib_le_gap_handler_init
+                        0x0002f551     0x2  Code  Gb  bgapi_gap.c.obj [4]
+lib_sm_apis             0x00027ad4    0x80  Data  Lc  gecko_bgapi_sm.c.obj [4]
+lib_sm_handler_init     0x000305e9     0xa  Code  Gb  bgapi_sm.c.obj [4]
+lib_system_apis         0x00027b54    0x48  Data  Lc  gecko_bgapi_system.c.obj [4]
+lib_system_handler_init
+                        0x0002f3e5     0xc  Code  Gb  bgapi_system.c.obj [4]
+lib_test_apis           0x00027b9c    0x30  Data  Lc  gecko_bgapi_test.c.obj [4]
+lib_test_handler_init   0x00030275    0x18  Code  Gb  bgapi_test_lib.c.obj [4]
+lnbias                  0x000218d0   0x420  Data  Lc  pow64.o [6]
+main                    0x0002a215   0xb94  Code  Gb  main.o [2]
+memcmp                  0x00032615          Code  Gb  memcmp.o [7]
+memcpy                  0x00030b5f     0xc  Code  Gb  memcpy.o [7]
+mixer_init              0x0002afb1     0xc  Code  Gb  mixer.o [2]
+msg_sender              0x20005ac8     0x4  Data  Gb  bgapi_test_lib.c.obj [4]
+note_off                0x0002f311    0x3a  Code  Gb  midi.o [2]
+note_off::note_off      0x20005a90     0x8  Data  Lc  midi.o [2]
+note_on                 0x0002f2d7    0x3a  Code  Gb  midi.o [2]
+note_on::note_on        0x20005a88     0x8  Data  Lc  midi.o [2]
+pow                     0x000218bd    0x14  Code  Gb  pow64.o [6]
+powl                    0x000218bd    0x14  Code  Gb  pow64.o [6]
+ptiInit                 0x00022fe4    0x24  Data  Lc  main.o [2]
+read_long_value_handler
+                        0x00030d19    0x62  Code  Lc  gatt_client.c.obj [4]
+read_settings           0x0002a0af   0x126  Code  Gb  main.o [2]
+register_gatt_client {Abs}
+                        0x0000d0dd     0x8  Code  Gb  stack.a [1]
+register_message_handler {Abs}
+                        0x00006021     0x8  Code  Gb  stack.a [1]
+reset_settings          0x00029eb9   0x1aa  Code  Gb  main.o [2]
+scalbln                 0x00022929          Code  Gb  ldexp.o [6]
+scalblnl                0x00022929          Code  Gb  ldexp.o [6]
+scalbn                  0x00022929          Code  Gb  ldexp.o [6]
+scalbnl                 0x00022929          Code  Gb  ldexp.o [6]
+send_characteristic_event
+                        0x000310ed    0x4a  Code  Lc  gatt_client.c.obj [4]
+send_characteristic_value_event
+                        0x00030bab    0x74  Code  Lc  gatt_client.c.obj [4]
+send_delay              0x0002dec9   0x1ae  Code  Gb  mixer.o [2]
+send_descriptor_event   0x0003126d    0x42  Code  Lc  gatt_client.c.obj [4]
+send_descriptor_value_event
+                        0x00030c1f    0x36  Code  Lc  gatt_client.c.obj [4]
+send_gatt_mtu_exchanged_event {Abs}
+                        0x00009ef7    0x2a  Code  Gb  stack.a [1]
+send_hi_shelf_ch1       0x0002b2e1   0x6e8  Code  Gb  mixer.o [2]
+send_hi_shelf_ch2       0x0002ba11   0x6e8  Code  Gb  mixer.o [2]
+send_ifader             0x0002da2d   0x230  Code  Gb  mixer.o [2]
+send_input_gain         0x0002b091   0x238  Code  Gb  mixer.o [2]
+send_line_phono_switch  0x0002afbd    0xd4  Code  Gb  mixer.o [2]
+send_low_shelf_ch1      0x0002cc29   0x6e4  Code  Gb  mixer.o [2]
+send_low_shelf_ch2      0x0002d32d   0x6e8  Code  Gb  mixer.o [2]
+send_lpf                0x0002e231   0x3d4  Code  Gb  mixer.o [2]
+send_master_booth_gain  0x0002ecf5   0x2a8  Code  Gb  mixer.o [2]
+send_mid_peaking_ch1    0x0002c115   0x566  Code  Gb  mixer.o [2]
+send_mid_peaking_ch2    0x0002c69d   0x562  Code  Gb  mixer.o [2]
+send_monitor_mix_gain   0x0002efd1   0x250  Code  Gb  mixer.o [2]
+send_pitch_shifter      0x0002e091   0x186  Code  Gb  mixer.o [2]
+send_select_fx          0x0002e63d   0x6a0  Code  Gb  mixer.o [2]
+send_service_event      0x00030e1b    0x4a  Code  Lc  gatt_client.c.obj [4]
+send_xfader             0x0002dc6d   0x242  Code  Gb  mixer.o [2]
+setHfLeConfig           0x0002806d    0x46  Code  Lc  em_cmu.o [2]
+setHfxoTuningMode       0x000281df    0x14  Code  Lc  em_cmu.o [2]
+set_timer               0x0002ff25    0x6e  Code  Lc  bgapi_hardware.c.obj [4]
+settings                0x200059d4    0x48  Data  Gb  main.o [2]
+should_start_long_read  0x00030ce5    0x34  Code  Lc  gatt_client.c.obj [4]
+sin                     0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+sinl                    0x000321cd     0x4  Code  Gb  cos_sin64.o [6]
+soft_timer_comparison   0x0002ff15    0x10  Code  Gb  bgapi_hardware.c.obj [4]
+sqrt                    0x00030a25          Code  Gb  sqrt.o [6]
+sqrtl                   0x00030a25          Code  Gb  sqrt.o [6]
+stack$$Base             0x00004000           --   Gb  - Linker created -
+stack$$Limit            0x00020ee3           --   Gb  - Linker created -
+start_procedure         0x00030c55     0xa  Code  Lc  gatt_client.c.obj [4]
+store_delete {Abs}      0x00012ad1    0x80  Code  Gb  stack.a [1]
+store_read {Abs}        0x00012d69    0x6e  Code  Gb  stack.a [1]
+store_read_index {Abs}  0x00012cc9    0x80  Code  Gb  stack.a [1]
+store_write {Abs}       0x00012b51   0x14c  Code  Gb  stack.a [1]
+sw_reset {Abs}          0x0001f769    0x20  Code  Gb  stack.a [1]
+syncReg                 0x000282b3    0x16  Code  Lc  em_cmu.o [2]
+tanh                    0x00031bed   0x14a  Code  Gb  tanh64.o [6]
+tanhl                   0x00031bed   0x14a  Code  Gb  tanh64.o [6]
+test_state              0x20005acc     0x4  Data  Lc  bgapi_test_lib.c.obj [4]
+testmode_is_packet_type_supported {Abs}
+                        0x0001f7a1    0x12  Code  Gb  stack.a [1]
+testmode_testing_custom_wave_end {Abs}
+                        0x0001f7f1    0x36  Code  Gb  stack.a [1]
+testmode_testing_custom_wave_tx {Abs}
+                        0x0001f7b3    0x3e  Code  Gb  stack.a [1]
+timer_get_time {Abs}    0x00019e65    0x20  Code  Gb  stack.a [1]
+ubt_bt_get_bluetooth_address {Abs}
+                        0x00006a23    0x1a  Code  Gb  stack.a [1]
+ubt_bt_get_rssi {Abs}   0x00006a73    0x18  Code  Gb  stack.a [1]
+ubt_gap_end_le_procedure {Abs}
+                        0x0000962d    0x1a  Code  Gb  stack.a [1]
+ubt_gap_le_discover {Abs}
+                        0x000095eb    0x3a  Code  Gb  stack.a [1]
+ubt_gap_set_adv_data {Abs}
+                        0x00008c93    0x56  Code  Gb  stack.a [1]
+ubt_gap_set_adv_parameters {Abs}
+                        0x00009071    0x46  Code  Gb  stack.a [1]
+ubt_gap_set_le_connection_parameters {Abs}
+                        0x00008fa7    0x84  Code  Gb  stack.a [1]
+ubt_gap_set_le_mode {Abs}
+                        0x000091cd   0x150  Code  Gb  stack.a [1]
+ubt_gap_set_phy {Abs}   0x00009185    0x16  Code  Gb  stack.a [1]
+ubt_gap_set_privacy {Abs}
+                        0x00009341    0x6e  Code  Gb  stack.a [1]
+ubt_gap_set_scan_parameters {Abs}
+                        0x0000919b    0x32  Code  Gb  stack.a [1]
+ubt_gatt_discover_characteristics
+                        0x000319ab    0x14  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_discover_characteristics_by_uuid
+                        0x000319c5    0x28  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_discover_descriptors
+                        0x000319ed    0x14  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_discover_primary_services
+                        0x0003195b    0x12  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_discover_primary_services_by_uuid
+                        0x0003196d    0x2a  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_execute_characteristic_value_write
+                        0x00031aeb    0x14  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_find_included_services
+                        0x00031997    0x14  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_prepare_characteristic_value_write
+                        0x00031ac1    0x2a  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_read_characteristic_value
+                        0x00031a07    0x18  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_read_characteristic_value_by_uuid
+                        0x00031a25    0x28  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_read_descriptor_value
+                        0x00031b17    0x14  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_read_multiple_characteristic_values
+                        0x00031a53    0x16  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_send_characteristic_confirmation
+                        0x00031aff    0x12  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_server_find_attribute {Abs}
+                        0x0001a2b9    0x42  Code  Gb  stack.a [1]
+ubt_gatt_server_read_attribute_type {Abs}
+                        0x0001a1d5    0x34  Code  Gb  stack.a [1]
+ubt_gatt_server_read_attribute_value {Abs}
+                        0x0001a175    0x60  Code  Gb  stack.a [1]
+ubt_gatt_server_send_characteristic_notification {Abs}
+                        0x0001a279    0x40  Code  Gb  stack.a [1]
+ubt_gatt_server_send_user_read_response {Abs}
+                        0x0001a235    0x26  Code  Gb  stack.a [1]
+ubt_gatt_server_send_user_write_response {Abs}
+                        0x0001a25b    0x1e  Code  Gb  stack.a [1]
+ubt_gatt_server_set_capabilities {Abs}
+                        0x0001a2fb     0x6  Code  Gb  stack.a [1]
+ubt_gatt_server_write_attribute_value {Abs}
+                        0x0001a209    0x2c  Code  Gb  stack.a [1]
+ubt_gatt_set_characteristic_notification
+                        0x00031b43    0x16  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_set_gattdb {Abs}
+                        0x0001a171     0x4  Code  Gb  stack.a [1]
+ubt_gatt_set_max_mtu {Abs}
+                        0x0001a16d     0x4  Code  Gb  stack.a [1]
+ubt_gatt_write_characteristic_value
+                        0x00031a77    0x18  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_write_characteristic_value_without_response
+                        0x00031a8f    0x28  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_gatt_write_descriptor_value
+                        0x00031b2b    0x18  Code  Gb  ubt_gatt_client.c.obj [4]
+ubt_link_clear_config_bits {Abs}
+                        0x00009127    0x18  Code  Gb  stack.a [1]
+ubt_link_disconnect {Abs}
+                        0x00006a65     0xe  Code  Gb  stack.a [1]
+ubt_link_set_config_bits {Abs}
+                        0x0000910f    0x18  Code  Gb  stack.a [1]
+ubt_link_set_phy {Abs}  0x00009145    0x40  Code  Gb  stack.a [1]
+ubt_sm_bonding_confirm {Abs}
+                        0x00009bdf    0x1c  Code  Gb  stack.a [1]
+ubt_sm_configure {Abs}  0x00009b39    0x38  Code  Gb  stack.a [1]
+ubt_sm_delete_bonding {Abs}
+                        0x0000d767    0x92  Code  Gb  stack.a [1]
+ubt_sm_get_bond_data {Abs}
+                        0x0000d885    0x4a  Code  Gb  stack.a [1]
+ubt_sm_get_bonds {Abs}  0x0000d68f     0x6  Code  Gb  stack.a [1]
+ubt_sm_increase_security {Abs}
+                        0x00009c1d    0x86  Code  Gb  stack.a [1]
+ubt_sm_passkey_confirm {Abs}
+                        0x00009b7d    0x1c  Code  Gb  stack.a [1]
+ubt_sm_passkey_entry {Abs}
+                        0x00009b99    0x28  Code  Gb  stack.a [1]
+ubt_sm_set_bondable_mode {Abs}
+                        0x00009afb     0xc  Code  Gb  stack.a [1]
+ubt_sm_set_debug_mode {Abs}
+                        0x00009af7     0x4  Code  Gb  stack.a [1]
+ubt_sm_set_max_bonds {Abs}
+                        0x0000d5dd    0x3c  Code  Gb  stack.a [1]
+ubt_sm_set_max_mode {Abs}
+                        0x0000d619     0x4  Code  Gb  stack.a [1]
+ubt_sm_set_oob_data {Abs}
+                        0x00009b71     0x4  Code  Gb  stack.a [1]
+ubt_sm_set_passkey {Abs}
+                        0x00009bc7    0x18  Code  Gb  stack.a [1]
+ubt_sm_set_sc_remote_oob_data {Abs}
+                        0x00009b75     0x4  Code  Gb  stack.a [1]
+ubt_sm_use_sc_oob {Abs}
+                        0x00009b79     0x4  Code  Gb  stack.a [1]
+ubt_testing_dtm_end {Abs}
+                        0x00020e19     0x4  Code  Gb  stack.a [1]
+ubt_testing_dtm_rx {Abs}
+                        0x00020e13     0x6  Code  Gb  stack.a [1]
+ubt_testing_dtm_tx {Abs}
+                        0x00020e0f     0x4  Code  Gb  stack.a [1]
+uint8array_to_uuid {Abs}
+                        0x0000604d    0x16  Code  Gb  stack.a [1]
+validate_gatt_client_pdu_len
+                        0x0003233d    0xbc  Code  Gb  att_client.c.obj [4]
+validate_gatt_connection_state
+                        0x00030b97    0x14  Code  Lc  gatt_client.c.obj [4]
+write_settings          0x0002a063    0x4c  Code  Gb  main.o [2]
+write_value             0x00030d7b    0x56  Code  Lc  gatt_client.c.obj [4]
+xf0_adc                 0x20005aa0     0x8  Data  Lc  mixer.o [2]
+xf1_val                 0x20005aac     0x4  Data  Gb  mixer.o [2]
+xf2_val                 0x20005ab0     0x4  Data  Gb  mixer.o [2]
+xf_curve                0x20002808     0x8  Data  Gb  main.o [2]
+xf_rev                  0x20005adb     0x1  Data  Gb  main.o [2]
+
+
+[1] = C:\SiliconLabs\SimplicityStudio\v4\developer\sdks\gecko_sdk_suite\v1.1\protocol\bluetooth_2.4\lib\EFR32BG1B\EABI
+[2] = C:\Users\shun\SimplicityStudio\v4_workspace\SigmaMIX\Debug\Obj
+[3] = command line
+[4] = bgapi.a
+[5] = dl7M_tln.a
+[6] = m7M_tls.a
+[7] = rt7M_tl.a
+[8] = shb_l.a
+
+   50 172 bytes of readonly  code memory
+      812 bytes of readwrite code memory
+  157 418 bytes of readonly  data memory
+   14 254 bytes of readwrite data memory
+
+Errors: none
+Warnings: 1

@@ -133,8 +133,8 @@
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emdrv/nvm/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emdrv/common/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/bootloader/api&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/ble_stack/inc/common&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/ble_stack/inc/soc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/ble_stack/inc/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/ble_stack/inc/soc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emlib/inc&quot;"/>
 								</option>
 								<option id="iar.arm.toolchain.compiler.option.defines.v5.4.0.1678977744" name="Defined Symbols:" superClass="iar.arm.toolchain.compiler.option.defines.v5.4.0" valueType="definedSymbols">
@@ -200,8 +200,8 @@
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emdrv/nvm/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emdrv/common/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/bootloader/api&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/ble_stack/inc/common&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/ble_stack/inc/soc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/ble_stack/inc/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/ble_stack/inc/soc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/platform/emlib/inc&quot;"/>
 								</option>
 								<option id="iar.arm.toolchain.assembler.option.definedSymbols.v5.4.0.373661587" name="Defined symbols:" superClass="iar.arm.toolchain.assembler.option.definedSymbols.v5.4.0" valueType="definedSymbols">
@@ -271,10 +271,10 @@
 								<option id="iar.arm.toolchain.linker.option.initialValue.v5.5.2.872363434" name="Initial value:" superClass="iar.arm.toolchain.linker.option.initialValue.v5.5.2" value="0x0" valueType="string"/>
 								<option id="iar.arm.toolchain.linker.option.treatAsWarnings.v5.4.0.1611137016" name="Treat these as warnings:" superClass="iar.arm.toolchain.linker.option.treatAsWarnings.v5.4.0"/>
 								<option id="iar.arm.toolchain.linker.option.additionalLibraries.v5.5.0.265628129" name="Additional libraries" superClass="iar.arm.toolchain.linker.option.additionalLibraries.v5.5.0" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/lib/EFR32BG1B/EABI/stack.a&quot;"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/lib/EFR32BG1B/EABI/binstack.o&quot;"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/lib/EFR32BG1B/EABI/bgapi.a&quot;"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.3/lib/EFR32BG1B/EABI/binbootloader.o&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/lib/EFR32BG1B/EABI/stack.a&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/lib/EFR32BG1B/EABI/binstack.o&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/lib/EFR32BG1B/EABI/bgapi.a&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${StudioSdkPath}/protocol/bluetooth_2.4/lib/EFR32BG1B/EABI/binbootloader.o&quot;"/>
 								</option>
 								<inputType id="iar.arm.toolchain.linker.inputType.object.v5.4.0.1942342087" name="IAR Linker Input Type for ARM (o)" superClass="iar.arm.toolchain.linker.inputType.object.v5.4.0">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -284,7 +284,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="device/EFR32_B_1_1_B/gcc/startup_efr32bg1b.c|.git/objects/info|.git/objects/pack|.git/refs/tags|device/EFR32_B_1_1_P|device/EFR32_B_1_1_V|device/EFR32_B_1_2_P|device/EFR32_M_1_1_P|device/EFR32_M_1_2_P|device/EFR32_M_1_3_P|device/EFR32_B_1_1_B/gcc|emlib/BRD4160A|emlib/RD-0057-0101|emlib/em_msc.c|emlib/em_usart.c|emlib/em_cryotimer.c|src|output_ebl" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="device/EFR32_B_1_1_B/gcc/startup_efr32bg1b.c|.git/objects/info|.git/objects/pack|.git/refs/tags|device/EFR32_B_1_1_P|device/EFR32_B_1_1_V|device/EFR32_B_1_2_P|device/EFR32_M_1_1_P|device/EFR32_M_1_2_P|device/EFR32_M_1_3_P|device/EFR32_B_1_1_B/gcc/|emlib/BRD4160A|emlib/RD-0057-0101|emlib/em_usart.c|src|output_ebl" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -995,9 +995,12 @@
 		<configuration configurationName="GNU ARM v4.9.3 - Default">
 			<resource resourceType="PROJECT" workspacePath="/SigmaMIX"/>
 		</configuration>
+		<configuration configurationName="IAR ARM - Default"/>
 		<configuration configurationName="IAR ARM - Debug">
 			<resource resourceType="PROJECT" workspacePath="/SigmaMIX"/>
 		</configuration>
+		<configuration configurationName="GNU ARM v4.9.3 - Default - EFR32BG1B132F256GM32"/>
+		<configuration configurationName="IAR ARM - Release"/>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>

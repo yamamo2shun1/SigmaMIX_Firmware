@@ -81,8 +81,6 @@
                 </ColumnWidths>
                 <NodeDict>
                     <ExpandedNode>SigmaMIX</ExpandedNode>
-                    <ExpandedNode>SigmaMIX/gattdb</ExpandedNode>
-                    <ExpandedNode>SigmaMIX/lib</ExpandedNode>
                 </NodeDict>
             </IarPane-34059>
             <IarPane-34062>
@@ -94,8 +92,8 @@
                 <LiveFilterLevel>-1</LiveFilterLevel>
             </IarPane-34062>
             <ControlBarVersion>
-                <Major>14</Major>
-                <Minor>10</Minor>
+                <Major>4</Major>
+                <Minor>0</Minor>
             </ControlBarVersion>
             <MFCToolBarParameters>
                 <Tooltips>1</Tooltips>
@@ -223,7 +221,7 @@
                 <ColumnWidth2>856</ColumnWidth2>
                 <ColumnWidth3>380</ColumnWidth3>
                 <FilterLevel>2</FilterLevel>
-                <LiveFile></LiveFile>
+                <LiveFile />
                 <LiveLogEnabled>0</LiveLogEnabled>
                 <LiveFilterLevel>-1</LiveFilterLevel>
             </IarPane-34055>
@@ -405,7 +403,7 @@
             <Pane-34048>
                 <ID>34048</ID>
                 <RectRecentFloat>0A0000000A0000006E0000006E000000</RectRecentFloat>
-                <RectRecentDocked>03030000180000004803000032000000</RectRecentDocked>
+                <RectRecentDocked>0503000025000000510300004A000000</RectRecentDocked>
                 <RecentFrameAlignment>8192</RecentFrameAlignment>
                 <RecentRowIndex>1</RecentRowIndex>
                 <IsFloating>0</IsFloating>
@@ -422,7 +420,7 @@
             <Pane-34049>
                 <ID>34049</ID>
                 <RectRecentFloat>0A0000000A0000006E0000006E000000</RectRecentFloat>
-                <RectRecentDocked>0000000018000000FE02000032000000</RectRecentDocked>
+                <RectRecentDocked>0000000025000000050300004B000000</RectRecentDocked>
                 <RecentFrameAlignment>8192</RecentFrameAlignment>
                 <RecentRowIndex>1</RecentRowIndex>
                 <IsFloating>0</IsFloating>
@@ -436,7 +434,7 @@
             <Pane-34066>
                 <ID>34066</ID>
                 <RectRecentFloat>0000000077FAFFFFE60000003AFBFFFF</RectRecentFloat>
-                <RectRecentDocked>000000009F040000000A00004E050000</RectRecentDocked>
+                <RectRecentDocked>00000000B1040000000A00004E050000</RectRecentDocked>
                 <RecentFrameAlignment>4096</RecentFrameAlignment>
                 <RecentRowIndex>0</RecentRowIndex>
                 <IsFloating>0</IsFloating>
