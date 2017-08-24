@@ -74,8 +74,6 @@
 #endif
 uint8_t bluetooth_stack_heap[DEFAULT_BLUETOOTH_HEAP(MAX_CONNECTIONS)];
 
-#define SAVE_PARAM_ADDR 0x3e000
-
 #ifdef FEATURE_PTI_SUPPORT
 static const RADIO_PTIInit_t ptiInit = RADIO_PTI_INIT;
 #endif
@@ -100,7 +98,7 @@ static const gecko_configuration_t config = {
 /* Flag for indicating DFU Reset must be performed */
 uint8_t boot_to_dfu = 0;
 
-uint32_t settings[18] = {0x00000000};
+uint32_t settings[SETTINGS_NUM] = {0x00000000};
 
 bool if_rev = false;
 double if_curve = 4.0;
@@ -128,6 +126,8 @@ void init_settings()
   settings[15] = 0x40; // monitor select
   settings[16] = 0x7F; // monitor gain
   settings[17] = 0x00; // effect select
+  settings[18] = 0xE1; // delay time
+  settings[19] = 0xFF; // feedback gain
 }
 
 void reset_settings()
@@ -152,10 +152,12 @@ void reset_settings()
   settings[15] = 0x40; // monitor select
   settings[16] = 0x7F; // monitor gain
   settings[17] = 0x00; // effect select
+  settings[18] = 0xE1; // delay time
+  settings[19] = 0xFF; // feedback gain
 
   uint32_t *w_addr = (uint32_t *)(SAVE_PARAM_ADDR + 0 * 4);
   MSC_ErasePage(w_addr);
-  MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
+  MSC_WriteWord(w_addr, (void const *)(&settings[0]), SETTINGS_NUM * 4);
 
   MSC_Deinit();
 
@@ -194,12 +196,12 @@ void reset_settings()
   }
   xf_curve = (double)(settings[12] & 0x0F);
 
-  uint8_t test[18] = {0};
-  for (int i = 0; i < 18; i++)
+  uint8_t test[SETTINGS_NUM] = {0};
+  for (int i = 0; i < SETTINGS_NUM; i++)
   {
     test[i] = (uint8_t)settings[i];
   }
-  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, SETTINGS_NUM, test);
 }
 
 void write_settings()
@@ -208,21 +210,21 @@ void write_settings()
 
   uint32_t *w_addr = (uint32_t *)(SAVE_PARAM_ADDR + 0 * 4);
   MSC_ErasePage(w_addr);
-  MSC_WriteWord(w_addr, (void const *)(&settings[0]), 18 * 4);
+  MSC_WriteWord(w_addr, (void const *)(&settings[0]), SETTINGS_NUM * 4);
 
   MSC_Deinit();
 
-  uint8_t test[18] = {0};
-  for (int i = 0; i < 18; i++)
+  uint8_t test[SETTINGS_NUM] = {0};
+  for (int i = 0; i < SETTINGS_NUM; i++)
   {
     test[i] = (uint8_t)settings[i];
   }
-  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, SETTINGS_NUM, test);
 }
 
 void read_settings()
 {
-  for (int i = 0; i < 18; i++)
+  for (int i = 0; i < SETTINGS_NUM; i++)
   {
     uint32_t *r_addr = (uint32_t *)(SAVE_PARAM_ADDR + i * 4);
     settings[i] = *r_addr;
@@ -263,12 +265,12 @@ void read_settings()
   }
   xf_curve = (double) (settings[12] & 0x0F);
 
-  uint8_t test[18] = {0};
-  for (int i = 0; i < 18; i++)
+  uint8_t test[SETTINGS_NUM] = {0};
+  for (int i = 0; i < SETTINGS_NUM; i++)
   {
     test[i] = (uint8_t)settings[i];
   }
-  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, 18, test);
+  gecko_cmd_gatt_server_write_attribute_value(gattdb_settings_read, 0, SETTINGS_NUM, test);
 }
 
 /**
@@ -536,6 +538,11 @@ void main(void)
 
           send_pitch_shifter(2047, 0);
           send_lpf(4095);
+        }
+        else if (gattdb_delay_params == evt->data.evt_gatt_server_attribute_value.attribute)
+        {
+          settings[18] = evt->data.evt_gatt_server_attribute_value.value.data[0];
+          settings[19] = evt->data.evt_gatt_server_attribute_value.value.data[1];
         }
         else if (gattdb_settings_write == evt->data.evt_gatt_server_attribute_value.attribute)
         {
@@ -837,7 +844,7 @@ void main(void)
           xf_type = 0;
           send_lpf(4095);
 
-          send_delay(0, true, -9, delay_samples);
+          send_delay(0, true, ((double)settings[19] / 255.0) * 30.0 - 30.0, MAX_DELAY_SAMPLES - (MAX_DELAY_STEPS - settings[18]));
 
           gecko_cmd_gatt_server_send_characteristic_notification(0xFF, gattdb_midi_io, 5, (uint8_t const*) note_off(37));
         }
@@ -896,7 +903,8 @@ void main(void)
         break;
       case 3:
       case 4:
-        send_delay(xf_rev ? 0 : 1, false, -9, delay_samples);
+        send_delay(xf_rev ? 0 : 1, false, ((double)settings[19] / 255.0) * 30.0 - 30.0, MAX_DELAY_SAMPLES - (MAX_DELAY_STEPS - settings[18]));
+        //send_delay(xf_rev ? 0 : 1, false, -9, delay_samples);
         send_dlpf(xf_rev ? xf_adc[1] : xf_adc[0]);
         break;
       case 5:
@@ -907,7 +915,8 @@ void main(void)
         break;
       case 7:
       case 8:
-        send_delay(xf_rev ? 1 : 0, false, -9, delay_samples);
+        send_delay(xf_rev ? 1 : 0, false, ((double)settings[19] / 255.0) * 30.0 - 30.0, MAX_DELAY_SAMPLES - (MAX_DELAY_STEPS - settings[18]));
+        //send_delay(xf_rev ? 1 : 0, false, -9, delay_samples);
         send_dlpf(xf_rev ? xf_adc[0] : xf_adc[1]);
         break;
       case 9:

@@ -152,7 +152,7 @@
       <!--Settings Read-->
       <characteristic id="settings_read" name="Settings Read" sourceId="net.tkrworks.characteristic.settings_read" uuid="13fb5580-85b2-4b83-b160-1fca96aea6c1">
         <informativeText>Custom characteristic</informativeText>
-        <value length="18" type="hex" variable_length="false">0x000000000000000000000000000000000000</value>
+        <value length="20" type="hex" variable_length="false">0x0000000000000000000000000000000000000000</value>
         <properties read="true" read_requirement="optional"/>
       </characteristic>
       
@@ -160,6 +160,13 @@
       <characteristic id="effect_selector" name="Effect Selector" sourceId="net.tkrworks.characteristic.effect_selector" uuid="a57df03d-c72f-42da-8507-90cc5f48173f">
         <informativeText>Custom characteristic</informativeText>
         <value length="1" type="hex" variable_length="false">0x00</value>
+        <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      </characteristic>
+      
+      <!--Delay Params-->
+      <characteristic id="delay_params" name="Delay Params" sourceId="net.tkrworks.characteristic.delay_params" uuid="4e3a1b45-63af-4972-93cd-370cfa211171">
+        <informativeText>Custom characteristic</informativeText>
+        <value length="2" type="hex" variable_length="false">0x0000</value>
         <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
       </characteristic>
     </service>
