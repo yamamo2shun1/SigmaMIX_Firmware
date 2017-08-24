@@ -12,7 +12,7 @@
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfbclocksource" value="LFXO"/>
     <property object="CMU" propertyId="clocksettings.lfclocksettings.lfeclocksource" value="LFXO"/>
     <property object="CMU" propertyId="clocksettings.lfclocksettings.ulfrcorequired" value="Yes"/>
-    <property object="CMU" propertyId="hfxo.initialization.autostarthfxoonem01entry" value="Enable"/>
+    <property object="CMU" propertyId="hfxo.initialization.autostarthfxoonem01entry" value="Enable and select as HFSRCCLK"/>
     <property object="CMU" propertyId="lfxo.initialization.internalloadcapacitancectune" value="32"/>
     <property object="CRYOTIMER" propertyId="ABPeripheral.included" value="true"/>
     <property object="CRYOTIMER" propertyId="cryotimer.clocking.clocksourceforcryotimer" value="ULFRCO"/>
